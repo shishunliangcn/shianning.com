@@ -166,7 +166,24 @@ npm run docs:preview   # 预览构建产物
 
 4. 侧边栏与标签索引都会自动更新，保存即热更新。
 
-## 自动部署
+## 页面上下文与 UI 隔离
+
+全站的「哪一页该出现哪个组件」由 [`docs/.vitepress/page-context.ts`](docs/.vitepress/page-context.ts) 统一裁决，
+组件不允许自己判断路径。
+
+```
+路径 ──► resolvePageContext() ──► PageContext { kind, role, ui.* }
+                                        │
+                                        └─► 组件只读 ctx.ui.ageHint / themeTable / pager / tags
+```
+
+- **板块（SectionKind）**：`exhibition`（五大展馆）、`parenting`（父母的书架）、`system`（首页/标签等）
+- **能力表（CAPABILITIES）**：每个板块声明自己允许挂载哪些 UI，默认全关
+- **角色收窄**：即使板块允许，也只有特定角色能拿到，例如 `ageHint` 只在展馆的「主题简介」页为 true
+- **构建防线**：不属于任何板块的页面会让 `npm run docs:build` **直接失败**，不会悄悄继承别人的 UI
+
+新增板块时只需两步：在 `SectionKind` 加一个值、在 `CAPABILITIES` 登记能力。
+新增页面时若不登记，CI 会拦下并提示在 `curriculum.ts` 里补登记。
 
 推送 `main` 触发 `.github/workflows/deploy.yml`（GitHub 官方 Pages 流程）：
 

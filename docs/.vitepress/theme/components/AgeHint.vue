@@ -1,28 +1,21 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useData, withBase } from 'vitepress'
+import { withBase } from 'vitepress'
+
 import { ageGroups } from '../../curriculum'
+import { usePageContext } from '../composables/usePageContext'
 
 /**
- * AgeHint —— 主题页顶部的年龄导航
+ * AgeHint —— 展馆主题页顶部的年龄筛选入口。
  *
- * 主题本身不绑定年龄：同一个主题下，不同文章服务不同认知阶段。
- * 所以这里不给「适合 X 岁」，而是给四个年龄标签的筛选入口。
- *
- * 结构上分成两块：label（图标 + 文案）与 links（标签组），
- * 窄屏时整体改为上下堆叠，标签自动换行。
+ * 是否渲染完全由页面上下文决定（ctx.ui.ageHint）：
+ * 只有「展馆 → 主题简介」这类页面才会拿到 true，
+ * 父母的书架等成人向板块在能力表里就是 false，不存在串台的可能。
  */
-const { page } = useData()
-
-const isAreaPage = computed(() => {
-  const rel = page.value.relativePath.replace(/\.md$/, '')
-  if (!rel.endsWith('/index')) return false
-  return rel.split('/').length === 3
-})
+const ctx = usePageContext()
 </script>
 
 <template>
-  <aside v-if="isAreaPage" class="age-hint">
+  <aside v-if="ctx.ui.ageHint" class="age-hint">
     <span class="age-hint__label">
       <span class="age-hint__icon" aria-hidden="true">🧭</span>
       <span class="age-hint__text">本主题横跨多个年龄段，按认知深度筛选：</span>

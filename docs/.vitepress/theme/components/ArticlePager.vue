@@ -1,67 +1,28 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData, withBase } from 'vitepress'
-import { parenting, wings } from '../../curriculum'
+import { withBase } from 'vitepress'
+
+import { usePageContext } from '../composables/usePageContext'
 
 /**
- * ArticlePager —— 文章级「上一篇 / 下一篇」
+ * ArticlePager —— 文章级「上一篇 / 下一篇」。
  *
- * 默认主题的 pager 按侧边栏顺序取邻项，文章的下一篇往往是下一个主题的
- * 「主题简介」页，文案与语义都不对。这里改为按「文章顺序」翻页：
- * 五大展馆依次串联，最后接上父母的书架。
+ * 文章序列由页面上下文给出（ctx.siblings / ctx.cursor），
+ * 且只在本板块内串联：
+ *   · 展馆文章 → 本展馆的文章序列
+ *   · 父母的书架文章 → 书架的文章序列
+ * 跨板块不会互相跳转，避免「育儿文章下一篇是天文课」这类串台。
  */
-interface ArticleEntry {
-  title: string
-  /** 不带 base、不带扩展名的站内路径 */
-  path: string
-  /** 所属展馆 · 主题 */
-  group: string
-}
+const ctx = usePageContext()
 
-const entries: ArticleEntry[] = []
-
-for (const wing of wings) {
-  for (const area of wing.areas) {
-    for (const article of area.articles ?? []) {
-      entries.push({
-        title: article.title,
-        path: `/${wing.key}/${area.key}/${article.slug}`,
-        group: `${wing.name} · ${area.name}`
-      })
-    }
-  }
-}
-
-for (const article of parenting.articles) {
-  entries.push({
-    title: article.title,
-    path: `/parenting/${article.slug}`,
-    group: '父母的书架'
-  })
-}
-
-for (const section of parenting.sections) {
-  for (const article of section.articles) {
-    entries.push({
-      title: article.title,
-      path: `/parenting/${section.key}/${article.slug}`,
-      group: `父母的书架 · ${section.name}`
-    })
-  }
-}
-
-const { page } = useData()
-
-const index = computed(() => {
-  const current = `/${page.value.relativePath.replace(/\.md$/, '')}`
-  return entries.findIndex((entry) => entry.path === current)
-})
-
-const prev = computed(() => (index.value > 0 ? entries[index.value - 1] : null))
-const next = computed(() =>
-  index.value >= 0 && index.value < entries.length - 1 ? entries[index.value + 1] : null
+const prev = computed(() =>
+  ctx.value.cursor > 0 ? ctx.value.siblings[ctx.value.cursor - 1] : null
 )
-const visible = computed(() => index.value >= 0 && Boolean(prev.value || next.value))
+const next = computed(() => {
+  const i = ctx.value.cursor
+  return i >= 0 && i < ctx.value.siblings.length - 1 ? ctx.value.siblings[i + 1] : null
+})
+const visible = computed(() => ctx.value.ui.pager && Boolean(prev.value || next.value))
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import cjkFriendlyPlugin from 'markdown-it-cjk-friendly'
 import { buildSidebar, wings } from './curriculum'
+import { resolvePageContext } from './page-context'
 import { SITE, siteUrl } from '../../site.config.mjs'
 
 /**
@@ -68,6 +69,18 @@ export default defineConfig({
   // 关掉它，改由 ArticlePager 组件按文章顺序翻页。
   // 同时为没有写 description 的页面按展馆 / 主题自动生成独立的 SEO 描述。
   transformPageData(pageData) {
+    // 上下文隔离防线：无法归属任何板块的页面直接让构建失败。
+    // 这样新增文件夹 / 漏登记的文章不可能「悄悄继承」别的板块的 UI，
+    // 而是在 CI 阶段就被拦住。
+    if (!resolvePageContext(pageData.relativePath)) {
+      throw new Error(
+        `[上下文隔离] 页面未登记：${pageData.relativePath}\n` +
+          `  处理方式二选一：\n` +
+          `    1. 在 curriculum.ts 中登记为展馆主题 / 文章；\n` +
+          `    2. 若确认是独立系统页，加入 page-context.ts 的 SYSTEM_PAGES。`
+      )
+    }
+
     pageData.frontmatter.prev = false
     pageData.frontmatter.next = false
 
