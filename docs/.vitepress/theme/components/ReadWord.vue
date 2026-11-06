@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   pitch: 1
 })
 
-const { supported, speaking, failed, degraded, speak } = useSpeechSynthesis()
+const { supported, speaking, failed, degraded, speak, playFallback } = useSpeechSynthesis()
 
 /** 鸿蒙 / 华为浏览器对 Web Speech 的支持最差，单独给一句更准确的提示 */
 const isHarmony = ref(false)
@@ -40,8 +40,8 @@ onMounted(() => {
 
 const hint = computed(() =>
   isHarmony.value
-    ? '华为/鸿蒙浏览器暂不支持发音，请换用 Chrome'
-    : '当前浏览器暂不支持发音，请换用 Chrome'
+    ? '华为/鸿蒙浏览器未内置语音引擎，已启用备用发音'
+    : '当前浏览器未内置语音引擎，已启用备用发音'
 )
 
 const title = computed(() => {
@@ -61,13 +61,21 @@ const statusText = computed(() => {
 })
 
 function handleClick() {
+  // 已知没有语音引擎（华为 / 鸿蒙常见）：直接走外部音频兜底
+  if (degraded.value) {
+    playFallback(props.word)
+    return
+  }
+
   // 直接同步调用：中间不能有任何 await / setTimeout，
   // 否则移动端会认为这次朗读不是用户触发的，从而静音。
-  speak(props.word, {
+  const ok = speak(props.word, {
     lang: props.lang,
     rate: props.rate,
     pitch: props.pitch
   })
+
+  if (!ok) playFallback(props.word)
 }
 </script>
 

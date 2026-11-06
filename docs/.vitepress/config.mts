@@ -82,6 +82,20 @@ export default defineConfig({
     }
   },
 
+  // 每页生成社交分享用的标签（标题 / 摘要 / 图标）
+  transformHead({ pageData }) {
+    const title = pageData.title || '史安宁的小学堂'
+    const description = pageData.description || '跨越年龄的边界，探索知识的无限可能。'
+    return [
+      ['meta', { property: 'og:site_name', content: '史安宁的小学堂' }],
+      ['meta', { property: 'og:type', content: 'website' }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:image', content: 'https://shianning.com/icon-512.png' }],
+      ['meta', { name: 'twitter:card', content: 'summary' }]
+    ]
+  },
+
   themeConfig: {
     siteTitle: '史安宁的小学堂',
 

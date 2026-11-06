@@ -18,6 +18,7 @@ const ROOT_FILES = [
   'CNAME',
   'favicon.ico',
   '404.html',
+  'robots.txt',
   // PWA：安装到主屏幕所需
   'manifest.webmanifest',
   'sw.js',

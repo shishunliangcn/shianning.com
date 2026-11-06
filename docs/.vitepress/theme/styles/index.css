@@ -31,6 +31,7 @@
 /* ---------- 2-1. ReadWord ---------- */
 .read-word {
   position: relative;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 6px;

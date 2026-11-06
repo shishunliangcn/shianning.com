@@ -33,6 +33,9 @@ let warmedUp = false
 /** 当前正在朗读的组件实例，避免多个按钮互相 cancel */
 let activeOwner: symbol | null = null
 
+/** 兜底播放器：给没有语音引擎的设备（华为 / 鸿蒙等）用外部音频 */
+let fallbackAudio: HTMLAudioElement | null = null
+
 function isBrowser(): boolean {
   return (
     typeof window !== 'undefined' &&
@@ -138,8 +141,10 @@ export function useSpeechSynthesis() {
     // iOS 上队列可能停在 paused 状态，先恢复
     if (synth.paused) synth.resume()
 
-    // 按需求：每次朗读前都清空队列，避免上一次卡住的 utterance 堵住这次
-    synth.cancel()
+    // 只在队列里真的有任务时才 cancel。
+    // 无条件 cancel() 紧跟 speak() 是 iOS 上最经典的「点了没声音」原因——
+    // 新的 utterance 会被一起清掉。空闲时无需清理，队列本来就是空的。
+    if (synth.speaking || synth.pending) synth.cancel()
 
     // 同步读一次语音列表：已经有缓存就用缓存，没有也不等待
     refreshVoices()
@@ -188,5 +193,34 @@ export function useSpeechSynthesis() {
     return true
   }
 
-  return { supported, speaking, failed, degraded, speak, voices: cachedVoices }
+  /**
+   * 设备没有语音引擎时的兜底：改用外部音频朗读。
+   *
+   * 华为 / 鸿蒙等浏览器拿不到 SpeechSynthesis 的语音列表，
+   * 这时候至少让用户「能听见」，而不是只看到一句提示。
+   * 说明：依赖外部服务，属于可用性兜底，不保证永久可靠。
+   */
+  function playFallback(text: string): boolean {
+    if (!isBrowser() || !text.trim()) return false
+    try {
+      const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}&type=2`
+      if (!fallbackAudio) {
+        fallbackAudio = new Audio()
+        fallbackAudio.preload = 'auto'
+      }
+      fallbackAudio.pause()
+      fallbackAudio.src = url
+      const played = fallbackAudio.play()
+      if (played && typeof played.catch === 'function') {
+        played.catch(() => {
+          failed.value = true
+        })
+      }
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  return { supported, speaking, failed, degraded, speak, playFallback, voices: cachedVoices }
 }
