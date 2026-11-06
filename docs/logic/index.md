@@ -15,7 +15,7 @@ title: 灵犀馆
 
 ## 先看这一篇
 
-- [为什么英语里的 I 永远大写](/logic/english-fun/why-i-capital) —— 一个标点级的小问题，牵出印刷史
+<FeaturedArticle />
 
 ## 怎么逛这座馆
 

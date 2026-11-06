@@ -11,7 +11,7 @@ title: 音乐
 
 ## 从这里开始
 
-- [声音是怎么变成音乐的](/arts/music/what-is-sound) —— 从空气振动到一首曲子
+<ArticleList />
 
 ## 会聊到的问题
 

@@ -15,7 +15,7 @@ title: 造物馆
 
 ## 先看这一篇
 
-- [声音是怎么变成音乐的](/arts/music/what-is-sound) —— 从空气振动到一首曲子
+<FeaturedArticle />
 
 ## 怎么逛这座馆
 

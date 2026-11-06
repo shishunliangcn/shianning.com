@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 
+import { areaLink } from '../../curriculum'
 import { usePageContext } from '../composables/usePageContext'
 
 /**
@@ -28,7 +29,7 @@ const ctx = usePageContext()
       <tbody>
         <tr v-for="area in ctx.wing.areas" :key="area.key">
           <td>
-            <a :href="withBase(`/${ctx.wing.key}/${area.key}/`)">
+            <a :href="withBase(areaLink(ctx.wing, area))">
               {{ area.icon }} {{ area.name }}
             </a>
           </td>

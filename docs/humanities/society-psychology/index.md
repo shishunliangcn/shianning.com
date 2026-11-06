@@ -12,7 +12,7 @@ title: 社会与心理
 
 ## 从这里开始
 
-- [宝宝生气了，可以怎么做？](/humanities/society-psychology/baby-emotions) —— 2 岁情绪急救
+<ArticleList />
 
 ## 会聊到的问题
 

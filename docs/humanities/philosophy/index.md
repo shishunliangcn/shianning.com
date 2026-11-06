@@ -11,7 +11,7 @@ title: 哲学
 
 ## 从这里开始
 
-- [苏格拉底为什么甘愿赴死](/humanities/philosophy/socrates)
+<ArticleList />
 
 ## 会聊到的问题
 

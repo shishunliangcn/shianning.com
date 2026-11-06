@@ -15,7 +15,7 @@ title: 知音馆
 
 ## 先看这一篇
 
-- [苏格拉底为什么甘愿赴死](/humanities/philosophy/socrates) —— 一场关于「什么是好生活」的审判
+<FeaturedArticle />
 
 ## 怎么逛这座馆
 

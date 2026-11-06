@@ -185,6 +185,25 @@ npm run docs:preview   # 预览构建产物
 新增板块时只需两步：在 `SectionKind` 加一个值、在 `CAPABILITIES` 登记能力。
 新增页面时若不登记，CI 会拦下并提示在 `curriculum.ts` 里补登记。
 
+## 页面内容的数据来源
+
+展馆页与书架页上的清单类内容全部由数据渲染，markdown 里不再手写链接：
+
+| 组件 | 数据来源 | 出现位置 |
+| --- | --- | --- |
+| `ExhibitionThemes` | `wings[].areas` | 展馆首页的「本馆主题」表 |
+| `FeaturedArticle` | `wings[].featured` | 展馆首页的「先看这一篇」 |
+| `ArticleList` | `areas[].articles` / `sections[].articles` | 主题页、栏目页的「从这里开始」 |
+| `ParentingArticles` | `parenting.articles` | 书架首页的「按年龄找」表 |
+| `ParentingSections` | `parenting.sections` | 书架首页的栏目入口 |
+
+改文章标题、换推荐、加主题，只需要改 `curriculum.ts`，页面自动跟上。
+
+## 字体
+
+VitePress 默认字体表包含 14 个子集（627 KB）。`config.mts` 用 Vite 插件
+`trim-default-fonts` 替换了它，只保留拉丁常规体（66 KB）+ 中文标点回退。
+
 推送 `main` 触发 `.github/workflows/deploy.yml`（GitHub 官方 Pages 流程）：
 
 1. `npm ci` → `npm run docs:build`

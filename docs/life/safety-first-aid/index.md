@@ -11,7 +11,7 @@ title: 安全急救
 
 ## 从这里开始
 
-- [烫伤后的第一件事是什么](/life/safety-first-aid/burns) —— 大多数人第一反应就是错的
+<ArticleList />
 
 ## 会覆盖什么
 

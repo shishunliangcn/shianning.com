@@ -15,7 +15,7 @@ title: 长生馆
 
 ## 先看这一篇
 
-- [烫伤后的第一件事是什么](/life/safety-first-aid/burns) —— 大多数人第一反应就是错的
+<FeaturedArticle />
 
 ## 怎么逛这座馆
 

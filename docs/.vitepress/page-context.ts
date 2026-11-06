@@ -1,4 +1,10 @@
-import { parenting, wings } from './curriculum'
+import {
+  articleLink,
+  parenting,
+  parentingArticleLink,
+  parentingSectionLink,
+  wings
+} from './curriculum'
 import type { AreaDef, WingDef } from './curriculum'
 
 /**
@@ -11,8 +17,7 @@ import type { AreaDef, WingDef } from './curriculum'
  * 3. 组件不允许自己判断路径，只能读解析结果里的 ui.* 开关。
  * 4. 无法归属的页面返回 null —— 构建时直接报错，不允许「悄悄继承」别人的 UI。
  *
- * 这样新增板块时，只需要在 SectionKind 与 CAPABILITIES 里登记一次，
- * 其余组件零改动；未登记的页面连构建都过不了，不会出现跨界串台。
+ * 同时，页面的 SEO 描述也在这里生成：路径解析只有这一份实现。
  */
 
 /* ------------------------------------------------------------------ */
@@ -23,7 +28,7 @@ import type { AreaDef, WingDef } from './curriculum'
 export type SectionKind = 'exhibition' | 'parenting' | 'system'
 
 /** 页面在板块内的角色 */
-export type PageRole = 'landing' | 'index' | 'article' | 'system'
+type PageRole = 'landing' | 'index' | 'article' | 'system'
 
 /** 一个板块允许出现的 UI 能力。默认全关，按需开启。 */
 export interface UiCapabilities {
@@ -31,6 +36,14 @@ export interface UiCapabilities {
   ageHint: boolean
   /** 展馆首页的「本馆主题」表格 */
   themeTable: boolean
+  /** 展馆首页的「先看这一篇」推荐位 */
+  featured: boolean
+  /** 书架首页的「按年龄找」表格 */
+  parentingArticles: boolean
+  /** 书架首页的栏目入口 */
+  parentingSections: boolean
+  /** 主题页 / 栏目页的「从这里开始」文章列表 */
+  articleList: boolean
   /** 文章级上一篇 / 下一篇 */
   pager: boolean
   /** 文章标签 */
@@ -43,17 +56,44 @@ export interface UiCapabilities {
  * 这里是全站唯一声明「谁能出现什么 UI」的地方。
  * 父母的书架是成人向内容，ageHint 永远为 false——不是补丁，是定义。
  */
-export const CAPABILITIES: Record<SectionKind, UiCapabilities> = {
-  exhibition: { ageHint: true, themeTable: true, pager: true, tags: true },
-  parenting: { ageHint: false, themeTable: false, pager: true, tags: true },
-  system: { ageHint: false, themeTable: false, pager: false, tags: false }
+const CAPABILITIES: Record<SectionKind, UiCapabilities> = {
+  exhibition: {
+    ageHint: true,
+    themeTable: true,
+    featured: true,
+    articleList: true,
+    parentingArticles: false,
+    parentingSections: false,
+    pager: true,
+    tags: true
+  },
+  parenting: {
+    ageHint: false,
+    themeTable: false,
+    featured: false,
+    articleList: true,
+    parentingArticles: true,
+    parentingSections: true,
+    pager: true,
+    tags: true
+  },
+  system: {
+    ageHint: false,
+    themeTable: false,
+    featured: false,
+    articleList: false,
+    parentingArticles: false,
+    parentingSections: false,
+    pager: false,
+    tags: false
+  }
 }
 
 /* ------------------------------------------------------------------ */
 /* 上下文结构                                                          */
 /* ------------------------------------------------------------------ */
 
-export interface ArticleRef {
+interface ArticleRef {
   title: string
   /** 不带 base、不带扩展名的站内路径，例如 /nature/astronomy/stars */
   path: string
@@ -75,6 +115,8 @@ export interface PageContext {
   cursor: number
   /** 组件唯一需要读的开关集合 */
   ui: UiCapabilities
+  /** 由路径自动生成的 SEO 描述（页面自己写了 description 时不使用） */
+  seoDescription?: string
 }
 
 /** 未识别页面时给的保守上下文：所有 UI 关闭 */
@@ -84,7 +126,16 @@ export const EMPTY_CONTEXT: PageContext = {
   path: '',
   siblings: [],
   cursor: -1,
-  ui: { ageHint: false, themeTable: false, pager: false, tags: false }
+  ui: {
+    ageHint: false,
+    themeTable: false,
+    featured: false,
+    articleList: false,
+    parentingArticles: false,
+    parentingSections: false,
+    pager: false,
+    tags: false
+  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -98,7 +149,7 @@ function wingArticles(wing: WingDef): ArticleRef[] {
     for (const article of area.articles ?? []) {
       list.push({
         title: article.title,
-        path: `/${wing.key}/${area.key}/${article.slug}`,
+        path: articleLink(wing, area, article),
         group: `${wing.name} · ${area.name}`
       })
     }
@@ -112,7 +163,7 @@ function parentingArticles(): ArticleRef[] {
   for (const article of parenting.articles) {
     list.push({
       title: article.title,
-      path: `/parenting/${article.slug}`,
+      path: parentingArticleLink(article.slug),
       group: '父母的书架'
     })
   }
@@ -120,7 +171,7 @@ function parentingArticles(): ArticleRef[] {
     for (const article of section.articles) {
       list.push({
         title: article.title,
-        path: `/parenting/${section.key}/${article.slug}`,
+        path: parentingSectionLink(section.key, article.slug),
         group: `父母的书架 · ${section.name}`
       })
     }
@@ -134,6 +185,9 @@ function parentingArticles(): ArticleRef[] {
 
 /** 不属于任何业务板块的独立页面 */
 const SYSTEM_PAGES = new Set(['index', 'tags', 'CONTENT_MAP'])
+
+/** 书架的固定描述（增删文章不需要改动） */
+const PARENTING_DESCRIPTION = '父母的书架｜按年龄分层的育儿实操笔记：不鸡娃，也不放任。'
 
 function baseContext(kind: SectionKind, role: PageRole, path: string): PageContext {
   return {
@@ -149,9 +203,15 @@ function baseContext(kind: SectionKind, role: PageRole, path: string): PageConte
 /** 按能力表收窄到「这个角色真正该有的 UI」 */
 function narrow(ctx: PageContext): PageContext {
   const caps = CAPABILITIES[ctx.kind]
+  const isExhibition = ctx.kind === 'exhibition'
+  const isParenting = ctx.kind === 'parenting'
   ctx.ui = {
-    ageHint: caps.ageHint && ctx.role === 'index' && ctx.kind === 'exhibition',
-    themeTable: caps.themeTable && ctx.role === 'landing' && ctx.kind === 'exhibition',
+    ageHint: caps.ageHint && ctx.role === 'index' && isExhibition,
+    themeTable: caps.themeTable && ctx.role === 'landing' && isExhibition,
+    featured: caps.featured && ctx.role === 'landing' && isExhibition,
+    articleList: caps.articleList && ctx.role === 'index',
+    parentingArticles: caps.parentingArticles && ctx.role === 'landing' && isParenting,
+    parentingSections: caps.parentingSections && ctx.role === 'landing' && isParenting,
     pager: caps.pager && ctx.role === 'article',
     tags: caps.tags && ctx.role === 'article'
   }
@@ -163,6 +223,7 @@ function resolveExhibition(wing: WingDef, rest: string[], path: string): PageCon
   if (rest.length === 1 && rest[0] === 'index') {
     const ctx = baseContext('exhibition', 'landing', path)
     ctx.wing = wing
+    ctx.seoDescription = `${wing.name}（${wing.motto}）：${wing.summary}`
     return narrow(ctx)
   }
 
@@ -173,6 +234,7 @@ function resolveExhibition(wing: WingDef, rest: string[], path: string): PageCon
     const ctx = baseContext('exhibition', 'index', path)
     ctx.wing = wing
     ctx.area = area
+    ctx.seoDescription = `${area.name} · ${wing.name}｜${area.summary}`
     return narrow(ctx)
   }
 
@@ -186,6 +248,7 @@ function resolveExhibition(wing: WingDef, rest: string[], path: string): PageCon
     const ctx = baseContext('exhibition', 'article', path)
     ctx.wing = wing
     ctx.area = area
+    ctx.seoDescription = `${article.title} · ${area.name}｜${area.summary}`
     ctx.siblings = wingArticles(wing)
     ctx.cursor = ctx.siblings.findIndex((item) => item.path === path)
     return narrow(ctx)
@@ -197,7 +260,9 @@ function resolveExhibition(wing: WingDef, rest: string[], path: string): PageCon
 function resolveParenting(rest: string[], path: string): PageContext | null {
   // parenting/index → 书架首页
   if (rest.length === 1 && rest[0] === 'index') {
-    return narrow(baseContext('parenting', 'landing', path))
+    const ctx = baseContext('parenting', 'landing', path)
+    ctx.seoDescription = PARENTING_DESCRIPTION
+    return narrow(ctx)
   }
 
   // parenting/<slug> → 平铺的育儿文章
@@ -205,6 +270,7 @@ function resolveParenting(rest: string[], path: string): PageContext | null {
     const found = parenting.articles.some((item) => item.slug === rest[0])
     if (!found) return null
     const ctx = baseContext('parenting', 'article', path)
+    ctx.seoDescription = PARENTING_DESCRIPTION
     ctx.siblings = parentingArticles()
     ctx.cursor = ctx.siblings.findIndex((item) => item.path === path)
     return narrow(ctx)
@@ -216,6 +282,7 @@ function resolveParenting(rest: string[], path: string): PageContext | null {
     if (!section) return null
     const ctx = baseContext('parenting', 'index', path)
     ctx.section = { key: section.key, name: section.name }
+    ctx.seoDescription = `${section.name} · 父母的书架｜${section.summary}`
     return narrow(ctx)
   }
 
@@ -227,6 +294,7 @@ function resolveParenting(rest: string[], path: string): PageContext | null {
     if (!found) return null
     const ctx = baseContext('parenting', 'article', path)
     ctx.section = { key: section.key, name: section.name }
+    ctx.seoDescription = `${section.name} · 父母的书架｜${section.summary}`
     ctx.siblings = parentingArticles()
     ctx.cursor = ctx.siblings.findIndex((item) => item.path === path)
     return narrow(ctx)

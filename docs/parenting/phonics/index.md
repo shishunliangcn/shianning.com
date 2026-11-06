@@ -23,4 +23,4 @@ description: 父母的书架下的发音栏目：按日常场景整理的亲子�
 
 ## 从这里开始
 
-- [日常场景 · 46 条亲子英语](/parenting/phonics/parent-english-phonics)
+<ArticleList />

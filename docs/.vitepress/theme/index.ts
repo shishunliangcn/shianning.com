@@ -7,6 +7,10 @@ import AudioPlayer from './components/AudioPlayer.vue'
 import KnowledgeMap from './components/KnowledgeMap.vue'
 import AgeGuide from './components/AgeGuide.vue'
 import ExhibitionThemes from './components/ExhibitionThemes.vue'
+import FeaturedArticle from './components/FeaturedArticle.vue'
+import ParentingArticles from './components/ParentingArticles.vue'
+import ParentingSections from './components/ParentingSections.vue'
+import ArticleList from './components/ArticleList.vue'
 
 import './styles/index.css'
 
@@ -25,5 +29,9 @@ export default {
     app.component('KnowledgeMap', KnowledgeMap)
     app.component('AgeGuide', AgeGuide)
     app.component('ExhibitionThemes', ExhibitionThemes)
+    app.component('FeaturedArticle', FeaturedArticle)
+    app.component('ParentingArticles', ParentingArticles)
+    app.component('ParentingSections', ParentingSections)
+    app.component('ArticleList', ArticleList)
   }
 } satisfies Theme

@@ -12,7 +12,7 @@ title: 生活常识
 
 ## 从这里开始
 
-- [洗手七步法（宝宝版）](/life/life-skills/baby-wash-hands) —— 用七个表情记住七步
+<ArticleList />
 
 ## 会聊到的问题
 

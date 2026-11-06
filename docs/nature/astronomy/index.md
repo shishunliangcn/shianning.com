@@ -11,7 +11,7 @@ title: 天文
 
 ## 从这里开始
 
-- [星星为什么会发光](/nature/astronomy/stars) —— 从核聚变到光谱
+<ArticleList />
 
 ## 会聊到的问题
 

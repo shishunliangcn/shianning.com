@@ -15,7 +15,7 @@ title: 格物馆
 
 ## 先看这一篇
 
-- [星星为什么会发光](/nature/astronomy/stars) —— 从核聚变到光谱，一次讲清
+<FeaturedArticle />
 
 ## 怎么逛这座馆
 

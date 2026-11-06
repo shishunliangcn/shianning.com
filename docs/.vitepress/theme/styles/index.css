@@ -7,10 +7,8 @@
 :root {
   --school-bg: #fdfaf5;
   --school-bg-soft: #f7f0e6;
-  --school-ink: #2b2a26;
   --school-teal: #0f766e;
   --school-teal-soft: #e6f4f1;
-  --school-sky: #0ea5e9;
   --school-radius: 16px;
   --school-shadow: 0 1px 2px rgba(43, 42, 38, 0.04), 0 8px 24px rgba(43, 42, 38, 0.06);
 }
@@ -52,7 +50,6 @@
   transition: background-color 0.2s, border-color 0.2s, transform 0.12s;
 }
 
-.read-word:hover,
 .read-word:focus-visible {
   background: var(--school-teal-soft);
   border-color: var(--school-teal);
@@ -160,11 +157,6 @@
   opacity: 0.85;
 }
 
-.km-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--km-accent);
-  box-shadow: 0 14px 32px rgba(43, 42, 38, 0.1);
-}
 
 .km-card__head {
   display: flex;
@@ -196,9 +188,6 @@
   text-decoration: none;
 }
 
-.km-card__title a:hover {
-  color: var(--km-accent);
-}
 
 .km-card__age {
   margin: 2px 0 0;
@@ -238,11 +227,6 @@
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.km-chip:hover {
-  border-color: var(--km-accent);
-  background: var(--vp-c-bg);
-  color: var(--km-accent);
-}
 
 /* 首页正文放宽，容纳五座展馆并排 */
 .VPHomeContent .container {
@@ -306,10 +290,6 @@
   transition: border-color 0.2s, background-color 0.2s;
 }
 
-.age-hint__link:hover {
-  border-color: var(--school-teal);
-  background: var(--school-teal-soft);
-}
 
 /* 窄屏：上下堆叠，标签用网格自适应列宽，320px 下稳定两列 */
 @media (max-width: 768px) {
@@ -357,11 +337,6 @@
   transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
 }
 
-.age-guide__item:hover {
-  border-color: var(--school-teal);
-  background: var(--vp-c-bg);
-  transform: translateY(-1px);
-}
 
 .age-guide__label {
   font-size: 14.5px;
@@ -416,11 +391,6 @@
   transition: color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
-.article-tag:hover {
-  border-color: var(--school-teal);
-  background: var(--school-teal-soft);
-  color: var(--school-teal);
-}
 
 /* ---------- 5. 标签索引页 ---------- */
 .tag-index {
@@ -475,10 +445,6 @@
   border-bottom: 1px solid transparent;
 }
 
-.tag-index__list a:hover {
-  color: var(--school-teal);
-  border-bottom-color: var(--school-teal);
-}
 
 /* ---------- 6. 文章翻页 ---------- */.article-pager {
   display: grid;
@@ -501,11 +467,6 @@
   transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
 }
 
-.article-pager__item:hover {
-  border-color: var(--school-teal);
-  background: var(--vp-c-bg);
-  transform: translateY(-1px);
-}
 
 .article-pager__item--next {
   align-items: flex-end;
@@ -536,3 +497,92 @@
   }
 }
 
+/* ---------- 6-2. 书架栏目入口 ---------- */
+.parenting-sections {
+  display: grid;
+  gap: 12px;
+  margin: 8px 0 24px;
+}
+
+.parenting-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.parenting-section__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.parenting-section__summary {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
+/* ---------- 7. 指针设备守卫 ----------
+   触屏上 :hover 会在点击后一直保留，导致卡片「卡在悬停态」。
+   统一收进 @media (hover: hover)，只给真正有指针的设备。 */
+@media (hover: hover) {
+  .read-word:hover {
+    background: var(--school-teal-soft);
+    border-color: var(--school-teal);
+  }
+
+  .km-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--km-accent);
+    box-shadow: 0 14px 32px rgba(43, 42, 38, 0.1);
+  }
+
+  .km-card__title a:hover {
+    color: var(--km-accent);
+  }
+
+  .km-chip:hover {
+    border-color: var(--km-accent);
+    background: var(--vp-c-bg);
+    color: var(--km-accent);
+  }
+
+  .age-hint__link:hover {
+    border-color: var(--school-teal);
+    background: var(--school-teal-soft);
+  }
+
+  .age-guide__item:hover {
+    border-color: var(--school-teal);
+    background: var(--vp-c-bg);
+    transform: translateY(-1px);
+  }
+
+  .article-tag:hover {
+    border-color: var(--school-teal);
+    background: var(--school-teal-soft);
+    color: var(--school-teal);
+  }
+
+  .tag-index__list a:hover {
+    color: var(--school-teal);
+    border-bottom-color: var(--school-teal);
+  }
+
+  .article-pager__item:hover {
+    border-color: var(--school-teal);
+    background: var(--vp-c-bg);
+    transform: translateY(-1px);
+  }
+
+  .parenting-section:hover {
+    border-color: var(--school-teal);
+    background: var(--vp-c-bg);
+  }
+}

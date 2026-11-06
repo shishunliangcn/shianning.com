@@ -11,20 +11,14 @@ title: 父母的书架
 
 ## 按年龄找
 
-| 阶段 | 这篇讲什么 |
-| --- | --- |
-| [0–3 岁](/parenting/self-awareness-2yo) | 2岁宝宝总说「不」？这是自我意识的觉醒 |
-| [3–6 岁](/parenting/separation-anxiety) | 如何应对幼儿园的分离焦虑 |
-| [6–12 岁](/parenting/intrinsic-motivation) | 辅导作业不崩溃：培养内驱力的 3 个秘诀 |
-| [青春期](/parenting/closed-door) | 孩子突然关上了房门，父母该怎么办？ |
-| [父母自修](/parenting/stop-yelling) | 育儿先育己：如何控制吼叫的冲动 |
+<ParentingArticles />
 
 ## 🗣️ 亲子英语发音小抄
 
-怕自己发音不准？不用怕。这里按日常场景整理了 46 条亲子英语，
+怕自己发音不准？不用怕。这里按日常场景整理了常用的亲子英语，
 每一句点一下就能听标准读音，跟着读就行。
 
-[打开发音小抄 →](/parenting/phonics/)
+<ParentingSections />
 
 ## 怎么用这个书架
 

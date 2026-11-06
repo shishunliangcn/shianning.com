@@ -11,7 +11,7 @@ title: 趣味英语
 
 ## 从这里开始
 
-- [为什么英语里的 I 永远大写](/logic/english-fun/why-i-capital)
+<ArticleList />
 
 ## 会聊到的问题
 

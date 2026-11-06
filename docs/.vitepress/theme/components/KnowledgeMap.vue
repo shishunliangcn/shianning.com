@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
-import { wings, areaCount } from '../../curriculum'
+import { areaCount, areaLink, wingLink, wings } from '../../curriculum'
 
 /**
  * KnowledgeMap —— 知识库全图
  *
- * 直接读取 curriculum.ts：五座展馆、二十个主题，
+ * 直接读取 curriculum.ts：展馆与主题数量都是实时统计，
  * 新增展馆或主题后自动出现，数量也是实时统计的。
  */
 </script>
@@ -28,7 +28,7 @@ import { wings, areaCount } from '../../curriculum'
           <span class="km-card__icon" aria-hidden="true">{{ wing.icon }}</span>
           <div class="km-card__heading">
             <h2 class="km-card__title">
-              <a :href="withBase(`/${wing.key}/`)">{{ wing.name }}</a>
+              <a :href="withBase(wingLink(wing))">{{ wing.name }}</a>
             </h2>
             <p class="km-card__age">{{ wing.motto }} · {{ wing.areas.length }} 个主题</p>
           </div>
@@ -38,7 +38,7 @@ import { wings, areaCount } from '../../curriculum'
 
         <ul class="km-card__subjects">
           <li v-for="area in wing.areas" :key="area.key">
-            <a class="km-chip" :href="withBase(`/${wing.key}/${area.key}/`)">
+            <a class="km-chip" :href="withBase(areaLink(wing, area))">
               <span aria-hidden="true">{{ area.icon }}</span>{{ area.name }}
             </a>
           </li>

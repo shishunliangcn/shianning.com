@@ -7,11 +7,13 @@ import type { DefaultTheme } from 'vitepress'
  * 侧边栏、导航下拉、主页「知识库全图」、主题页的年龄提示都由这里派生。
  */
 
-export interface ArticleDef {
+interface ArticleDef {
   /** 侧边栏与标签页显示的文字 */
   title: string
   /** 页面 slug，即 docs/<wing>/<area>/<slug>.md */
   slug: string
+  /** 一句推荐语，出现在主题页 / 栏目页的「从这里开始」列表 */
+  note?: string
 }
 
 export interface AreaDef {
@@ -24,6 +26,16 @@ export interface AreaDef {
   articles?: ArticleDef[]
 }
 
+/** 展馆首页「先看这一篇」的推荐位，避免在 markdown 里手写链接 */
+export interface FeaturedDef {
+  /** 所属主题 key */
+  area: string
+  /** 文章 slug */
+  slug: string
+  /** 一句话推荐语 */
+  note: string
+}
+
 export interface WingDef {
   key: string
   name: string
@@ -33,6 +45,8 @@ export interface WingDef {
   summary: string
   /** 主题色，用于大门与知识库全图 */
   accent: string
+  /** 本馆推荐阅读（展馆首页自动渲染） */
+  featured?: FeaturedDef
   areas: AreaDef[]
 }
 
@@ -44,13 +58,14 @@ export const wings: WingDef[] = [
     motto: '探索宇宙与自然',
     summary: '从一颗恒星的一生，到一滴水里的一次反应。这里回答「世界为什么是这个样子」。',
     accent: '#66d9ff',
+    featured: { area: 'astronomy', slug: 'stars', note: '从核聚变到光谱，一次讲清' },
     areas: [
       {
         key: 'astronomy',
         name: '天文',
         icon: '🔭',
         summary: '抬头看：恒星、行星、星系，以及人类如何一步步量出宇宙。',
-        articles: [{ title: '星星为什么会发光', slug: 'stars' }]
+        articles: [{ title: '星星为什么会发光', slug: 'stars', note: '从核聚变到光谱' }]
       },
       {
         key: 'observation',
@@ -91,6 +106,7 @@ export const wings: WingDef[] = [
     motto: '穿梭历史与人文',
     summary: '过去的人怎么想、怎么活、为什么争执。读懂他们，才能读懂我们自己。',
     accent: '#ffd479',
+    featured: { area: 'philosophy', slug: 'socrates', note: '一场关于「什么是好生活」的审判' },
     areas: [
       {
         key: 'history',
@@ -110,7 +126,7 @@ export const wings: WingDef[] = [
         name: '社会与心理',
         icon: '🧩',
         summary: '从 2 岁宝宝的情绪，到人在群体里的变化：理解行为背后的心理机制。',
-        articles: [{ title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions' }]
+        articles: [{ title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions', note: '2 岁情绪急救' }]
       },
       {
         key: 'puberty',
@@ -133,6 +149,7 @@ export const wings: WingDef[] = [
     motto: '语言与逻辑魔法',
     summary: '语言是工具，逻辑是骨架。学会它们，你就拥有拆解一切问题的能力。',
     accent: '#b39cff',
+    featured: { area: 'english-fun', slug: 'why-i-capital', note: '一个标点级的小问题，牵出印刷史' },
     areas: [
       {
         key: 'english-fun',
@@ -177,6 +194,7 @@ export const wings: WingDef[] = [
     motto: '艺术、动手与创想',
     summary: '看、听、做。用双手把想法变成现实，也学会判断什么是好作品。',
     accent: '#ff9ad5',
+    featured: { area: 'music', slug: 'what-is-sound', note: '从空气振动到一首曲子' },
     areas: [
       {
         key: 'music',
@@ -184,7 +202,7 @@ export const wings: WingDef[] = [
         icon: '🎵',
         summary: '声音如何变成音乐，以及怎么听出门道。',
         articles: [
-          { title: '声音是怎么变成音乐的', slug: 'what-is-sound' },
+          { title: '声音是怎么变成音乐的', slug: 'what-is-sound', note: '从空气振动到一首曲子' },
           { title: '小手拍拍：2岁宝宝手指操', slug: 'baby-finger-play' }
         ]
       },
@@ -221,13 +239,14 @@ export const wings: WingDef[] = [
     motto: '生活、生存与实用技能',
     summary: '最要紧的知识往往最没人教：如何自救、如何持家、如何不让钱被骗走。',
     accent: '#7dffc4',
+    featured: { area: 'safety-first-aid', slug: 'burns', note: '大多数人第一反应就是错的' },
     areas: [
       {
         key: 'safety-first-aid',
         name: '安全急救',
         icon: '🚑',
         summary: '烫伤、出血、窒息与心肺复苏：关键时刻的正确动作。',
-        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns' }]
+        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns', note: '大多数人第一反应就是错的' }]
       },
       {
         key: 'self-protection',
@@ -240,7 +259,7 @@ export const wings: WingDef[] = [
         name: '生活常识',
         icon: '🧰',
         summary: '收纳、家电、合同、办事流程，以及洗手刷牙这类日常习惯。',
-        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands' }]
+        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands', note: '用七个表情记住七步' }]
       },
       {
         key: 'financial-literacy',
@@ -274,7 +293,7 @@ export const parenting: {
     name: string
     icon: string
     summary: string
-    articles: Array<{ title: string; slug: string }>
+    articles: Array<{ title: string; slug: string; note?: string }>
   }>
 } = {
   key: 'parenting',
@@ -321,14 +340,18 @@ export function articleLink(wing: WingDef, area: AreaDef, article: ArticleDef): 
   return `/${wing.key}/${area.key}/${article.slug}`
 }
 
+/** `stars` → `/parenting/stars` */
+export function parentingArticleLink(slug: string): string {
+  return `/parenting/${slug}`
+}
+
+/** `phonics` + `xyz` → `/parenting/phonics/xyz`；不传 slug 时返回栏目首页 */
+export function parentingSectionLink(sectionKey: string, slug?: string): string {
+  return slug ? `/parenting/${sectionKey}/${slug}` : `/parenting/${sectionKey}/`
+}
+
 /** 全站主题总数，供首页文案使用 */
 export const areaCount = wings.reduce((total, wing) => total + wing.areas.length, 0)
-
-/** 全站文章总数 */
-export const articleCount = wings.reduce(
-  (total, wing) => total + wing.areas.reduce((sum, area) => sum + (area.articles?.length ?? 0), 0),
-  0
-)
 
 /**
  * 生成多级嵌套侧边栏：展馆 → 主题 → 文章。
@@ -376,16 +399,16 @@ export function buildSidebar(): Record<string, DefaultTheme.SidebarItem[]> {
         { text: '书架首页', link: '/parenting/' },
         ...parenting.articles.map((article) => ({
           text: article.title,
-          link: `/parenting/${article.slug}`
+          link: parentingArticleLink(article.slug)
         })),
         ...parenting.sections.map((section) => ({
           text: `${section.icon} ${section.name}`,
           collapsed: false,
           items: [
-            { text: '栏目介绍', link: `/parenting/${section.key}/` },
+            { text: '栏目介绍', link: parentingSectionLink(section.key) },
             ...section.articles.map((article) => ({
               text: article.title,
-              link: `/parenting/${section.key}/${article.slug}`
+              link: parentingSectionLink(section.key, article.slug)
             }))
           ]
         }))

@@ -5,26 +5,68 @@ import { resolvePageContext } from './page-context'
 import { SITE, siteUrl } from '../../site.config.mjs'
 
 /**
- * 按页面路径生成独立的 SEO 描述：
- * 展馆页用展馆简介，主题页用主题简介，书架页用固定描述。
- * 文章自己写了 description 的不会被覆盖。
+ * 字体裁剪。
+ *
+ * VitePress 默认的 fonts.css 会打进 14 个子集（拉丁 / 拉丁扩展 / 希腊 / 西里尔 /
+ * 越南语 × 常规 / 斜体，共 627 KB）。全站主体是中文，其余子集与斜体都用不到。
+ *
+ * 这里直接替换该文件的加载结果，只保留「拉丁常规体」+ 中文标点，
+ * 产物字体从 14 个降到 1 个。
  */
-function describePage(rel: string): string | undefined {
-  if (rel === 'parenting' || rel.startsWith('parenting/')) {
-    return '父母的书架｜按年龄分层的育儿实操笔记：不鸡娃，也不放任。'
+const TRIMMED_FONTS_CSS = `
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-roman-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Punctuation SC';
+  font-weight: 400;
+  src: local('PingFang SC Regular'), local('Noto Sans CJK SC'), local('Microsoft YaHei');
+  unicode-range: U+201C, U+201D, U+2018, U+2019, U+2E3A, U+2014, U+2013, U+2026,
+    U+00B7, U+007E, U+002F;
+}
+
+@font-face {
+  font-family: 'Punctuation SC';
+  font-weight: 500;
+  src: local('PingFang SC Medium'), local('Noto Sans CJK SC'), local('Microsoft YaHei');
+  unicode-range: U+201C, U+201D, U+2018, U+2019, U+2E3A, U+2014, U+2013, U+2026,
+    U+00B7, U+007E, U+002F;
+}
+
+@font-face {
+  font-family: 'Punctuation SC';
+  font-weight: 600;
+  src: local('PingFang SC Semibold'), local('Noto Sans CJK SC Bold'), local('Microsoft YaHei Bold');
+  unicode-range: U+201C, U+201D, U+2018, U+2019, U+2E3A, U+2014, U+2013, U+2026,
+    U+00B7, U+007E, U+002F;
+}
+
+@font-face {
+  font-family: 'Punctuation SC';
+  font-weight: 700;
+  src: local('PingFang SC Semibold'), local('Noto Sans CJK SC Bold'), local('Microsoft YaHei Bold');
+  unicode-range: U+201C, U+201D, U+2018, U+2019, U+2E3A, U+2014, U+2013, U+2026,
+    U+00B7, U+007E, U+002F;
+}
+`
+
+/** 用裁剪版内容替换 VitePress 默认字体样式表 */
+const trimDefaultFonts = {
+  name: 'trim-default-fonts',
+  enforce: 'pre' as const,
+  load(id: string) {
+    const clean = id.split('?')[0].replace(/\\/g, '/')
+    if (!clean.endsWith('/theme-default/styles/fonts.css')) return
+    return TRIMMED_FONTS_CSS
   }
-
-  const [wingKey, areaKey] = rel.split('/')
-  const wing = wings.find((item) => item.key === wingKey)
-  if (!wing) return undefined
-
-  if (!areaKey) {
-    return `${wing.name}（${wing.motto}）：${wing.summary}`
-  }
-
-  const area = wing.areas.find((item) => item.key === areaKey)
-  if (!area) return undefined
-  return `${area.name} · ${wing.name}｜${area.summary}`
 }
 
 // https://vitepress.dev/reference/site-config
@@ -72,7 +114,8 @@ export default defineConfig({
     // 上下文隔离防线：无法归属任何板块的页面直接让构建失败。
     // 这样新增文件夹 / 漏登记的文章不可能「悄悄继承」别的板块的 UI，
     // 而是在 CI 阶段就被拦住。
-    if (!resolvePageContext(pageData.relativePath)) {
+    const ctx = resolvePageContext(pageData.relativePath)
+    if (!ctx) {
       throw new Error(
         `[上下文隔离] 页面未登记：${pageData.relativePath}\n` +
           `  处理方式二选一：\n` +
@@ -84,16 +127,15 @@ export default defineConfig({
     pageData.frontmatter.prev = false
     pageData.frontmatter.next = false
 
-    if (!pageData.frontmatter.description) {
-      // 去掉 .md 和结尾的 /index，让展馆页与主题页都能命中
-      const rel = pageData.relativePath.replace(/\.md$/, '').replace(/\/index$/, '')
-      const generated = describePage(rel)
-      if (generated) {
-        // VitePress 的 <meta name="description"> 读的是 pageData.description
-        pageData.description = generated
-        pageData.frontmatter.description = generated
-      }
+    // SEO 描述由解析器生成（页面自己写了 description 时以页面为准）
+    if (!pageData.frontmatter.description && ctx.seoDescription) {
+      pageData.description = ctx.seoDescription
+      pageData.frontmatter.description = ctx.seoDescription
     }
+
+    // 说明：首页 hero 的数字不做运行时注入。
+    // VitePress 的首页 hero 直接读原始 frontmatter，transformPageData 改不动；
+    // 所以 tagline 保持定性文案，实时数量由首页的 <KnowledgeMap /> 展示。
   },
 
   // 每页生成社交分享用的标签（标题 / 摘要 / 图标）
@@ -108,6 +150,11 @@ export default defineConfig({
       ['meta', { property: 'og:image', content: siteUrl('/icon-512.png') }],
       ['meta', { name: 'twitter:card', content: 'summary' }]
     ]
+  },
+
+  // 字体裁剪：用精简版替换 VitePress 默认字体表（详见文件顶部说明）
+  vite: {
+    plugins: [trimDefaultFonts]
   },
 
   themeConfig: {
