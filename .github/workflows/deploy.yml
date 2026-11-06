@@ -5,17 +5,17 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# 走 gh-pages 分支发布：Pages 的 workflow 部署接口此前会卡死，
-# 分支方式由 Pages 自己构建，稳定得多。
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -49,15 +49,21 @@ jobs:
       - name: Assemble site
         run: node scripts/assemble-site.mjs
 
-      - name: Publish to gh-pages
-        run: |
-          cd _site
-          git init -q
-          git checkout -q -b gh-pages
-          git add -A
-          git -c user.name="github-actions[bot]" \
-              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit -q -m "deploy: ${GITHUB_SHA::7}"
-          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
