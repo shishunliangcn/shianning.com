@@ -5,17 +5,17 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# 走 gh-pages 分支发布：Pages 的 workflow 部署接口此前会卡死，
+# 分支方式由 Pages 自己构建，稳定得多。
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -29,14 +29,13 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
-      # Vue 单文件组件（.vue）由 Vite 在构建阶段编译，
-      # 因此只要 npm ci + docs:build 通过，组件就会被正确打包。
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
       - name: Build VitePress site
         run: npm run docs:build
 
+      # 目录级校验，不依赖具体文章，新增内容不会让 CI 挂掉
       - name: Verify build output
         run: |
           test -f docs/.vitepress/dist/index.html
@@ -44,27 +43,21 @@ jobs:
           for dir in nature humanities logic arts life parenting; do
             test -d "docs/.vitepress/dist/$dir" || { echo "缺少目录 $dir"; exit 1; }
           done
-          echo "构建产物检查通过（目录级校验，不依赖具体文章）"
+          echo "构建产物检查通过"
 
-      # 组装最终站点：大门在根路径，知识库挂到 /notes/
+      # 大门在根路径，知识库挂到 /notes/
       - name: Assemble site
         run: node scripts/assemble-site.mjs
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish to gh-pages
+        run: |
+          cd _site
+          git init -q
+          git checkout -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "deploy: ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

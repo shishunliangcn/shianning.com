@@ -45,7 +45,7 @@ for (const section of parenting.sections) {
     entries.push({
       title: article.title,
       path: `/parenting/${section.key}/${article.slug}`,
-      group: `父母的书架 · ${section.name.replace(/^\S+\s*/, '')}`
+      group: `父母的书架 · ${section.name}`
     })
   }
 }
