@@ -171,11 +171,16 @@ npm run docs:preview   # 预览构建产物
 推送 `main` 触发 `.github/workflows/deploy.yml`：
 
 1. `npm ci` → `npm run docs:build`
-2. 检查构建产物（首页、展馆页、示例文章是否存在）
-3. 组装 `_site/`：根路径放 `index.html` + `CNAME`，知识库放进 `_site/notes/`
-4. GitHub Pages Actions 发布
+2. 目录级校验构建产物
+3. `node scripts/assemble-site.mjs` 组装 `_site/`（大门在根路径，知识库在 `/notes/`）
+4. 把 `_site/` 强推到 **`gh-pages` 分支**
+5. GitHub Pages 从 `gh-pages` 分支发布（legacy 模式）
 
-仓库 **Settings → Pages → Source** 必须是 **GitHub Actions**。
+> 为什么不用 Pages 的 workflow 部署接口：该接口曾出现僵尸部署（deployment 一直 in progress），
+> 导致后续所有部署被拒绝或取消，重置 Pages 也未能解除。分支发布不经过那条管道，稳定得多。
+
+仓库 **Settings → Pages → Source** 必须是 **Deploy from a branch → `gh-pages` / `(root)`**。
+根目录的 `.nojekyll` 会阻止 Jekyll 处理静态文件。
 
 ## 域名
 
