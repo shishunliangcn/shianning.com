@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import cjkFriendlyPlugin from 'markdown-it-cjk-friendly'
 import { buildSidebar, wings } from './curriculum'
 
 /**
@@ -36,6 +37,15 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#fdfaf5' }],
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }]
   ],
+
+  // CommonMark 的强调规则遇到「中文 + ** + 中文标点」会失效
+  // （例如 而是**「我说了算」的感觉**。 会原样输出星号），
+  // 用 CJK 友好插件修正，让中文紧贴 ** 时也能正确加粗。
+  markdown: {
+    config(md) {
+      md.use(cjkFriendlyPlugin)
+    }
+  },
 
   // 生成 sitemap；VitePress 只取 origin、不会带 base，
   // 由 scripts/assemble-site.mjs 统一补 /notes 前缀并并入主站首页
