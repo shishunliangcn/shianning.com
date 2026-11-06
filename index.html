@@ -157,7 +157,7 @@
 
     h1 {
       font-family: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
-      font-size: clamp(2.5rem, 7vw, 4.6rem);
+      font-size: clamp(2rem, 8.2vw, 4.6rem);
       font-weight: 700;
       line-height: 1.16;
       letter-spacing: 0.06em;
@@ -330,6 +330,10 @@
     }
     @media (max-width: 460px) {
       .doors { grid-template-columns: 1fr; }
+    }
+    /* 320px 窄屏：保证「史安宁的小学堂」七个字不折行 */
+    @media (max-width: 380px) {
+      h1 { font-size: 1.85rem; letter-spacing: 0.02em; }
     }
 
     @media (prefers-reduced-motion: reduce) {

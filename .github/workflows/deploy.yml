@@ -40,20 +40,15 @@ jobs:
       - name: Verify build output
         run: |
           test -f docs/.vitepress/dist/index.html
-          test -d docs/.vitepress/dist/nature
-          test -f docs/.vitepress/dist/nature/astronomy/stars.html
-          test -f docs/.vitepress/dist/life/safety-first-aid/burns.html
           test -f docs/.vitepress/dist/tags.html
-          echo "构建产物检查通过"
+          for dir in nature humanities logic arts life parenting; do
+            test -d "docs/.vitepress/dist/$dir" || { echo "缺少目录 $dir"; exit 1; }
+          done
+          echo "构建产物检查通过（目录级校验，不依赖具体文章）"
 
-      # 组装最终站点：旧主页在根路径，笔记站挂到 /notes/
+      # 组装最终站点：大门在根路径，知识库挂到 /notes/
       - name: Assemble site
-        run: |
-          mkdir -p _site/notes
-          cp index.html _site/index.html
-          cp CNAME _site/CNAME
-          cp -R docs/.vitepress/dist/. _site/notes/
-          touch _site/.nojekyll
+        run: node scripts/assemble-site.mjs
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

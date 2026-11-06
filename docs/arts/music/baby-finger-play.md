@@ -1,14 +1,14 @@
 ---
 title: 小手拍拍：2岁宝宝手指操
 description: 跟着四下拍手，一起做六个动作。锻炼手部小肌肉，也练习听指令。
-tags: [2岁启蒙, 亲子共读]
+tags: [2岁启蒙, 亲子互动]
 ---
 
 # 小手拍拍：2岁宝宝手指操
 
 先听一听拍手的声音，跟着拍四下 👏👏👏👏
 
-<AudioPlayer src="/audio/clap-4.wav" caption="四下拍手（约 120 拍/分钟），跟着一起拍" />
+<AudioPlayer src="/audio/clap-4.mp3" caption="四下拍手（约 120 拍/分钟），跟着一起拍" />
 
 ## 六个动作，一个一个来
 

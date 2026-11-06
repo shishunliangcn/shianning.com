@@ -32,7 +32,16 @@ export default defineConfig({
   description: '跨越年龄的边界，探索知识的无限可能。',
   lang: 'zh-CN',
 
-  head: [['meta', { name: 'theme-color', content: '#fdfaf5' }]],
+  head: [
+    ['meta', { name: 'theme-color', content: '#fdfaf5' }],
+    ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }]
+  ],
+
+  // 生成 sitemap；VitePress 只取 origin、不会带 base，
+  // 由 scripts/assemble-site.mjs 统一补 /notes 前缀并并入主站首页
+  sitemap: {
+    hostname: 'https://shianning.com'
+  },
 
   // 默认的「上一篇 / 下一篇」按侧边栏顺序取邻项，会跳到「主题简介」页；
   // 关掉它，改由 ArticlePager 组件按文章顺序翻页。

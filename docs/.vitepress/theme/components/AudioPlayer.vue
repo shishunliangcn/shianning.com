@@ -5,7 +5,7 @@ import { withBase } from 'vitepress'
 /**
  * AudioPlayer —— 标准音频播放器
  *
- * 用法：<AudioPlayer src="/audio/tone-440.wav" caption="示例音频" />
+ * 用法：<AudioPlayer src="/audio/tone-440.mp3" caption="示例音频" />
  * 以 / 开头的路径会自动套用站点 base（本项目为 /notes/）。
  */
 interface Props {

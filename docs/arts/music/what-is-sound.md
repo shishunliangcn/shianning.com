@@ -18,7 +18,7 @@ tags: [音乐, 声学, 聆听]
 
 下面这段音频就是一段 440 Hz 的纯音，时长 1.5 秒：
 
-<AudioPlayer src="/audio/tone-440.wav" caption="440 Hz 标准音 A（纯正弦波，1.5 秒）" />
+<AudioPlayer src="/audio/tone-440.mp3" caption="440 Hz 标准音 A（纯正弦波，1.5 秒）" />
 
 它是「声音」，但不是「音乐」：没有节奏，没有变化，也没有结束。
 

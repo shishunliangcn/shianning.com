@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>走错啦 · 史安宁的小学堂</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#070912" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 32px 24px;
+      text-align: center;
+      background: radial-gradient(120% 90% at 50% -20%, #171b3d 0%, #0c1027 40%, #070912 80%);
+      color: #f3efe6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+      line-height: 1.7;
+    }
+
+    .code {
+      font-family: "Songti SC", "STSong", Georgia, serif;
+      font-size: clamp(4rem, 16vw, 7rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      background: linear-gradient(180deg, #fff8e6, #e9c877 55%, #a8874a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 26px rgba(233, 200, 119, 0.2));
+    }
+
+    h1 {
+      font-size: clamp(1.25rem, 4vw, 1.6rem);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #f6f0e2;
+    }
+
+    p {
+      max-width: 30em;
+      font-size: 14.5px;
+      color: #9b99ad;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .primary {
+      border: 1px solid #e9c877;
+      background: linear-gradient(180deg, rgba(233, 200, 119, 0.18), rgba(233, 200, 119, 0.06));
+      color: #fdf6e3;
+      box-shadow: 0 16px 44px -22px #e9c877;
+    }
+
+    .secondary {
+      border: 1px solid rgba(233, 200, 119, 0.22);
+      color: #c9c6d4;
+    }
+
+    a:hover,
+    a:focus-visible {
+      transform: translateY(-2px);
+      border-color: #e9c877;
+      outline: none;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(155, 153, 173, 0.7);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+      a:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="code" aria-hidden="true">404</div>
+  <h1>走错啦，回大门看看</h1>
+  <p>这一页大概被搬走了，或者地址少打了一个字。<br />别着急，五座展馆都还在。</p>
+
+  <div class="actions">
+    <a class="primary" href="https://shianning.com/">🏠 回到大门</a>
+    <a class="secondary" href="https://shianning.com/notes/">🗺️ 展馆总览</a>
+  </div>
+
+  <footer>史安宁的小学堂 · 跨越年龄的边界，探索知识的无限可能。</footer>
+</body>
+</html>
