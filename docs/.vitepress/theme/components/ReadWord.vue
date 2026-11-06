@@ -29,7 +29,9 @@ const { supported, speaking, failed, speak } = useSpeechSynthesis()
 
 const title = computed(() => {
   if (!supported.value) return '当前浏览器不支持语音朗读'
-  if (failed.value) return `没能播放「${props.word}」，请再点一次或检查系统语音包`
+  if (failed.value) {
+    return `没能播放「${props.word}」：请再点一次；仍无声请检查手机侧边静音键、媒体音量或系统语音包`
+  }
   return props.label ?? `朗读 ${props.word}`
 })
 

@@ -94,6 +94,13 @@ export const wings: WingDef[] = [
         articles: [{ title: '苏格拉底为什么甘愿赴死', slug: 'socrates' }]
       },
       {
+        key: 'psychology',
+        name: '心理学',
+        icon: '🧠',
+        summary: '从婴幼儿到成人的心智发展，理解情绪与行为的来处。',
+        articles: [{ title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions' }]
+      },
+      {
         key: 'society-psychology',
         name: '社会与心理',
         icon: '🧩',
@@ -120,7 +127,10 @@ export const wings: WingDef[] = [
         name: '趣味英语',
         icon: '🔤',
         summary: '词源、习语与发音里的冷知识，让英语变得好玩。',
-        articles: [{ title: '为什么英语里的 I 永远大写', slug: 'why-i-capital' }]
+        articles: [
+          { title: '为什么英语里的 I 永远大写', slug: 'why-i-capital' },
+          { title: '动物宝宝怎么叫？', slug: 'baby-animals' }
+        ]
       },
       {
         key: 'literature',
@@ -155,7 +165,10 @@ export const wings: WingDef[] = [
         name: '音乐',
         icon: '🎵',
         summary: '声音如何变成音乐，以及怎么听出门道。',
-        articles: [{ title: '声音是怎么变成音乐的', slug: 'what-is-sound' }]
+        articles: [
+          { title: '声音是怎么变成音乐的', slug: 'what-is-sound' },
+          { title: '小手拍拍：2岁宝宝手指操', slug: 'baby-finger-play' }
+        ]
       },
       {
         key: 'visual-art',
@@ -193,6 +206,13 @@ export const wings: WingDef[] = [
         articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns' }]
       },
       {
+        key: 'daily-habits',
+        name: '日常习惯',
+        icon: '🧼',
+        summary: '洗手、刷牙、穿衣、收拾：把照顾自己变成不用提醒的习惯。',
+        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands' }]
+      },
+      {
         key: 'life-skills',
         name: '生活常识',
         icon: '🧰',
@@ -227,6 +247,28 @@ export function areaLink(wing: WingDef, area: AreaDef): string {
 /** `nature` + `astronomy` + `stars` → `/nature/astronomy/stars` */
 export function articleLink(wing: WingDef, area: AreaDef, article: ArticleDef): string {
   return `/${wing.key}/${area.key}/${article.slug}`
+}
+
+/**
+ * 「父母的书架」—— 不放进五大展馆，也不进顶部导航。
+ * 只在每个侧边栏的最底部留一个入口，避免喧宾夺主。
+ */
+export const parenting: {
+  key: string
+  name: string
+  summary: string
+  articles: Array<{ age: string; title: string; slug: string }>
+} = {
+  key: 'parenting',
+  name: '📚 父母的书架',
+  summary: '按年龄分层的育儿实操笔记：不鸡娃，也不放任。',
+  articles: [
+    { age: '0–3 岁', title: '2岁宝宝总说“不”？这是自我意识的觉醒', slug: 'self-awareness-2yo' },
+    { age: '3–6 岁', title: '如何应对幼儿园的分离焦虑', slug: 'separation-anxiety' },
+    { age: '6–12 岁', title: '辅导作业不崩溃：培养内驱力的3个秘诀', slug: 'intrinsic-motivation' },
+    { age: '青春期', title: '孩子突然关上了房门，父母该怎么办？', slug: 'closed-door' },
+    { age: '父母自修', title: '育儿先育己：如何控制吼叫的冲动', slug: 'stop-yelling' }
+  ]
 }
 
 /** 全站主题总数，供首页文案使用 */
@@ -272,9 +314,33 @@ export function buildSidebar(): Record<string, DefaultTheme.SidebarItem[]> {
         text: '其他展馆',
         collapsed: true,
         items: others.map((w) => ({ text: `${w.icon} ${w.name}`, link: wingLink(w) }))
+      },
+      // 低调入口：永远在侧边栏最底部
+      {
+        text: '📚 父母的书架',
+        link: '/parenting/'
       }
     ]
   }
+
+  sidebar['/parenting/'] = [
+    {
+      text: '📚 父母的书架',
+      collapsed: false,
+      items: [
+        { text: '书架首页', link: '/parenting/' },
+        ...parenting.articles.map((article) => ({
+          text: article.title,
+          link: `/parenting/${article.slug}`
+        }))
+      ]
+    },
+    {
+      text: '回到展馆',
+      collapsed: true,
+      items: wings.map((wing) => ({ text: `${wing.icon} ${wing.name}`, link: wingLink(wing) }))
+    }
+  ]
 
   return sidebar
 }

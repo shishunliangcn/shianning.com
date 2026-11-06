@@ -35,7 +35,9 @@ export default defineConfig({
     },
 
     footer: {
-      message: '跨越年龄的边界，探索知识的无限可能。',
+      // 页脚只在不带侧边栏的页面（首页、标签页）显示，作为「父母的书架」的补充入口
+      message:
+        '跨越年龄的边界，探索知识的无限可能。 · <a href="/notes/parenting/">📚 父母的书架</a>',
       copyright: 'Copyright © 2026 史安宁的小学堂'
     },
 

@@ -14,6 +14,7 @@ title: 长生馆
 | 主题 | 聊什么 |
 | --- | --- |
 | [🚑 安全急救](/life/safety-first-aid/) | 烫伤、出血、窒息与心肺复苏 |
+| [🧼 日常习惯](/life/daily-habits/) | 洗手、刷牙、穿衣、收拾 |
 | [🧰 生活常识](/life/life-skills/) | 收纳、家电、合同与办事流程 |
 | [💰 财商启蒙](/life/financial-literacy/) | 记账、储蓄、复利与防骗 |
 | [🍳 美食烹饪](/life/cooking/) | 刀工、火候与调味 |

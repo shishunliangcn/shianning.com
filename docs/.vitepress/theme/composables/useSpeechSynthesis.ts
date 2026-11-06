@@ -127,8 +127,8 @@ export function useSpeechSynthesis() {
     // iOS 上队列可能停在 paused 状态，先恢复
     if (synth.paused) synth.resume()
 
-    // 清理卡住的队列（仅在确实有任务时 cancel，避免 iOS 的 cancel→speak 竞态吞掉新语音）
-    if (synth.speaking || synth.pending) synth.cancel()
+    // 按需求：每次朗读前都清空队列，避免上一次卡住的 utterance 堵住这次
+    synth.cancel()
 
     // 同步读一次语音列表：已经有缓存就用缓存，没有也不等待
     refreshVoices()
