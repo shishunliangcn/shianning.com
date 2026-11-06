@@ -63,49 +63,8 @@
   transform: scale(0.96);
 }
 
-.read-word.is-speaking {
-  background: var(--school-teal-soft);
-  border-color: var(--school-teal);
-}
-
 .read-word__icon {
-  display: inline-flex;
-  align-items: center;
-}
-
-.read-word__wave {
-  opacity: 0.35;
-  transition: opacity 0.2s;
-}
-
-.read-word.is-speaking .read-word__wave {
-  opacity: 1;
-}
-
-.read-word.is-speaking .read-word__wave--far {
-  animation: rw-wave 1s ease-in-out infinite;
-}
-
-/* 朗读失败（被拦截 / 缺语音包）：给一个可见的红色提示，再点一次通常会成功 */
-.read-word.is-failed {
-  border-color: #dc2626;
-  color: #dc2626;
-  background: #fef2f2;
-}
-
-.read-word.is-unsupported {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
-/* 浏览器不支持朗读时，按钮旁的一行说明（不再让按钮变红） */
-.read-word__note {
-  display: inline-block;
-  margin-left: 6px;
-  font-size: 11.5px;
-  line-height: 1.6;
-  color: var(--vp-c-text-3);
-  vertical-align: middle;
+  flex: none;
 }
 
 /* 触屏设备加大点击区域 */
@@ -114,30 +73,6 @@
     min-width: 38px;
     min-height: 38px;
     padding: 5px 12px 5px 9px;
-  }
-}
-
-/* 仅供读屏软件读取的状态播报 */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
-@keyframes rw-wave {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 1;
   }
 }
 
