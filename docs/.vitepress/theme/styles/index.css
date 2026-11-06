@@ -30,6 +30,7 @@
 
 /* ---------- 2-1. ReadWord ---------- */
 .read-word {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -43,6 +44,10 @@
   line-height: 1.7;
   vertical-align: baseline;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
   transition: background-color 0.2s, border-color 0.2s, transform 0.12s;
 }
 
@@ -78,6 +83,41 @@
 
 .read-word.is-speaking .read-word__wave--far {
   animation: rw-wave 1s ease-in-out infinite;
+}
+
+/* 朗读失败（被拦截 / 缺语音包）：给一个可见的红色提示，再点一次通常会成功 */
+.read-word.is-failed {
+  border-color: #dc2626;
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.read-word.is-unsupported {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* 触屏设备加大点击区域 */
+@media (pointer: coarse) {
+  .read-word {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 5px 12px 5px 9px;
+  }
+}
+
+/* 仅供读屏软件读取的状态播报 */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 @keyframes rw-wave {

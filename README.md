@@ -70,7 +70,13 @@ Apple <ReadWord word="apple" /> 是「苹果」。
 | `pitch` | number | `1` | 音高 |
 | `label` | string | `朗读 <word>` | 无障碍标签 |
 
-基于浏览器 Web Speech API，不支持时按钮点击无响应（不会报错）。
+基于浏览器 Web Speech API。朗读逻辑封装在
+`docs/.vitepress/theme/composables/useSpeechSynthesis.ts`：
+
+- `speak()` 在点击事件中**同步**调用，中间没有 `await` / `setTimeout`，满足 iOS 的用户手势要求；
+- 语音列表通过 `voiceschanged` 事件 + 500ms × 8 次轮询在后台预热，但**不阻塞**朗读；
+- 朗读前会 `resume()` 解除暂停、仅在队列有任务时 `cancel()`，显式设置 `utterance.lang`；
+- 1.2 秒内没有开始播放则判定失败，按钮变红提示，再点一次即可重试。
 
 ### `<AudioPlayer>` —— 音频播放器
 
