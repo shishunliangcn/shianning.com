@@ -292,34 +292,6 @@
       color: var(--muted);
     }
 
-    /* 年龄寻路：门下方的一排极简文字导航 */
-    .guides {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 8px 14px;
-      margin: 0 0 clamp(52px, 9vw, 92px);
-      font-size: 13.5px;
-      letter-spacing: 0.02em;
-    }
-    .guides a {
-      color: rgba(155, 153, 173, 0.9);
-      text-decoration: none;
-      padding: 4px 2px;
-      border-bottom: 1px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .guides a:hover,
-    .guides a:focus-visible {
-      color: var(--gold);
-      border-bottom-color: var(--gold-dim);
-      outline: none;
-    }
-    .guides__sep {
-      color: rgba(155, 153, 173, 0.3);
-    }
-
     footer {      position: relative;
       z-index: 2;
       padding: 0 24px 30px;
@@ -369,10 +341,6 @@
       h1 { font-size: 1.85rem; letter-spacing: 0.02em; }
     }
 
-    @media (max-width: 640px) {
-      .guides { flex-direction: column; gap: 6px; }
-      .guides__sep { display: none; }
-    }
 
     @media (prefers-reduced-motion: reduce) {      * { animation: none !important; transition: none !important; }
     }
@@ -435,15 +403,6 @@
       </a>
     </section>
 
-    <nav class="guides" aria-label="按年龄找内容">
-      <a href="/notes/tags.html#tag-2-6岁">👦 我是学龄前（2-6岁）</a>
-      <span class="guides__sep" aria-hidden="true">|</span>
-      <a href="/notes/tags.html#tag-6-12岁">🎒 我是小学生（6-12岁）</a>
-      <span class="guides__sep" aria-hidden="true">|</span>
-      <a href="/notes/tags.html#tag-12-18岁">🧑‍🎓 我是中学生（12-18岁）</a>
-      <span class="guides__sep" aria-hidden="true">|</span>
-      <a href="/notes/tags.html#tag-18岁+">🎓 我是大学生/成人（18岁+）</a>
-    </nav>
   </main>
 
   <script>

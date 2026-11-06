@@ -5,6 +5,7 @@ import Layout from './Layout.vue'
 import ReadWord from './components/ReadWord.vue'
 import AudioPlayer from './components/AudioPlayer.vue'
 import KnowledgeMap from './components/KnowledgeMap.vue'
+import AgeGuide from './components/AgeGuide.vue'
 
 import './styles/index.css'
 
@@ -21,5 +22,6 @@ export default {
     app.component('ReadWord', ReadWord)
     app.component('AudioPlayer', AudioPlayer)
     app.component('KnowledgeMap', KnowledgeMap)
+    app.component('AgeGuide', AgeGuide)
   }
 } satisfies Theme
