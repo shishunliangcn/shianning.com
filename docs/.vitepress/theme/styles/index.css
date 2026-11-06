@@ -376,24 +376,30 @@
   background: var(--school-teal-soft);
 }
 
-/* 窄屏：文案一行、标签另起一行，整体上下堆叠 */
+/* 窄屏：上下堆叠，标签用网格自适应列宽，320px 下稳定两列 */
 @media (max-width: 768px) {
   .age-hint {
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 10px;
     padding: 12px 14px;
   }
 
   .age-hint__label {
-    flex: none;
     align-items: flex-start;
   }
 
   .age-hint__links {
-    flex: none;
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
     gap: 8px;
+    width: 100%;
+  }
+
+  .age-hint__link {
+    display: block;
+    padding: 6px 4px;
+    text-align: center;
   }
 }
 /* ---------- 3-3. 年龄寻路（知识库首页板块） ---------- */

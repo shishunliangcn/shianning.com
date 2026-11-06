@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import cjkFriendlyPlugin from 'markdown-it-cjk-friendly'
 import { buildSidebar, wings } from './curriculum'
+import { SITE, siteUrl } from '../../site.config.mjs'
 
 /**
  * 按页面路径生成独立的 SEO 描述：
@@ -28,10 +29,10 @@ function describePage(rel: string): string | undefined {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   // 站点部署在自定义域名的 /notes/ 子路径下
-  base: '/notes/',
-  title: '史安宁的小学堂',
-  description: '跨越年龄的边界，探索知识的无限可能。',
-  lang: 'zh-CN',
+  base: SITE.base,
+  title: SITE.title,
+  description: SITE.description,
+  lang: SITE.lang,
 
   head: [
     ['meta', { name: 'theme-color', content: '#fdfaf5' }],
@@ -40,7 +41,7 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }],
-    ['meta', { name: 'apple-mobile-web-app-title', content: '小学堂' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: SITE.shortTitle }],
     [
       'script',
       {},
@@ -60,7 +61,7 @@ export default defineConfig({
   // 生成 sitemap；VitePress 只取 origin、不会带 base，
   // 由 scripts/assemble-site.mjs 统一补 /notes 前缀并并入主站首页
   sitemap: {
-    hostname: 'https://shianning.com'
+    hostname: SITE.origin
   },
 
   // 默认的「上一篇 / 下一篇」按侧边栏顺序取邻项，会跳到「主题简介」页；
@@ -84,26 +85,26 @@ export default defineConfig({
 
   // 每页生成社交分享用的标签（标题 / 摘要 / 图标）
   transformHead({ pageData }) {
-    const title = pageData.title || '史安宁的小学堂'
-    const description = pageData.description || '跨越年龄的边界，探索知识的无限可能。'
+    const title = pageData.title || SITE.title
+    const description = pageData.description || SITE.description
     return [
-      ['meta', { property: 'og:site_name', content: '史安宁的小学堂' }],
+      ['meta', { property: 'og:site_name', content: SITE.title }],
       ['meta', { property: 'og:type', content: 'website' }],
       ['meta', { property: 'og:title', content: title }],
       ['meta', { property: 'og:description', content: description }],
-      ['meta', { property: 'og:image', content: 'https://shianning.com/icon-512.png' }],
+      ['meta', { property: 'og:image', content: siteUrl('/icon-512.png') }],
       ['meta', { name: 'twitter:card', content: 'summary' }]
     ]
   },
 
   themeConfig: {
-    siteTitle: '史安宁的小学堂',
+    siteTitle: SITE.title,
 
     // 品牌区（Logo + 站名）直接指向主站大门，解决「知识库回不到首页」的单向门问题
-    logoLink: 'https://shianning.com/',
+    logoLink: SITE.origin + '/',
 
     nav: [
-      { text: '🏠 大门', link: 'https://shianning.com/' },
+      { text: '🏠 大门', link: SITE.origin + '/' },
       { text: '🗺️ 展馆总览', link: '/' },
       {
         text: '展馆',
@@ -119,13 +120,13 @@ export default defineConfig({
     sidebar: buildSidebar(),
 
     editLink: {
-      pattern: 'https://github.com/shishunliangcn/shianning.com/edit/main/docs/:path',
+      pattern: 'https://github.com/' + SITE.repo + '/edit/' + SITE.branch + '/docs/:path',
       text: '在 GitHub 上编辑此页'
     },
 
     footer: {
-      message: '跨越年龄的边界，探索知识的无限可能。',
-      copyright: 'Copyright © 2026 史安宁的小学堂'
+      message: SITE.description,
+      copyright: 'Copyright © ' + new Date().getFullYear() + ' ' + SITE.title
     },
 
     // 站内搜索：构建时生成索引，不依赖任何外部服务
