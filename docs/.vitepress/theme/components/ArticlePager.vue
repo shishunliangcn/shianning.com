@@ -40,6 +40,16 @@ for (const article of parenting.articles) {
   })
 }
 
+for (const section of parenting.sections) {
+  for (const article of section.articles) {
+    entries.push({
+      title: article.title,
+      path: `/parenting/${section.key}/${article.slug}`,
+      group: `父母的书架 · ${section.name.replace(/^\S+\s*/, '')}`
+    })
+  }
+}
+
 const { page } = useData()
 
 const index = computed(() => {

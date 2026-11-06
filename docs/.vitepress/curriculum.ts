@@ -261,12 +261,21 @@ export const wings: WingDef[] = [
 /**
  * 「父母的书架」—— 独立模块，不属于五大展馆。
  * 入口只有两处：首页页脚弱链接、低幼文章末尾的自然互链。
+ *
+ * 结构上分两层：平铺的育儿文章 + 若干子栏目（目前是「陪伴手记」）。
  */
 export const parenting: {
   key: string
   name: string
   summary: string
   articles: Array<{ age: string; title: string; slug: string }>
+  sections: Array<{
+    key: string
+    name: string
+    icon: string
+    summary: string
+    articles: Array<{ title: string; slug: string }>
+  }>
 } = {
   key: 'parenting',
   name: '📚 父母的书架',
@@ -277,6 +286,15 @@ export const parenting: {
     { age: '6–12 岁', title: '辅导作业不崩溃：培养内驱力的3个秘诀', slug: 'intrinsic-motivation' },
     { age: '青春期', title: '孩子突然关上了房门，父母该怎么办？', slug: 'closed-door' },
     { age: '父母自修', title: '育儿先育己：如何控制吼叫的冲动', slug: 'stop-yelling' }
+  ],
+  sections: [
+    {
+      key: 'diary',
+      name: '✍️ 陪伴手记',
+      icon: '✍️',
+      summary: '不写方法论，只记录爸爸妈妈陪你长大时的感动、困惑与成长。',
+      articles: [{ title: '写在这个学堂诞生之初', slug: 'first-note' }]
+    }
   ]
 }
 
@@ -359,6 +377,17 @@ export function buildSidebar(): Record<string, DefaultTheme.SidebarItem[]> {
         ...parenting.articles.map((article) => ({
           text: article.title,
           link: `/parenting/${article.slug}`
+        })),
+        ...parenting.sections.map((section) => ({
+          text: `${section.icon} ${section.name}`,
+          collapsed: false,
+          items: [
+            { text: '栏目介绍', link: `/parenting/${section.key}/` },
+            ...section.articles.map((article) => ({
+              text: article.title,
+              link: `/parenting/${section.key}/${article.slug}`
+            }))
+          ]
         }))
       ]
     },
