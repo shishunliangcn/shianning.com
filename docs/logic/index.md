@@ -11,12 +11,7 @@ title: 灵犀馆
 
 ## 这座展馆有什么
 
-| 主题 | 聊什么 |
-| --- | --- |
-| [🔤 趣味英语](/logic/english-fun/) | 词源、习语与发音里的冷知识 |
-| [📖 文学赏析](/logic/literature/) | 诗、小说与散文，读懂字缝里的意思 |
-| [🔢 数学思维](/logic/math-thinking/) | 证明、概率与建模，不是算得快 |
-| [🤖 编程与AI](/logic/programming-ai/) | 让机器按你的想法工作 |
+<ExhibitionThemes />
 
 ## 先看这一篇
 

@@ -11,12 +11,7 @@ title: 长生馆
 
 ## 这座展馆有什么
 
-| 主题 | 聊什么 |
-| --- | --- |
-| [🚑 安全急救](/life/safety-first-aid/) | 烫伤、出血、窒息与心肺复苏 |
-| [🧰 生活常识](/life/life-skills/) | 收纳、家电、合同，以及洗手刷牙这类习惯 |
-| [💰 财商启蒙](/life/financial-literacy/) | 记账、储蓄、复利与防骗 |
-| [🍳 美食烹饪](/life/cooking/) | 刀工、火候与调味 |
+<ExhibitionThemes />
 
 ## 先看这一篇
 

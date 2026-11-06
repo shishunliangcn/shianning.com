@@ -289,11 +289,11 @@ export const parenting: {
   ],
   sections: [
     {
-      key: 'diary',
-      name: '✍️ 陪伴手记',
-      icon: '✍️',
-      summary: '不写方法论，只记录爸爸妈妈陪你长大时的感动、困惑与成长。',
-      articles: [{ title: '写在这个学堂诞生之初', slug: 'first-note' }]
+      key: 'phonics',
+      name: '🗣️ 亲子英语发音小抄',
+      icon: '🗣️',
+      summary: '家长和孩子一起开口的发音小抄：点一下就能听标准读音，照着跟读。',
+      articles: [{ title: '日常场景 · 46 条亲子英语', slug: 'parent-english-phonics' }]
     }
   ]
 }

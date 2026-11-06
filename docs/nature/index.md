@@ -11,12 +11,7 @@ title: 格物馆
 
 ## 这座展馆有什么
 
-| 主题 | 聊什么 |
-| --- | --- |
-| [🔭 天文](/nature/astronomy/) | 恒星、行星、星系，以及人类如何量出宇宙 |
-| [⚛️ 物理](/nature/physics/) | 力、能量、电磁与时空 |
-| [🧪 化学](/nature/chemistry/) | 原子如何结合，物质为什么有脾气 |
-| [🌍 地球与生态](/nature/earth-ecology/) | 板块、气候与生命网络 |
+<ExhibitionThemes />
 
 ## 先看这一篇
 
