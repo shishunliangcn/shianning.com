@@ -168,19 +168,27 @@ npm run docs:preview   # 预览构建产物
 
 ## 自动部署
 
-推送 `main` 触发 `.github/workflows/deploy.yml`：
+推送 `main` 触发 `.github/workflows/deploy.yml`（GitHub 官方 Pages 流程）：
 
 1. `npm ci` → `npm run docs:build`
 2. 目录级校验构建产物
 3. `node scripts/assemble-site.mjs` 组装 `_site/`（大门在根路径，知识库在 `/notes/`）
-4. 把 `_site/` 强推到 **`gh-pages` 分支**
-5. GitHub Pages 从 `gh-pages` 分支发布（legacy 模式）
+4. `actions/configure-pages` → `actions/upload-pages-artifact` → `actions/deploy-pages`
 
-> 为什么不用 Pages 的 workflow 部署接口：该接口曾出现僵尸部署（deployment 一直 in progress），
-> 导致后续所有部署被拒绝或取消，重置 Pages 也未能解除。分支发布不经过那条管道，稳定得多。
+仓库 **Settings → Pages → Source** 必须是 **GitHub Actions**。
 
-仓库 **Settings → Pages → Source** 必须是 **Deploy from a branch → `gh-pages` / `(root)`**。
-根目录的 `.nojekyll` 会阻止 Jekyll 处理静态文件。
+### 部署卡死的处理
+
+Pages 的部署接口偶发「僵尸部署」：某次部署一直停在 in progress，
+后续部署会报 `due to in progress deployment` 或一直轮询直到超时。
+
+应对方式（按顺序）：
+
+1. 取消阻塞的部署记录：`POST /repos/{owner}/{repo}/pages/deployments/{sha}/cancel`
+2. 取消卡住的运行：`POST /repos/{owner}/{repo}/actions/runs/{id}/cancel`
+3. 重新推送或用 `workflow_dispatch` 触发
+
+工作流已加 `timeout-minutes: 10`，卡死的运行会快速失败而不是长期占住并发锁。
 
 ## 域名
 

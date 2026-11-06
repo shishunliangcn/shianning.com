@@ -60,6 +60,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # 部署接口偶尔会长时间不返回终态；限制 10 分钟快速失败，
+    # 避免一个卡死的运行长期占住 pages 并发锁、堵住后续所有部署。
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
