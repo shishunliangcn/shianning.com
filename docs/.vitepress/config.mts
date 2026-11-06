@@ -11,11 +11,22 @@ export default defineConfig({
 
   head: [['meta', { name: 'theme-color', content: '#fdfaf5' }]],
 
+  // 默认的「上一篇 / 下一篇」按侧边栏顺序取邻项，会跳到「主题简介」页；
+  // 关掉它，改由 ArticlePager 组件按文章顺序翻页
+  transformPageData(pageData) {
+    pageData.frontmatter.prev = false
+    pageData.frontmatter.next = false
+  },
+
   themeConfig: {
     siteTitle: '史安宁的小学堂',
 
+    // 品牌区（Logo + 站名）直接指向主站大门，解决「知识库回不到首页」的单向门问题
+    logoLink: 'https://shianning.com/',
+
     nav: [
-      { text: '首页', link: '/' },
+      { text: '🏠 大门', link: 'https://shianning.com/' },
+      { text: '🗺️ 展馆总览', link: '/' },
       {
         text: '展馆',
         items: wings.map((wing) => ({

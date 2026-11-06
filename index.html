@@ -197,7 +197,7 @@
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 18px;
-      margin-top: 8px;
+      margin: 8px 0 clamp(48px, 8vw, 88px);
     }
 
     .door {
@@ -286,45 +286,6 @@
       color: var(--muted);
     }
 
-    /* ---------- 主按钮 ---------- */
-    .cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      padding: clamp(40px, 7vw, 68px) 0 clamp(48px, 8vw, 84px);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 40px;
-      border: 1px solid var(--gold);
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(233, 200, 119, 0.16), rgba(233, 200, 119, 0.05));
-      color: #fdf6e3;
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      box-shadow: 0 16px 44px -22px var(--gold);
-      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-2px);
-      background: linear-gradient(180deg, rgba(233, 200, 119, 0.26), rgba(233, 200, 119, 0.10));
-      box-shadow: 0 22px 54px -20px var(--gold);
-      outline: none;
-    }
-
-    .cta__hint {
-      font-size: 12.5px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-    }
-
     footer {
       position: relative;
       z-index: 2;
@@ -351,7 +312,6 @@
     }
     @media (max-width: 460px) {
       .doors { grid-template-columns: 1fr; }
-      .btn { width: 100%; justify-content: center; padding: 14px 22px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -365,9 +325,9 @@
   <span class="shaft shaft--c" aria-hidden="true"></span>
 
   <header class="top">
-    <a class="brand" href="/notes/">史安宁的小学堂</a>
+    <a class="brand" href="/">史安宁的小学堂</a>
     <nav>
-      <a href="/notes/">知识库</a>
+      <a href="/notes/">🗺️ 展馆总览</a>
     </nav>
   </header>
 
@@ -415,11 +375,6 @@
         <span class="door__areas">安全急救 · 生活常识<br />财商启蒙 · 美食烹饪</span>
       </a>
     </section>
-
-    <div class="cta">
-      <a class="btn" href="/notes/">进入知识库全图</a>
-      <p class="cta__hint">五座展馆 · 二十二个主题 · 一座走不完的殿堂</p>
-    </div>
   </main>
 
   <footer>© 2026 史安宁的小学堂 · 跨越年龄的边界，探索知识的无限可能。</footer>

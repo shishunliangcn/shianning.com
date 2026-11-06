@@ -395,3 +395,60 @@
   border-bottom-color: var(--school-teal);
 }
 
+/* ---------- 6. 文章翻页 ---------- */
+.article-pager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 36px 0 8px;
+  padding-top: 22px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.article-pager__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 15px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.article-pager__item:hover {
+  border-color: var(--school-teal);
+  background: var(--vp-c-bg);
+  transform: translateY(-1px);
+}
+
+.article-pager__item--next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.article-pager__dir {
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+}
+
+.article-pager__title {
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--vp-c-text-1);
+}
+
+.article-pager__group {
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+}
+
+@media (max-width: 640px) {
+  .article-pager__item--next {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
