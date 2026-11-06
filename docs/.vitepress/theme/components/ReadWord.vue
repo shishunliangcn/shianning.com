@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useSpeechSynthesis } from '../composables/useSpeechSynthesis'
 
 /**
- * ReadWord —— 英语单词朗读按钮（移动端兼容版）
+ * ReadWord —— 英语单词朗读按钮
  *
  * 用法：<ReadWord word="apple" />
  * 可选：lang（默认 en-US）、rate（默认 0.9）、pitch、label（无障碍标签）
  * 需要显示文字时把内容放在插槽里：<ReadWord word="apple">apple</ReadWord>
  *
- * 朗读逻辑集中在 useSpeechSynthesis 里，这里只负责「把点击同步转成 speak()」。
+ * 朗读逻辑在 useSpeechSynthesis 里：
+ * - speak() 在点击事件中同步调用，满足移动端的手势要求
+ * - 浏览器没有语音引擎（华为 / 鸿蒙常见）时，不再把按钮点成红色，
+ *   而是在按钮旁显示一行说明文字
  */
 interface Props {
   word: string
@@ -25,9 +28,24 @@ const props = withDefaults(defineProps<Props>(), {
   pitch: 1
 })
 
-const { supported, speaking, failed, speak } = useSpeechSynthesis()
+const { supported, speaking, failed, degraded, speak } = useSpeechSynthesis()
+
+/** 鸿蒙 / 华为浏览器对 Web Speech 的支持最差，单独给一句更准确的提示 */
+const isHarmony = ref(false)
+onMounted(() => {
+  isHarmony.value =
+    typeof navigator !== 'undefined' &&
+    /HarmonyOS|HuaweiBrowser|HonorBrowser|HUAWEI/i.test(navigator.userAgent)
+})
+
+const hint = computed(() =>
+  isHarmony.value
+    ? '华为/鸿蒙浏览器暂不支持发音，请换用 Chrome'
+    : '当前浏览器暂不支持发音，请换用 Chrome'
+)
 
 const title = computed(() => {
+  if (degraded.value) return hint.value
   if (!supported.value) return '当前浏览器不支持语音朗读'
   if (failed.value) {
     return `没能播放「${props.word}」：请再点一次；仍无声请检查手机侧边静音键、媒体音量或系统语音包`
@@ -36,6 +54,7 @@ const title = computed(() => {
 })
 
 const statusText = computed(() => {
+  if (degraded.value) return hint.value
   if (speaking.value) return '正在朗读'
   if (failed.value) return '朗读失败，请重试'
   return ''
@@ -56,7 +75,11 @@ function handleClick() {
   <button
     type="button"
     class="read-word"
-    :class="{ 'is-speaking': speaking, 'is-failed': failed, 'is-unsupported': !supported }"
+    :class="{
+      'is-speaking': speaking,
+      'is-failed': failed && !degraded,
+      'is-unsupported': degraded || !supported
+    }"
     :title="title"
     :aria-label="title"
     :aria-pressed="speaking"
@@ -72,4 +95,5 @@ function handleClick() {
     <span v-if="$slots.default" class="read-word__text"><slot /></span>
     <span class="visually-hidden" aria-live="polite">{{ statusText }}</span>
   </button>
+  <span v-if="degraded" class="read-word__note">{{ hint }}</span>
 </template>

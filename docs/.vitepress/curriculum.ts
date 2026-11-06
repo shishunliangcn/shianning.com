@@ -94,17 +94,11 @@ export const wings: WingDef[] = [
         articles: [{ title: '苏格拉底为什么甘愿赴死', slug: 'socrates' }]
       },
       {
-        key: 'psychology',
-        name: '心理学',
-        icon: '🧠',
-        summary: '从婴幼儿到成人的心智发展，理解情绪与行为的来处。',
-        articles: [{ title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions' }]
-      },
-      {
         key: 'society-psychology',
         name: '社会与心理',
         icon: '🧩',
-        summary: '人为什么在群体里变了样，我们又如何认识自己。'
+        summary: '从 2 岁宝宝的情绪，到人在群体里的变化：理解行为背后的心理机制。',
+        articles: [{ title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions' }]
       },
       {
         key: 'people',
@@ -206,17 +200,11 @@ export const wings: WingDef[] = [
         articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns' }]
       },
       {
-        key: 'daily-habits',
-        name: '日常习惯',
-        icon: '🧼',
-        summary: '洗手、刷牙、穿衣、收拾：把照顾自己变成不用提醒的习惯。',
-        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands' }]
-      },
-      {
         key: 'life-skills',
         name: '生活常识',
         icon: '🧰',
-        summary: '收纳、家电、合同与办事流程：把日子过顺的基本功。'
+        summary: '收纳、家电、合同、办事流程，以及洗手刷牙这类日常习惯。',
+        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands' }]
       },
       {
         key: 'financial-literacy',
@@ -314,11 +302,6 @@ export function buildSidebar(): Record<string, DefaultTheme.SidebarItem[]> {
         text: '其他展馆',
         collapsed: true,
         items: others.map((w) => ({ text: `${w.icon} ${w.name}`, link: wingLink(w) }))
-      },
-      // 低调入口：永远在侧边栏最底部
-      {
-        text: '📚 父母的书架',
-        link: '/parenting/'
       }
     ]
   }

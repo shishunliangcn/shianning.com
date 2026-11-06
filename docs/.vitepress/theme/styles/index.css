@@ -97,6 +97,16 @@
   cursor: not-allowed;
 }
 
+/* 浏览器不支持朗读时，按钮旁的一行说明（不再让按钮变红） */
+.read-word__note {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--vp-c-text-3);
+  vertical-align: middle;
+}
+
 /* 触屏设备加大点击区域 */
 @media (pointer: coarse) {
   .read-word {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>史安宁的小学堂 · 跨越年龄的边界</title>
-  <meta name="description" content="史安宁的小学堂 —— 跨越年龄的边界，探索知识的无限可能。五座展馆、二十二个主题，一座没有边界的知识殿堂。" />
+  <meta name="description" content="史安宁的小学堂 —— 跨越年龄的边界，探索知识的无限可能。五座展馆、二十个主题，一座没有边界的知识殿堂。" />
   <meta name="theme-color" content="#070912" />
   <style>
     :root {
@@ -296,6 +296,24 @@
       color: rgba(155, 153, 173, 0.75);
     }
 
+    /* 极弱的旁支入口：不参与主视觉层级 */
+    .foot-note {
+      margin-top: 10px;
+    }
+    .foot-note a {
+      color: rgba(155, 153, 173, 0.5);
+      font-size: 11.5px;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(155, 153, 173, 0.16);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .foot-note a:hover,
+    .foot-note a:focus-visible {
+      color: var(--gold-dim);
+      border-bottom-color: var(--gold-dim);
+      outline: none;
+    }
+
     @keyframes rise {
       from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
@@ -333,7 +351,7 @@
 
   <main>
     <section class="hall">
-      <p class="eyebrow">五座展馆 · 二十二个主题</p>
+      <p class="eyebrow">五座展馆 · 二十个主题</p>
       <h1>史安宁的小学堂</h1>
       <p class="rule" aria-hidden="true">✦</p>
       <p class="tagline">跨越年龄的边界，探索知识的无限可能。</p>
@@ -377,6 +395,9 @@
     </section>
   </main>
 
-  <footer>© 2026 史安宁的小学堂 · 跨越年龄的边界，探索知识的无限可能。</footer>
+  <footer>
+    <p>© 2026 史安宁的小学堂 · 跨越年龄的边界，探索知识的无限可能。</p>
+    <p class="foot-note"><a href="/notes/parenting/">📚 父母的书架</a></p>
+  </footer>
 </body>
 </html>

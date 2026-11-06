@@ -15,8 +15,7 @@ title: 知音馆
 | --- | --- |
 | [🏺 历史](/humanities/history/) | 文明如何兴起与转折，史料怎么读 |
 | [🕯️ 哲学](/humanities/philosophy/) | 存在、知识、善恶，以及如何把话讲清 |
-| [🧠 心理学](/humanities/psychology/) | 从婴幼儿到成人的心智发展 |
-| [🧩 社会与心理](/humanities/society-psychology/) | 人在群体里为什么变了样 |
+| [🧩 社会与心理](/humanities/society-psychology/) | 从 2 岁的情绪到群体中的行为 |
 | [👤 人物](/humanities/people/) | 留下名字的人和没留下名字的人 |
 
 ## 先看这一篇

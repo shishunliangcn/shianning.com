@@ -25,6 +25,8 @@ const WATCHDOG_MS = 1200
 
 /** 模块级共享：同一页面上的多个朗读按钮只预热一次语音列表 */
 const supported = ref(false)
+/** 语音能力不可用（API 缺失，或 4 秒内拿不到任何语音列表）——此时不应再显示「失败」红态 */
+const degraded = ref(false)
 const cachedVoices = shallowRef<SpeechSynthesisVoice[]>([])
 let warmedUp = false
 
@@ -70,7 +72,16 @@ function warmUpVoices(): void {
   let tries = 0
   const timer = window.setInterval(() => {
     tries += 1
-    if (refreshVoices() > 0 || tries >= POLL_MAX_TRIES) window.clearInterval(timer)
+    const count = refreshVoices()
+    if (count > 0) {
+      degraded.value = false
+      window.clearInterval(timer)
+    } else if (tries >= POLL_MAX_TRIES) {
+      // 4 秒内始终拿不到语音列表：基本可以判定该浏览器不支持朗读
+      // （华为 / 鸿蒙的 ArkWeb 是典型情况）
+      degraded.value = true
+      window.clearInterval(timer)
+    }
   }, POLL_INTERVAL_MS)
 }
 
@@ -115,7 +126,7 @@ export function useSpeechSynthesis() {
   function speak(text: string, options: SpeakOptions = {}): boolean {
     if (!isBrowser()) {
       supported.value = false
-      failed.value = true
+      degraded.value = true
       return false
     }
 
@@ -143,6 +154,8 @@ export function useSpeechSynthesis() {
     utterance.onstart = () => {
       speaking.value = true
       failed.value = false
+      // 能正常发声就说明之前「不支持」的判断是误报，撤回降级提示
+      degraded.value = false
     }
     utterance.onend = () => {
       speaking.value = false
@@ -160,15 +173,20 @@ export function useSpeechSynthesis() {
 
     if (watchdog !== undefined) window.clearTimeout(watchdog)
     watchdog = window.setTimeout(() => {
-      // 既没有在播，也没有排队 → 多半是被浏览器拦截或系统缺语音包
+      // 既没有在播，也没有排队 → 被浏览器拦截，或者这台设备根本没有语音引擎
       if (!synth.speaking && !synth.pending) {
         speaking.value = false
-        failed.value = true
+        if (!cachedVoices.value.length) {
+          // 没有语音列表：判定为「能力不可用」，走提示而不是红脸
+          degraded.value = true
+        } else {
+          failed.value = true
+        }
       }
     }, WATCHDOG_MS)
 
     return true
   }
 
-  return { supported, speaking, failed, speak, voices: cachedVoices }
+  return { supported, speaking, failed, degraded, speak, voices: cachedVoices }
 }
