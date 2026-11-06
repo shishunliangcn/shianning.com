@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
-import { stages } from '../../curriculum'
+import { stages, subjectCount } from '../../curriculum'
 
 /**
  * KnowledgeMap —— 知识库全图
  *
- * 直接读取 curriculum.ts，新增学段/学科后自动出现，无需改这个组件。
+ * 直接读取 curriculum.ts，新增学段/学科后自动出现，
+ * 学科数量也是实时统计的，不需要手改文案。
  */
 </script>
 
 <template>
   <section class="km">
+    <p class="km__meta">
+      共 <strong>{{ subjectCount }}</strong> 门学科 ·
+      {{ stages.length }} 个学段 · 点击任意学科直达概况页
+    </p>
+
     <div class="km__grid">
       <article
         v-for="stage in stages"
@@ -24,7 +30,7 @@ import { stages } from '../../curriculum'
             <h2 class="km-card__title">
               <a :href="withBase(`/${stage.key}/`)">{{ stage.name }}</a>
             </h2>
-            <p class="km-card__age">{{ stage.age }}</p>
+            <p class="km-card__age">{{ stage.age }} · {{ stage.subjects.length }} 门学科</p>
           </div>
         </header>
 

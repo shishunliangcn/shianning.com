@@ -4,7 +4,7 @@
 部署在 **https://shianning.com/notes/**，根路径 https://shianning.com/ 是学校大门。
 
 - 学段：启蒙乐园 / 小学课堂 / 中学冲刺 / 大学殿堂
-- 学科：语文 / 数学 / 英语 / 音乐（每个学段一套）
+- 学科：共 29 门，按学段分为 5 / 8 / 10 / 6 科（全人教育蓝图）
 - 主题：默认主题 + 自定义主题层（`docs/.vitepress/theme`）
 
 ## 架构
@@ -15,12 +15,15 @@ shianning.com/
 ├─ CNAME                         # 自定义域名 shianning.com
 ├─ docs/                         # VitePress 站点，挂载在 /notes/
 │  ├─ index.md                   # 知识库全图（hero + <KnowledgeMap />）
-│  ├─ preschool/                 # 启蒙乐园
+│  ├─ preschool/                 # 启蒙乐园（5 科）
 │  │  ├─ index.md                #   学段概况
-│  │  └─ {chinese,math,english,music}/index.md
-│  ├─ primary/                   # 小学课堂（结构同上）
-│  ├─ middle/                    # 中学冲刺
-│  ├─ university/                # 大学殿堂
+│  │  └─ {health-life,language,nature,art,society}/index.md
+│  ├─ primary/                   # 小学课堂（8 科）
+│  │  └─ {chinese,math,english,science,humanities,pe-health,art,it}/
+│  ├─ middle/                    # 中学冲刺（10 科）
+│  │  └─ {chinese,math,english,physics,chemistry,biology,history,geography,politics,pe-health}/
+│  ├─ university/                # 大学殿堂（6 科）
+│  │  └─ {general-education,advanced-math,computer-basics,econ-management,psychology,career-planning}/
 │  ├─ public/audio/              # 站点静态资源（音频等）
 │  └─ .vitepress/
 │     ├─ config.mts              # 站点配置（base、导航、主页文案）
