@@ -33,6 +33,10 @@ await writeFile(join(OUT, '.nojekyll'), '')
 
 await cp(DIST, join(OUT, 'notes'), { recursive: true })
 
+// VitePress 生成的 sitemap 不带 base，复制到 /notes/ 下会变成一份错误清单；
+// 删掉它，统一用根目录那份（已补 /notes 前缀并含主站首页）
+await rm(join(OUT, 'notes', 'sitemap.xml'), { force: true })
+
 // VitePress 的 sitemap 只覆盖 base 下的页面，但不会带 base 前缀；
 // 这里统一补上 /notes，并把主站首页并进去
 const sitemap = join(DIST, 'sitemap.xml')
