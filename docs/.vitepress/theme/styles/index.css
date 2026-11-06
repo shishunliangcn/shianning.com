@@ -312,8 +312,33 @@
   max-width: 1200px;
 }
 
-/* ---------- 4. 文章标签 ---------- */
-.article-tags {
+/* ---------- 3-2. 适读年龄提示 ---------- */
+.age-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 10px 14px;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--school-teal);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+.age-hint__icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.age-hint__text strong {
+  color: var(--school-teal);
+  font-weight: 700;
+}
+
+/* ---------- 4. 文章标签 ---------- */.article-tags {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>史安宁的小学堂 · 跨越年龄的边界</title>
-  <meta name="description" content="史安宁的小学堂 —— 跨越年龄的边界，探索知识的无限可能。五座展馆、二十个主题，一座没有边界的知识殿堂。" />
+  <meta name="description" content="史安宁的小学堂 —— 跨越年龄的边界，探索知识的无限可能。五座展馆、二十六个主题，一座没有边界的知识殿堂。" />
   <meta name="theme-color" content="#070912" />
   <style>
     :root {
@@ -197,7 +197,7 @@
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 18px;
-      margin: 8px 0 clamp(48px, 8vw, 88px);
+      margin: 8px 0 26px;
     }
 
     .door {
@@ -286,8 +286,35 @@
       color: var(--muted);
     }
 
-    footer {
-      position: relative;
+    /* 年龄寻路：门下方的一排极简文字导航 */
+    .guides {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 14px;
+      margin: 0 0 clamp(52px, 9vw, 92px);
+      font-size: 13.5px;
+      letter-spacing: 0.02em;
+    }
+    .guides a {
+      color: rgba(155, 153, 173, 0.9);
+      text-decoration: none;
+      padding: 4px 2px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .guides a:hover,
+    .guides a:focus-visible {
+      color: var(--gold);
+      border-bottom-color: var(--gold-dim);
+      outline: none;
+    }
+    .guides__sep {
+      color: rgba(155, 153, 173, 0.3);
+    }
+
+    footer {      position: relative;
       z-index: 2;
       padding: 0 24px 30px;
       text-align: center;
@@ -336,8 +363,12 @@
       h1 { font-size: 1.85rem; letter-spacing: 0.02em; }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
+    @media (max-width: 640px) {
+      .guides { flex-direction: column; gap: 6px; }
+      .guides__sep { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {      * { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
@@ -355,7 +386,7 @@
 
   <main>
     <section class="hall">
-      <p class="eyebrow">五座展馆 · 二十个主题</p>
+      <p class="eyebrow">五座展馆 · 二十六个主题</p>
       <h1>史安宁的小学堂</h1>
       <p class="rule" aria-hidden="true">✦</p>
       <p class="tagline">跨越年龄的边界，探索知识的无限可能。</p>
@@ -366,37 +397,45 @@
         <span class="door__arch" aria-hidden="true"><span class="door__icon">🌌</span></span>
         <span class="door__name">格物馆</span>
         <span class="door__motto">探索宇宙与自然</span>
-        <span class="door__areas">天文 · 物理<br />化学 · 地球与生态</span>
+        <span class="door__areas">天文 · 自然观察 · 趣味实验<br />物理 · 化学 · 地球与生态</span>
       </a>
 
       <a class="door" href="/notes/humanities/" style="--accent:#ffd479">
         <span class="door__arch" aria-hidden="true"><span class="door__icon">📜</span></span>
         <span class="door__name">知音馆</span>
         <span class="door__motto">穿梭历史与人文</span>
-        <span class="door__areas">历史 · 哲学<br />社会与心理 · 人物</span>
+        <span class="door__areas">历史 · 哲学 · 社会与心理<br />青春期与性教育 · 人物</span>
       </a>
 
       <a class="door" href="/notes/logic/" style="--accent:#b39cff">
         <span class="door__arch" aria-hidden="true"><span class="door__icon">🧠</span></span>
         <span class="door__name">灵犀馆</span>
         <span class="door__motto">语言与逻辑魔法</span>
-        <span class="door__areas">趣味英语 · 文学赏析<br />数学思维 · 编程与AI</span>
+        <span class="door__areas">趣味英语 · 文学赏析 · 数学思维<br />编程与AI · 媒介素养</span>
       </a>
 
       <a class="door" href="/notes/arts/" style="--accent:#ff9ad5">
         <span class="door__arch" aria-hidden="true"><span class="door__icon">🎨</span></span>
         <span class="door__name">造物馆</span>
         <span class="door__motto">艺术、动手与创想</span>
-        <span class="door__areas">音乐 · 视觉艺术<br />手工创客 · 设计</span>
+        <span class="door__areas">音乐 · 视觉艺术 · 手工创客<br />设计 · 身体游戏</span>
       </a>
 
       <a class="door" href="/notes/life/" style="--accent:#7dffc4">
         <span class="door__arch" aria-hidden="true"><span class="door__icon">🛠️</span></span>
         <span class="door__name">长生馆</span>
         <span class="door__motto">生活、生存与实用技能</span>
-        <span class="door__areas">安全急救 · 生活常识<br />财商启蒙 · 美食烹饪</span>
+        <span class="door__areas">安全急救 · 自我保护 · 生活常识<br />财商启蒙 · 美食烹饪</span>
       </a>
     </section>
+
+    <nav class="guides" aria-label="按年龄找内容">
+      <a href="/notes/tags.html#tag-2-6岁">👦 我是学龄前（2-6岁）</a>
+      <span class="guides__sep" aria-hidden="true">|</span>
+      <a href="/notes/tags.html#tag-6-12岁">🎒 我是小学生（6-12岁）</a>
+      <span class="guides__sep" aria-hidden="true">|</span>
+      <a href="/notes/tags.html#tag-12岁+">🧑‍🎓 我是中学生（12岁+）</a>
+    </nav>
   </main>
 
   <footer>

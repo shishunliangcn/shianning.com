@@ -4,7 +4,7 @@ import type { DefaultTheme } from 'vitepress'
  * 五大展馆 —— 全站唯一的数据源。
  *
  * 不再有学段、年级或应试科目的概念：只有展馆（wing）与主题（area）。
- * 侧边栏、导航下拉、主页「知识库全图」都由这里派生。
+ * 侧边栏、导航下拉、主页「知识库全图」、主题页的年龄提示都由这里派生。
  */
 
 export interface ArticleDef {
@@ -18,6 +18,8 @@ export interface AreaDef {
   key: string
   name: string
   icon: string
+  /** 适读年龄，显示在主题页顶部的提示条 */
+  age: string
   /** 一句话说明这个主题聊什么 */
   summary: string
   /** 该主题下已有的文章，按顺序出现在侧边栏 */
@@ -49,25 +51,43 @@ export const wings: WingDef[] = [
         key: 'astronomy',
         name: '天文',
         icon: '🔭',
+        age: '6–12 岁',
         summary: '抬头看：恒星、行星、星系，以及人类如何一步步量出宇宙。',
         articles: [{ title: '星星为什么会发光', slug: 'stars' }]
+      },
+      {
+        key: 'observation',
+        name: '自然观察',
+        icon: '🌿',
+        age: '2–6 岁',
+        summary: '蹲下来看蚂蚁、摸树皮、听鸟叫：先学会看见，再谈知识。'
+      },
+      {
+        key: 'experiments',
+        name: '趣味实验',
+        icon: '⚗️',
+        age: '6–12 岁',
+        summary: '用厨房里的材料做实验，把「为什么」变成「我试试」。'
       },
       {
         key: 'physics',
         name: '物理',
         icon: '⚛️',
+        age: '12 岁以上',
         summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。'
       },
       {
         key: 'chemistry',
         name: '化学',
         icon: '🧪',
+        age: '12 岁以上',
         summary: '原子如何牵手又分开，物质为什么会有这样的脾气。'
       },
       {
         key: 'earth-ecology',
         name: '地球与生态',
         icon: '🌍',
+        age: '6–12 岁',
         summary: '板块、气候与生命网络：我们脚下这颗星球的运行方式。'
       }
     ]
@@ -84,12 +104,14 @@ export const wings: WingDef[] = [
         key: 'history',
         name: '历史',
         icon: '🏺',
+        age: '12 岁以上',
         summary: '文明如何兴起与转折，以及史料是怎么被读出来的。'
       },
       {
         key: 'philosophy',
         name: '哲学',
         icon: '🕯️',
+        age: '12 岁以上',
         summary: '关于存在、知识与善恶的追问，以及如何把话讲清楚。',
         articles: [{ title: '苏格拉底为什么甘愿赴死', slug: 'socrates' }]
       },
@@ -97,13 +119,22 @@ export const wings: WingDef[] = [
         key: 'society-psychology',
         name: '社会与心理',
         icon: '🧩',
+        age: '12 岁以上',
         summary: '从 2 岁宝宝的情绪，到人在群体里的变化：理解行为背后的心理机制。',
         articles: [{ title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions' }]
+      },
+      {
+        key: 'puberty',
+        name: '青春期与性教育',
+        icon: '🌼',
+        age: '12 岁以上',
+        summary: '身体的变化、情绪的起伏，以及什么叫「我的身体我做主」。'
       },
       {
         key: 'people',
         name: '人物',
         icon: '👤',
+        age: '6–12 岁',
         summary: '科学家、思想家、艺术家，以及那些没有留下名字的人。'
       }
     ]
@@ -120,6 +151,7 @@ export const wings: WingDef[] = [
         key: 'english-fun',
         name: '趣味英语',
         icon: '🔤',
+        age: '2–6 岁',
         summary: '词源、习语与发音里的冷知识，让英语变得好玩。',
         articles: [
           { title: '为什么英语里的 I 永远大写', slug: 'why-i-capital' },
@@ -130,19 +162,29 @@ export const wings: WingDef[] = [
         key: 'literature',
         name: '文学赏析',
         icon: '📖',
+        age: '12 岁以上',
         summary: '诗、小说与散文：读懂作者藏在字缝里的意思。'
       },
       {
         key: 'math-thinking',
         name: '数学思维',
         icon: '🔢',
+        age: '6–12 岁',
         summary: '不是算得快，而是想得清：证明、概率与建模。'
       },
       {
         key: 'programming-ai',
         name: '编程与AI',
         icon: '🤖',
+        age: '12 岁以上',
         summary: '让机器按你的想法工作，并理解它为什么会出错。'
+      },
+      {
+        key: 'media-literacy',
+        name: '媒介素养',
+        icon: '📱',
+        age: '6–12 岁',
+        summary: '这条消息是真的吗？刷手机停不下来怎么办？学会和信息相处。'
       }
     ]
   },
@@ -158,6 +200,7 @@ export const wings: WingDef[] = [
         key: 'music',
         name: '音乐',
         icon: '🎵',
+        age: '6–12 岁',
         summary: '声音如何变成音乐，以及怎么听出门道。',
         articles: [
           { title: '声音是怎么变成音乐的', slug: 'what-is-sound' },
@@ -168,19 +211,29 @@ export const wings: WingDef[] = [
         key: 'visual-art',
         name: '视觉艺术',
         icon: '🖼️',
+        age: '6–12 岁',
         summary: '绘画、摄影与看展：训练一双会看的眼睛。'
       },
       {
         key: 'maker',
         name: '手工创客',
         icon: '🔨',
+        age: '6–12 岁',
         summary: '木工、电子与 3D 打印，把想法做成能拿在手里的东西。'
       },
       {
         key: 'design',
         name: '设计',
         icon: '✏️',
+        age: '12 岁以上',
         summary: '版式、配色与产品思维：让信息好看又好用。'
+      },
+      {
+        key: 'body-games',
+        name: '身体游戏',
+        icon: '🤸',
+        age: '2–6 岁',
+        summary: '跑跳、翻滚、平衡：大运动与感统训练，玩着就把身体练协调。'
       }
     ]
   },
@@ -196,13 +249,22 @@ export const wings: WingDef[] = [
         key: 'safety-first-aid',
         name: '安全急救',
         icon: '🚑',
+        age: '12 岁以上',
         summary: '烫伤、出血、窒息与心肺复苏：关键时刻的正确动作。',
         articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns' }]
+      },
+      {
+        key: 'self-protection',
+        name: '自我保护',
+        icon: '🛡️',
+        age: '6–12 岁',
+        summary: '防走失、防欺凌、防触电：把「遇到危险怎么办」变成条件反射。'
       },
       {
         key: 'life-skills',
         name: '生活常识',
         icon: '🧰',
+        age: '12 岁以上',
         summary: '收纳、家电、合同、办事流程，以及洗手刷牙这类日常习惯。',
         articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands' }]
       },
@@ -210,36 +272,23 @@ export const wings: WingDef[] = [
         key: 'financial-literacy',
         name: '财商启蒙',
         icon: '💰',
+        age: '12 岁以上',
         summary: '记账、储蓄、复利与防骗，建立和钱的健康关系。'
       },
       {
         key: 'cooking',
         name: '美食烹饪',
         icon: '🍳',
+        age: '6–12 岁',
         summary: '刀工、火候与调味：先学会喂饱自己。'
       }
     ]
   }
 ]
 
-/** `nature` → `/nature/` */
-export function wingLink(wing: WingDef): string {
-  return `/${wing.key}/`
-}
-
-/** `nature` + `astronomy` → `/nature/astronomy/` */
-export function areaLink(wing: WingDef, area: AreaDef): string {
-  return `/${wing.key}/${area.key}/`
-}
-
-/** `nature` + `astronomy` + `stars` → `/nature/astronomy/stars` */
-export function articleLink(wing: WingDef, area: AreaDef, article: ArticleDef): string {
-  return `/${wing.key}/${area.key}/${article.slug}`
-}
-
 /**
- * 「父母的书架」—— 不放进五大展馆，也不进顶部导航。
- * 只在每个侧边栏的最底部留一个入口，避免喧宾夺主。
+ * 「父母的书架」—— 独立模块，不属于五大展馆。
+ * 入口只有两处：首页页脚弱链接、低幼文章末尾的自然互链。
  */
 export const parenting: {
   key: string
@@ -257,6 +306,28 @@ export const parenting: {
     { age: '青春期', title: '孩子突然关上了房门，父母该怎么办？', slug: 'closed-door' },
     { age: '父母自修', title: '育儿先育己：如何控制吼叫的冲动', slug: 'stop-yelling' }
   ]
+}
+
+/** 年龄寻路的三个入口，顺序即展示顺序 */
+export const ageGroups = [
+  { tag: '2-6岁', label: '👦 我是学龄前（2-6岁）' },
+  { tag: '6-12岁', label: '🎒 我是小学生（6-12岁）' },
+  { tag: '12岁+', label: '🧑‍🎓 我是中学生（12岁+）' }
+]
+
+/** `nature` → `/nature/` */
+export function wingLink(wing: WingDef): string {
+  return `/${wing.key}/`
+}
+
+/** `nature` + `astronomy` → `/nature/astronomy/` */
+export function areaLink(wing: WingDef, area: AreaDef): string {
+  return `/${wing.key}/${area.key}/`
+}
+
+/** `nature` + `astronomy` + `stars` → `/nature/astronomy/stars` */
+export function articleLink(wing: WingDef, area: AreaDef, article: ArticleDef): string {
+  return `/${wing.key}/${area.key}/${article.slug}`
 }
 
 /** 全站主题总数，供首页文案使用 */
