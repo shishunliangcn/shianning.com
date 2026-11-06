@@ -1,0 +1,237 @@
+/* ==========================================================================
+   史安宁的小学堂 —— 全站样式
+   1. 设计变量   2. 全局组件 ReadWord / AudioPlayer   3. 知识库全图
+   ========================================================================== */
+
+/* ---------- 1. 设计变量 ---------- */
+:root {
+  --school-bg: #fdfaf5;
+  --school-bg-soft: #f7f0e6;
+  --school-ink: #2b2a26;
+  --school-teal: #0f766e;
+  --school-teal-soft: #e6f4f1;
+  --school-sky: #0ea5e9;
+  --school-radius: 16px;
+  --school-shadow: 0 1px 2px rgba(43, 42, 38, 0.04), 0 8px 24px rgba(43, 42, 38, 0.06);
+}
+
+/* 浅色模式替换为暖米色底；深色模式沿用默认主题，不受影响 */
+:root:not(.dark) {
+  --vp-c-bg: var(--school-bg);
+  --vp-c-bg-alt: var(--school-bg-soft);
+  --vp-c-bg-soft: #faf4ec;
+  --vp-c-brand-1: var(--school-teal);
+  --vp-c-brand-2: #0d9488;
+  --vp-c-brand-3: #14b8a6;
+  --vp-c-brand-soft: rgba(13, 148, 136, 0.14);
+  --vp-home-hero-name-color: var(--school-teal);
+  --vp-home-hero-name-background: linear-gradient(120deg, #0f766e 30%, #0ea5e9);
+}
+
+/* ---------- 2-1. ReadWord ---------- */
+.read-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 2px;
+  padding: 2px 9px 2px 7px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  color: var(--school-teal);
+  font-size: 0.92em;
+  line-height: 1.7;
+  vertical-align: baseline;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.12s;
+}
+
+.read-word:hover,
+.read-word:focus-visible {
+  background: var(--school-teal-soft);
+  border-color: var(--school-teal);
+  outline: none;
+}
+
+.read-word:active {
+  transform: scale(0.96);
+}
+
+.read-word.is-speaking {
+  background: var(--school-teal-soft);
+  border-color: var(--school-teal);
+}
+
+.read-word__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.read-word__wave {
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+
+.read-word.is-speaking .read-word__wave {
+  opacity: 1;
+}
+
+.read-word.is-speaking .read-word__wave--far {
+  animation: rw-wave 1s ease-in-out infinite;
+}
+
+@keyframes rw-wave {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- 2-2. AudioPlayer ---------- */
+.audio-player {
+  margin: 20px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--school-radius);
+  background: var(--vp-c-bg-soft);
+}
+
+.audio-player__caption {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+
+.audio-player__el {
+  width: 100%;
+  display: block;
+}
+
+/* ---------- 3. 知识库全图 ---------- */
+.km {
+  margin-top: 8px;
+}
+
+.km__grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+}
+
+.km-card {
+  --km-accent: var(--school-teal);
+  position: relative;
+  padding: 24px 22px 20px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--school-radius);
+  background: var(--vp-c-bg);
+  box-shadow: var(--school-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.km-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  border-radius: var(--school-radius) var(--school-radius) 0 0;
+  background: var(--km-accent);
+  opacity: 0.85;
+}
+
+.km-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--km-accent);
+  box-shadow: 0 14px 32px rgba(43, 42, 38, 0.1);
+}
+
+.km-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.km-card__icon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.km-card__heading {
+  min-width: 0;
+}
+
+.km-card__title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35;
+  border: none;
+  padding: 0;
+}
+
+.km-card__title a {
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+}
+
+.km-card__title a:hover {
+  color: var(--km-accent);
+}
+
+.km-card__age {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--vp-c-text-3);
+}
+
+.km-card__summary {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
+.km-card__subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.km-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 11px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.km-chip:hover {
+  border-color: var(--km-accent);
+  background: var(--vp-c-bg);
+  color: var(--km-accent);
+}
+
+/* 首页正文收窄，避免卡片被拉得过宽 */
+.VPHomeContent .container {
+  max-width: 1104px;
+}
+
+@media (max-width: 768px) {
+  .km__grid {
+    grid-template-columns: 1fr;
+  }
+}

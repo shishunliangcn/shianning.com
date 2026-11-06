@@ -1,32 +1,42 @@
 import { defineConfig } from 'vitepress'
+import { buildSidebar, stages } from './curriculum'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   // 站点部署在自定义域名的 /notes/ 子路径下
   base: '/notes/',
-  title: '史顺良的学习笔记',
-  description: '记录与沉淀',
+  title: '史安宁的小学堂',
+  description: '从启蒙到大学，经得起时间考验的线上学园',
   lang: 'zh-CN',
+
+  head: [['meta', { name: 'theme-color', content: '#fdfaf5' }]],
+
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
+    siteTitle: '史安宁的小学堂',
+
     nav: [
       { text: '首页', link: '/' },
-      { text: '示例', link: '/markdown-examples' }
+      {
+        text: '学段',
+        items: stages.map((stage) => ({
+          text: `${stage.icon} ${stage.name}`,
+          link: `/${stage.key}/`
+        }))
+      },
+      { text: '朗读演示', link: '/primary/english/demo' }
     ],
 
-    sidebar: [
-      {
-        text: '示例',
-        items: [
-          { text: 'Markdown 扩展语法', link: '/markdown-examples' },
-          { text: '运行时 API 示例', link: '/api-examples' }
-        ]
-      }
-    ],
+    // 侧边栏由 curriculum.ts 的课程树生成，新增学科无需手改
+    sidebar: buildSidebar(),
+
+    editLink: {
+      pattern: 'https://github.com/shishunliangcn/shianning.com/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页'
+    },
 
     footer: {
-      message: '记录与沉淀',
-      copyright: 'Copyright © 2026 史顺良'
+      message: '从启蒙到大学，经得起时间考验的线上学园',
+      copyright: 'Copyright © 2026 史安宁的小学堂'
     },
 
     docFooter: {

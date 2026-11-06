@@ -1,135 +1,361 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>史顺良 | 学习笔记</title>
-    <style>
-        /* 基础重置 */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>史安宁的小学堂 · 从启蒙到大学</title>
+  <meta name="description" content="史安宁的小学堂 —— 从启蒙到大学，经得起时间考验的线上学园。四个学段、十六门学科，按需取用。" />
+  <meta name="theme-color" content="#fdfaf5" />
+  <style>
+    :root {
+      --bg: #fdfaf5;
+      --bg-soft: #f7f0e6;
+      --ink: #2b2a26;
+      --ink-2: #6b665c;
+      --teal: #0f766e;
+      --teal-deep: #0b5d56;
+      --sky: #0ea5e9;
+      --line: #ece2d4;
+      --card: #fffdfa;
+      --shadow-sm: 0 1px 2px rgba(43, 42, 38, .05), 0 6px 18px rgba(43, 42, 38, .05);
+      --shadow-lg: 0 14px 36px rgba(43, 42, 38, .12);
+      --radius: 18px;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #0f172a; /* 深邃的夜空蓝 */
-            color: #e2e8f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* 主容器 */
-        .container {
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
+    html { -webkit-text-size-adjust: 100%; }
 
-        /* 巨大的首字母作为视觉焦点（代替照片） */
-        .avatar-text {
-            font-size: 60px;
-            font-weight: 900;
-            color: #38bdf8; /* 亮蓝色 */
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-            letter-spacing: 2px;
-        }
+    body {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-        /* 标题 */
-        h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #f8fafc;
-            margin-bottom: 10px;
-        }
+    /* 背景光斑 */
+    .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+    .blob {
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .5;
+    }
+    .blob--a {
+      width: 46vw; height: 46vw;
+      min-width: 320px; min-height: 320px;
+      top: -16vw; right: -10vw;
+      background: radial-gradient(circle at 30% 30%, rgba(20, 184, 166, .38), rgba(20, 184, 166, 0));
+    }
+    .blob--b {
+      width: 40vw; height: 40vw;
+      min-width: 280px; min-height: 280px;
+      bottom: -18vw; left: -12vw;
+      background: radial-gradient(circle at 60% 40%, rgba(14, 165, 233, .26), rgba(14, 165, 233, 0));
+    }
 
-        /* 副标题 */
-        .subtitle {
-            font-size: 16px;
-            color: #94a3b8;
-            margin-bottom: 40px;
-        }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 26px 24px 0;
+    }
 
-        /* 按钮容器 */
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-        }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand::before {
+      content: "学";
+      display: grid;
+      place-items: center;
+      width: 30px; height: 30px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--teal), var(--sky));
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+    }
 
-        /* 按钮样式 */
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 300px;
-            padding: 14px 24px;
-            background-color: #1e293b;
-            color: #e2e8f0;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 16px;
-            border: 1px solid #334155;
-            transition: all 0.3s ease;
-        }
+    .top nav a {
+      font-size: 14px;
+      color: var(--ink-2);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: color .2s, background-color .2s;
+    }
+    .top nav a:hover { color: var(--teal); background: var(--bg-soft); }
 
-        /* 主按钮（突出显示） */
-        .btn-primary {
-            background-color: #38bdf8;
-            color: #0f172a;
-            border-color: #38bdf8;
-        }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-        /* 鼠标悬浮效果 */
-        .btn:hover {
-            transform: translateY(-2px);
-            background-color: #334155;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
+    /* 主视觉 */
+    .hero {
+      text-align: center;
+      padding: clamp(48px, 9vw, 96px) 0 clamp(32px, 5vw, 52px);
+    }
 
-        .btn-primary:hover {
-            background-color: #7dd3fc;
-            border-color: #7dd3fc;
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
-        }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 6px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 253, 250, .8);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--teal);
+    }
 
-        /* 页脚 */
-        footer {
-            margin-top: 60px;
-            font-size: 13px;
-            color: #64748b;
-        }
-    </style>
+    h1 {
+      font-size: clamp(2.3rem, 6.4vw, 4rem);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: .01em;
+      background: linear-gradient(120deg, #0f766e 20%, #0ea5e9 85%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      margin-top: 22px;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .sub {
+      margin-top: 10px;
+      font-size: 15px;
+      color: var(--ink-2);
+    }
+
+    /* 学段卡片 */
+    .stages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+      gap: 18px;
+      margin-top: 8px;
+    }
+
+    .stage {
+      --accent: var(--teal);
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 22px 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      border-radius: var(--radius) 0 0 var(--radius);
+      background: var(--accent);
+      opacity: .85;
+    }
+    .stage:hover,
+    .stage:focus-visible {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+      outline: none;
+    }
+    .stage:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+    .stage__icon {
+      font-size: 30px;
+      line-height: 1;
+      flex: none;
+    }
+
+    .stage__body {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .stage__name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+
+    .stage__meta {
+      font-size: 12.5px;
+      color: var(--ink-2);
+    }
+
+    .stage__arrow {
+      margin-left: auto;
+      font-size: 15px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .stage:hover .stage__arrow,
+    .stage:focus-visible .stage__arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* 主按钮 */
+    .cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: clamp(34px, 6vw, 56px) 0 clamp(48px, 8vw, 80px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 42px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(15, 118, 110, .28);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      filter: saturate(1.08);
+      box-shadow: 0 16px 34px rgba(15, 118, 110, .34);
+      outline: none;
+    }
+    .btn:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+
+    .cta__hint {
+      font-size: 13px;
+      color: var(--ink-2);
+    }
+
+    footer {
+      padding: 0 24px 30px;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--ink-2);
+    }
+
+    @media (max-width: 640px) {
+      .top { padding-top: 18px; }
+      .stage { padding: 18px 16px; }
+      .btn { width: 100%; justify-content: center; padding: 15px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+      .stage:hover { transform: none; }
+      .btn:hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
+  <div class="bg" aria-hidden="true">
+    <span class="blob blob--a"></span>
+    <span class="blob blob--b"></span>
+  </div>
 
-    <div class="container">
-        <!-- 用字母缩写代替照片 -->
-        <div class="avatar-text">SSL</div>
-        
-        <h1>史顺良</h1>
-        <p class="subtitle">记录、沉淀、分享 · 我的数字花园</p>
+  <header class="top">
+    <a class="brand" href="/notes/">史安宁的小学堂</a>
+    <nav>
+      <a href="/notes/">知识库</a>
+    </nav>
+  </header>
 
-        <div class="links">
-            <!-- 笔记按钮（目前先写个占位符，之后你可以换成真实的笔记页面） -->
-            <a href="/notes/" class="btn btn-primary">📚 进入学习笔记</a>
-            
-            <!-- 你的 GitHub 主页 -->
-            <a href="https://github.com/shishunliangcn" target="_blank" class="btn">💻 我的 GitHub</a>
-            
-            <!-- 邮箱联系（请把 your-email@example.com 换成你的真实邮箱） -->
-            <a href="mailto:shishunliangcn@outlook.com" class="btn">✉️ 联系我</a>
-        </div>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">从启蒙到大学 · 线上学园</p>
+      <h1>史安宁的小学堂</h1>
+      <p class="lead">从启蒙到大学，经得起时间考验的线上学园</p>
+      <p class="sub">四个学段，十六门学科。想从哪儿开始，就从哪儿开始。</p>
+    </section>
 
-        <footer>
-            &copy; 2026 Shianning. Powered by GitHub Pages.
-        </footer>
+    <section class="stages" aria-label="选择学段">
+      <a class="stage" href="/notes/preschool/" style="--accent:#f59e0b">
+        <span class="stage__icon" aria-hidden="true">👶</span>
+        <span class="stage__body">
+          <span class="stage__name">启蒙乐园</span>
+          <span class="stage__meta">3–6 岁 · 玩中学</span>
+        </span>
+        <span class="stage__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="stage" href="/notes/primary/" style="--accent:#0d9488">
+        <span class="stage__icon" aria-hidden="true">🎒</span>
+        <span class="stage__body">
+          <span class="stage__name">小学课堂</span>
+          <span class="stage__meta">6–12 岁 · 打好底子</span>
+        </span>
+        <span class="stage__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="stage" href="/notes/middle/" style="--accent:#2563eb">
+        <span class="stage__icon" aria-hidden="true">📚</span>
+        <span class="stage__body">
+          <span class="stage__name">中学冲刺</span>
+          <span class="stage__meta">12–18 岁 · 系统梳理</span>
+        </span>
+        <span class="stage__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="stage" href="/notes/university/" style="--accent:#7c3aed">
+        <span class="stage__icon" aria-hidden="true">🎓</span>
+        <span class="stage__body">
+          <span class="stage__name">大学殿堂</span>
+          <span class="stage__meta">18 岁以上 · 建立框架</span>
+        </span>
+        <span class="stage__arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <div class="cta">
+      <a class="btn" href="/notes/">📖 进入知识库全图</a>
+      <p class="cta__hint">十六门学科总览，随时取用</p>
     </div>
+  </main>
 
+  <footer>© 2026 史安宁的小学堂 · 从启蒙到大学，经得起时间考验</footer>
 </body>
 </html>

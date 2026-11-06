@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,12 +27,22 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: package-lock.json
 
+      # Vue 单文件组件（.vue）由 Vite 在构建阶段编译，
+      # 因此只要 npm ci + docs:build 通过，组件就会被正确打包。
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Build VitePress site
         run: npm run docs:build
+
+      - name: Verify build output
+        run: |
+          test -f docs/.vitepress/dist/index.html
+          test -d docs/.vitepress/dist/preschool
+          test -f docs/.vitepress/dist/primary/english/demo.html
+          echo "构建产物检查通过"
 
       # 组装最终站点：旧主页在根路径，笔记站挂到 /notes/
       - name: Assemble site
