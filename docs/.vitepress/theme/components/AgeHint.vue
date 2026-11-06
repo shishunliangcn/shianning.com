@@ -8,6 +8,9 @@ import { ageGroups } from '../../curriculum'
  *
  * 主题本身不绑定年龄：同一个主题下，不同文章服务不同认知阶段。
  * 所以这里不给「适合 X 岁」，而是给四个年龄标签的筛选入口。
+ *
+ * 结构上分成两块：label（图标 + 文案）与 links（标签组），
+ * 窄屏时整体改为上下堆叠，标签自动换行。
  */
 const { page } = useData()
 
@@ -20,8 +23,10 @@ const isAreaPage = computed(() => {
 
 <template>
   <aside v-if="isAreaPage" class="age-hint">
-    <span class="age-hint__icon" aria-hidden="true">🧭</span>
-    <span class="age-hint__text">本主题横跨多个年龄段，按认知深度筛选：</span>
+    <span class="age-hint__label">
+      <span class="age-hint__icon" aria-hidden="true">🧭</span>
+      <span class="age-hint__text">本主题横跨多个年龄段，按认知深度筛选：</span>
+    </span>
     <span class="age-hint__links">
       <a
         v-for="group in ageGroups"

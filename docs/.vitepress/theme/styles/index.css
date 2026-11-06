@@ -287,6 +287,7 @@
 }
 
 .km-chip {
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -315,8 +316,9 @@
 /* ---------- 3-2. 适读年龄提示 ---------- */
 .age-hint {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
+  gap: 8px 12px;
   margin: 0 0 22px;
   padding: 10px 14px;
   border: 1px solid var(--vp-c-divider);
@@ -328,22 +330,36 @@
   color: var(--vp-c-text-2);
 }
 
+.age-hint__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .age-hint__icon {
+  flex: none;
   font-size: 15px;
   line-height: 1;
 }
 
 .age-hint__text {
-  flex: 0 0 auto;
+  min-width: 0;
 }
 
 .age-hint__links {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .age-hint__link {
+  flex: 0 0 auto;
+  /* 关键：中文标签绝不逐字折行，否则会被挤成竖排 */
+  white-space: nowrap;
   padding: 1px 9px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 999px;
@@ -359,6 +375,26 @@
   background: var(--school-teal-soft);
 }
 
+/* 窄屏：文案一行、标签另起一行，整体上下堆叠 */
+@media (max-width: 768px) {
+  .age-hint {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .age-hint__label {
+    flex: none;
+    align-items: flex-start;
+  }
+
+  .age-hint__links {
+    flex: none;
+    width: 100%;
+    gap: 8px;
+  }
+}
 /* ---------- 3-3. 年龄寻路（知识库首页板块） ---------- */
 .age-guide {
   display: grid;
@@ -424,6 +460,7 @@
 }
 
 .article-tag {
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   padding: 3px 11px;
