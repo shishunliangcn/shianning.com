@@ -1,0 +1,34 @@
+{
+  "name": "史安宁的小学堂",
+  "short_name": "小学堂",
+  "description": "跨越年龄的边界，探索知识的无限可能。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "/notes/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070912",
+  "theme_color": "#fdfaf5",
+  "categories": ["education", "reference"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

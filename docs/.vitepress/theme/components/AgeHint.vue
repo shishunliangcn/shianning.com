@@ -1,30 +1,36 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
-import { wings } from '../../curriculum'
+import { useData, withBase } from 'vitepress'
+import { ageGroups } from '../../curriculum'
 
 /**
- * AgeHint —— 主题页顶部的适读年龄提示
+ * AgeHint —— 主题页顶部的年龄导航
  *
- * 只在「主题简介」页显示（路径形如 /nature/astronomy/），
- * 数据来自 curriculum.ts 里每个主题的 age 字段。
+ * 主题本身不绑定年龄：同一个主题下，不同文章服务不同认知阶段。
+ * 所以这里不给「适合 X 岁」，而是给四个年龄标签的筛选入口。
  */
 const { page } = useData()
 
-const area = computed(() => {
-  const rel = page.value.relativePath.replace(/\.md$/, '').replace(/\/index$/, '')
-  const [wingKey, areaKey] = rel.split('/')
-  if (!wingKey || !areaKey) return null
-  const wing = wings.find((item) => item.key === wingKey)
-  return wing?.areas.find((item) => item.key === areaKey) ?? null
+const isAreaPage = computed(() => {
+  const rel = page.value.relativePath.replace(/\.md$/, '')
+  if (!rel.endsWith('/index')) return false
+  return rel.split('/').length === 3
 })
 </script>
 
 <template>
-  <aside v-if="area" class="age-hint">
+  <aside v-if="isAreaPage" class="age-hint">
     <span class="age-hint__icon" aria-hidden="true">🧭</span>
-    <span class="age-hint__text">
-      本主题内容主要适合 <strong>{{ area.age }}</strong> 的孩子
+    <span class="age-hint__text">本主题横跨多个年龄段，按认知深度筛选：</span>
+    <span class="age-hint__links">
+      <a
+        v-for="group in ageGroups"
+        :key="group.tag"
+        class="age-hint__link"
+        :href="withBase('/tags.html') + '#tag-' + group.tag"
+      >
+        {{ group.tag }}
+      </a>
     </span>
   </aside>
 </template>

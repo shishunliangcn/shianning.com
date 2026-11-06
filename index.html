@@ -6,6 +6,12 @@
   <title>史安宁的小学堂 · 跨越年龄的边界</title>
   <meta name="description" content="史安宁的小学堂 —— 跨越年龄的边界，探索知识的无限可能。五座展馆、二十六个主题，一座没有边界的知识殿堂。" />
   <meta name="theme-color" content="#070912" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="小学堂" />
   <style>
     :root {
       --bg: #070912;
@@ -434,9 +440,19 @@
       <span class="guides__sep" aria-hidden="true">|</span>
       <a href="/notes/tags.html#tag-6-12岁">🎒 我是小学生（6-12岁）</a>
       <span class="guides__sep" aria-hidden="true">|</span>
-      <a href="/notes/tags.html#tag-12岁+">🧑‍🎓 我是中学生（12岁+）</a>
+      <a href="/notes/tags.html#tag-12-18岁">🧑‍🎓 我是中学生（12-18岁）</a>
+      <span class="guides__sep" aria-hidden="true">|</span>
+      <a href="/notes/tags.html#tag-18岁+">🎓 我是大学生/成人（18岁+）</a>
     </nav>
   </main>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').catch(function () {})
+      })
+    }
+  </script>
 
   <footer>
     <p>© 2026 史安宁的小学堂 · 跨越年龄的边界，探索知识的无限可能。</p>

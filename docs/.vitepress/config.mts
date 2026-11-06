@@ -35,7 +35,17 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'theme-color', content: '#fdfaf5' }],
-    ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }]
+    ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }],
+    ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
+    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: '小学堂' }],
+    [
+      'script',
+      {},
+      "if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}) }) }"
+    ]
   ],
 
   // CommonMark 的强调规则遇到「中文 + ** + 中文标点」会失效

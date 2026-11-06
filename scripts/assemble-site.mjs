@@ -13,7 +13,18 @@ import { join } from 'node:path'
  */
 const DIST = 'docs/.vitepress/dist'
 const OUT = '_site'
-const ROOT_FILES = ['index.html', 'CNAME', 'favicon.ico', '404.html']
+const ROOT_FILES = [
+  'index.html',
+  'CNAME',
+  'favicon.ico',
+  '404.html',
+  // PWA：安装到主屏幕所需
+  'manifest.webmanifest',
+  'sw.js',
+  'icon-192.png',
+  'icon-512.png',
+  'apple-touch-icon.png'
+]
 const SITE_ORIGIN = 'https://shianning.com'
 
 for (const file of ROOT_FILES) {
