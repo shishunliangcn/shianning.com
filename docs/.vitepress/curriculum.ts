@@ -1,316 +1,277 @@
 import type { DefaultTheme } from 'vitepress'
 
 /**
- * 课程树 —— 全站唯一的数据源。
+ * 五大展馆 —— 全站唯一的数据源。
  *
- * 侧边栏、导航下拉、主页「知识库全图」、学段页都由这里派生，
- * 新增学段或学科时只需要改这一个文件 + 建对应目录。
+ * 不再有学段、年级或应试科目的概念：只有展馆（wing）与主题（area）。
+ * 侧边栏、导航下拉、主页「知识库全图」都由这里派生。
  */
 
-export interface PageDef {
-  /** 侧边栏里显示的文字 */
-  text: string
-  /** 页面 slug，即 docs/<stage>/<subject>/<slug>.md */
+export interface ArticleDef {
+  /** 侧边栏与标签页显示的文字 */
+  title: string
+  /** 页面 slug，即 docs/<wing>/<area>/<slug>.md */
   slug: string
 }
 
-export interface SubjectDef {
+export interface AreaDef {
   key: string
   name: string
   icon: string
-  /** 一句话说明该学段下这门学科的重点 */
+  /** 一句话说明这个主题聊什么 */
   summary: string
-  /** 该学科下已有的文章，按顺序出现在侧边栏 */
-  pages?: PageDef[]
+  /** 该主题下已有的文章，按顺序出现在侧边栏 */
+  articles?: ArticleDef[]
 }
 
-export interface StageDef {
+export interface WingDef {
   key: string
   name: string
   icon: string
-  /** 适读年龄 */
-  age: string
-  tagline: string
+  /** 展馆副标题，例如「探索宇宙与自然」 */
+  motto: string
   summary: string
-  /** 主题色，用于知识库全图的卡片点缀 */
+  /** 主题色，用于大门与知识库全图 */
   accent: string
-  subjects: SubjectDef[]
+  areas: AreaDef[]
 }
 
-export const stages: StageDef[] = [
+export const wings: WingDef[] = [
   {
-    key: 'preschool',
-    name: '启蒙乐园',
-    icon: '👶',
-    age: '3–6 岁',
-    tagline: '玩中学，把好奇心留在身边',
-    summary: '不按学科分科，而是按孩子真实的生活场景组织：照顾自己、说出想法、认识世界、动手创造、学会相处。',
-    accent: '#f59e0b',
-    subjects: [
+    key: 'nature',
+    name: '格物馆',
+    icon: '🌌',
+    motto: '探索宇宙与自然',
+    summary: '从一颗恒星的一生，到一滴水里的一次反应。这里回答「世界为什么是这个样子」。',
+    accent: '#66d9ff',
+    areas: [
       {
-        key: 'health-life',
-        name: '健康与生活',
-        icon: '🌱',
-        summary: '吃饭、睡觉、穿衣、洗手，把照顾自己变成习惯。'
-      },
-      {
-        key: 'language',
-        name: '语言与表达',
-        icon: '🗣️',
-        summary: '听故事、说完整的话，在绘本里认识文字。'
-      },
-      {
-        key: 'nature',
-        name: '自然与科学',
-        icon: '🔍',
-        summary: '观察动植物与天气，在生活里数数、比较、提问。'
-      },
-      {
-        key: 'art',
-        name: '艺术与创想',
-        icon: '🎨',
-        summary: '涂鸦、手工、唱游，用身体和颜色表达情绪。'
-      },
-      {
-        key: 'society',
-        name: '社会与品格',
-        icon: '🤝',
-        summary: '认识情绪、学习分享与等待，理解简单的规则。'
-      }
-    ]
-  },
-  {
-    key: 'primary',
-    name: '小学课堂',
-    icon: '🎒',
-    age: '6–12 岁',
-    tagline: '打好底子，让基础扎实可依赖',
-    summary: '八门学科覆盖语言、数理、人文、体艺与信息素养，重点是习惯与基本功：读得懂、算得对、说得出口、动得起来。',
-    accent: '#0d9488',
-    subjects: [
-      {
-        key: 'chinese',
-        name: '语文',
-        icon: '📖',
-        summary: '识字写字、朗读背诵、阅读理解、写作起步。'
-      },
-      {
-        key: 'math',
-        name: '数学',
-        icon: '🔢',
-        summary: '计算与数量关系打底，养成审题和检验的习惯。'
-      },
-      {
-        key: 'english',
-        name: '英语',
-        icon: '🔤',
-        summary: '自然拼读加高频词，从听懂到敢开口。',
-        pages: [{ text: '朗读组件演示', slug: 'demo' }]
-      },
-      {
-        key: 'science',
-        name: '科学探索',
-        icon: '🔬',
-        summary: '从观察和实验出发，学会提问、记录与解释。'
-      },
-      {
-        key: 'humanities',
-        name: '人文素养',
-        icon: '🏛️',
-        summary: '历史故事、地理常识与传统文化，建立时间感与空间感。'
-      },
-      {
-        key: 'pe-health',
-        name: '体育与健康',
-        icon: '⚽',
-        summary: '体能、运动技能与安全常识，把身体练成底气。'
-      },
-      {
-        key: 'art',
-        name: '艺术审美',
-        icon: '🎨',
-        summary: '美术与音乐同步启蒙，敢画、敢唱、看得出好坏。'
-      },
-      {
-        key: 'it',
-        name: '信息技术',
-        icon: '💻',
-        summary: '打字、文件管理与图形化编程，安全地使用电脑。'
-      }
-    ]
-  },
-  {
-    key: 'middle',
-    name: '中学冲刺',
-    icon: '📚',
-    age: '12–18 岁',
-    tagline: '系统梳理，把难点一个个拆开',
-    summary: '十门学科对应中高考的完整盘面，强调知识体系、专题突破和错题归因，追求稳定而不是运气。',
-    accent: '#2563eb',
-    subjects: [
-      {
-        key: 'chinese',
-        name: '语文',
-        icon: '📖',
-        summary: '文言实词虚词、现代文阅读、名著、记叙与议论文。'
-      },
-      {
-        key: 'math',
-        name: '数学',
-        icon: '🔢',
-        summary: '方程与函数、几何证明、统计概率、压轴题策略。'
-      },
-      {
-        key: 'english',
-        name: '英语',
-        icon: '🔤',
-        summary: '语法体系、完形与阅读、写作模板、听力。'
+        key: 'astronomy',
+        name: '天文',
+        icon: '🔭',
+        summary: '抬头看：恒星、行星、星系，以及人类如何一步步量出宇宙。',
+        articles: [{ title: '星星为什么会发光', slug: 'stars' }]
       },
       {
         key: 'physics',
         name: '物理',
         icon: '⚛️',
-        summary: '力学、电学、光学，用模型解释现象。'
+        summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。'
       },
       {
         key: 'chemistry',
         name: '化学',
         icon: '🧪',
-        summary: '物质构成、反应规律与实验探究。'
+        summary: '原子如何牵手又分开，物质为什么会有这样的脾气。'
       },
       {
-        key: 'biology',
-        name: '生物',
-        icon: '🧬',
-        summary: '细胞、遗传、生态，理解生命系统的层次。'
-      },
-      {
-        key: 'history',
-        name: '历史',
-        icon: '📜',
-        summary: '中外通史主线与史料阅读，学会在时间轴上思考。'
-      },
-      {
-        key: 'geography',
-        name: '地理',
-        icon: '🌏',
-        summary: '自然地理原理与区域分析，读懂地图与数据。'
-      },
-      {
-        key: 'politics',
-        name: '政治',
-        icon: '⚖️',
-        summary: '道德与法治、经济与哲学常识，学会规范表达。'
-      },
-      {
-        key: 'pe-health',
-        name: '体育与健康',
-        icon: '🏃',
-        summary: '中考体测项目与日常锻炼，兼顾作息与心理。'
+        key: 'earth-ecology',
+        name: '地球与生态',
+        icon: '🌍',
+        summary: '板块、气候与生命网络：我们脚下这颗星球的运行方式。'
       }
     ]
   },
   {
-    key: 'university',
-    name: '大学殿堂',
-    icon: '🎓',
-    age: '18 岁以上',
-    tagline: '建立框架，学会自己找答案',
-    summary: '不再有标准答案，六门学科提供的是「看世界的方式」：通识的视野、数学的严谨、计算的工具、经济的判断、心理的理解、职业的规划。',
-    accent: '#7c3aed',
-    subjects: [
+    key: 'humanities',
+    name: '知音馆',
+    icon: '📜',
+    motto: '穿梭历史与人文',
+    summary: '过去的人怎么想、怎么活、为什么争执。读懂他们，才能读懂我们自己。',
+    accent: '#ffd479',
+    areas: [
       {
-        key: 'general-education',
-        name: '通识教育',
-        icon: '🧭',
-        summary: '人文、社科与自然科学的大图景，建立跨学科视野。'
+        key: 'history',
+        name: '历史',
+        icon: '🏺',
+        summary: '文明如何兴起与转折，以及史料是怎么被读出来的。'
       },
       {
-        key: 'advanced-math',
-        name: '高等数学',
-        icon: '📐',
-        summary: '微积分与线性代数，强调概念直观与证明意识。'
+        key: 'philosophy',
+        name: '哲学',
+        icon: '🕯️',
+        summary: '关于存在、知识与善恶的追问，以及如何把话讲清楚。',
+        articles: [{ title: '苏格拉底为什么甘愿赴死', slug: 'socrates' }]
       },
       {
-        key: 'computer-basics',
-        name: '计算机基础',
-        icon: '💻',
-        summary: '编程入门、数据结构与工具链，把计算机当杠杆。'
+        key: 'society-psychology',
+        name: '社会与心理',
+        icon: '🧩',
+        summary: '人为什么在群体里变了样，我们又如何认识自己。'
       },
       {
-        key: 'econ-management',
-        name: '经济与管理',
-        icon: '📈',
-        summary: '供求、成本、组织与决策，用经济学眼光看日常。'
+        key: 'people',
+        name: '人物',
+        icon: '👤',
+        summary: '科学家、思想家、艺术家，以及那些没有留下名字的人。'
+      }
+    ]
+  },
+  {
+    key: 'logic',
+    name: '灵犀馆',
+    icon: '🧠',
+    motto: '语言与逻辑魔法',
+    summary: '语言是工具，逻辑是骨架。学会它们，你就拥有拆解一切问题的能力。',
+    accent: '#b39cff',
+    areas: [
+      {
+        key: 'english-fun',
+        name: '趣味英语',
+        icon: '🔤',
+        summary: '词源、习语与发音里的冷知识，让英语变得好玩。',
+        articles: [{ title: '为什么英语里的 I 永远大写', slug: 'why-i-capital' }]
       },
       {
-        key: 'psychology',
-        name: '心理学',
-        icon: '🧠',
-        summary: '认知、情绪与发展规律，先理解自己再理解他人。'
+        key: 'literature',
+        name: '文学赏析',
+        icon: '📖',
+        summary: '诗、小说与散文：读懂作者藏在字缝里的意思。'
       },
       {
-        key: 'career-planning',
-        name: '职业与规划',
-        icon: '🎯',
-        summary: '认识行业与岗位，把兴趣翻译成可执行的路径。'
+        key: 'math-thinking',
+        name: '数学思维',
+        icon: '🔢',
+        summary: '不是算得快，而是想得清：证明、概率与建模。'
+      },
+      {
+        key: 'programming-ai',
+        name: '编程与AI',
+        icon: '🤖',
+        summary: '让机器按你的想法工作，并理解它为什么会出错。'
+      }
+    ]
+  },
+  {
+    key: 'arts',
+    name: '造物馆',
+    icon: '🎨',
+    motto: '艺术、动手与创想',
+    summary: '看、听、做。用双手把想法变成现实，也学会判断什么是好作品。',
+    accent: '#ff9ad5',
+    areas: [
+      {
+        key: 'music',
+        name: '音乐',
+        icon: '🎵',
+        summary: '声音如何变成音乐，以及怎么听出门道。',
+        articles: [{ title: '声音是怎么变成音乐的', slug: 'what-is-sound' }]
+      },
+      {
+        key: 'visual-art',
+        name: '视觉艺术',
+        icon: '🖼️',
+        summary: '绘画、摄影与看展：训练一双会看的眼睛。'
+      },
+      {
+        key: 'maker',
+        name: '手工创客',
+        icon: '🔨',
+        summary: '木工、电子与 3D 打印，把想法做成能拿在手里的东西。'
+      },
+      {
+        key: 'design',
+        name: '设计',
+        icon: '✏️',
+        summary: '版式、配色与产品思维：让信息好看又好用。'
+      }
+    ]
+  },
+  {
+    key: 'life',
+    name: '长生馆',
+    icon: '🛠️',
+    motto: '生活、生存与实用技能',
+    summary: '最要紧的知识往往最没人教：如何自救、如何持家、如何不让钱被骗走。',
+    accent: '#7dffc4',
+    areas: [
+      {
+        key: 'safety-first-aid',
+        name: '安全急救',
+        icon: '🚑',
+        summary: '烫伤、出血、窒息与心肺复苏：关键时刻的正确动作。',
+        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns' }]
+      },
+      {
+        key: 'life-skills',
+        name: '生活常识',
+        icon: '🧰',
+        summary: '收纳、家电、合同与办事流程：把日子过顺的基本功。'
+      },
+      {
+        key: 'financial-literacy',
+        name: '财商启蒙',
+        icon: '💰',
+        summary: '记账、储蓄、复利与防骗，建立和钱的健康关系。'
+      },
+      {
+        key: 'cooking',
+        name: '美食烹饪',
+        icon: '🍳',
+        summary: '刀工、火候与调味：先学会喂饱自己。'
       }
     ]
   }
 ]
 
-/** `preschool` → `/preschool/` */
-export function stageLink(stage: StageDef): string {
-  return `/${stage.key}/`
+/** `nature` → `/nature/` */
+export function wingLink(wing: WingDef): string {
+  return `/${wing.key}/`
 }
 
-/** `preschool` + `chinese` → `/preschool/chinese/` */
-export function subjectLink(stage: StageDef, subject: SubjectDef): string {
-  return `/${stage.key}/${subject.key}/`
+/** `nature` + `astronomy` → `/nature/astronomy/` */
+export function areaLink(wing: WingDef, area: AreaDef): string {
+  return `/${wing.key}/${area.key}/`
 }
 
-/** `primary` + `english` + `demo` → `/primary/english/demo` */
-export function pageLink(stage: StageDef, subject: SubjectDef, page: PageDef): string {
-  return `/${stage.key}/${subject.key}/${page.slug}`
+/** `nature` + `astronomy` + `stars` → `/nature/astronomy/stars` */
+export function articleLink(wing: WingDef, area: AreaDef, article: ArticleDef): string {
+  return `/${wing.key}/${area.key}/${article.slug}`
 }
 
-/** 全站学科总数，供首页文案使用 */
-export const subjectCount = stages.reduce((total, stage) => total + stage.subjects.length, 0)
+/** 全站主题总数，供首页文案使用 */
+export const areaCount = wings.reduce((total, wing) => total + wing.areas.length, 0)
+
+/** 全站文章总数 */
+export const articleCount = wings.reduce(
+  (total, wing) => total + wing.areas.reduce((sum, area) => sum + (area.articles?.length ?? 0), 0),
+  0
+)
 
 /**
- * 生成多级嵌套侧边栏：学段 → 学科 → 文章。
+ * 生成多级嵌套侧边栏：展馆 → 主题 → 文章。
  *
  * 键使用不带 base 的路径，VitePress 会自动套用 `base: '/notes/'`。
  */
 export function buildSidebar(): Record<string, DefaultTheme.SidebarItem[]> {
   const sidebar: Record<string, DefaultTheme.SidebarItem[]> = {}
 
-  for (const stage of stages) {
-    const others = stages.filter((s) => s.key !== stage.key)
+  for (const wing of wings) {
+    const others = wings.filter((w) => w.key !== wing.key)
 
-    sidebar[stageLink(stage)] = [
+    sidebar[wingLink(wing)] = [
       {
-        text: `${stage.icon} ${stage.name}`,
+        text: `${wing.icon} ${wing.name}`,
         collapsed: false,
         items: [
-          { text: '学段概况', link: stageLink(stage) },
-          ...stage.subjects.map((subject) => ({
-            text: `${subject.icon} ${subject.name}`,
+          { text: '展馆导言', link: wingLink(wing) },
+          ...wing.areas.map((area) => ({
+            text: `${area.icon} ${area.name}`,
             collapsed: true,
             items: [
-              { text: '学科概况', link: subjectLink(stage, subject) },
-              ...(subject.pages ?? []).map((page) => ({
-                text: page.text,
-                link: pageLink(stage, subject, page)
+              { text: '主题简介', link: areaLink(wing, area) },
+              ...(area.articles ?? []).map((article) => ({
+                text: article.title,
+                link: articleLink(wing, area, article)
               }))
             ]
           }))
         ]
       },
       {
-        text: '切换学段',
+        text: '其他展馆',
         collapsed: true,
-        items: others.map((s) => ({ text: `${s.icon} ${s.name}`, link: stageLink(s) }))
+        items: others.map((w) => ({ text: `${w.icon} ${w.name}`, link: wingLink(w) }))
       }
     ]
   }

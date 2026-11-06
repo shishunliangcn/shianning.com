@@ -1,12 +1,12 @@
 import { defineConfig } from 'vitepress'
-import { buildSidebar, stages } from './curriculum'
+import { buildSidebar, wings } from './curriculum'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   // 站点部署在自定义域名的 /notes/ 子路径下
   base: '/notes/',
   title: '史安宁的小学堂',
-  description: '从启蒙到大学，经得起时间考验的线上学园',
+  description: '跨越年龄的边界，探索知识的无限可能。',
   lang: 'zh-CN',
 
   head: [['meta', { name: 'theme-color', content: '#fdfaf5' }]],
@@ -17,16 +17,16 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       {
-        text: '学段',
-        items: stages.map((stage) => ({
-          text: `${stage.icon} ${stage.name}`,
-          link: `/${stage.key}/`
+        text: '展馆',
+        items: wings.map((wing) => ({
+          text: `${wing.icon} ${wing.name}`,
+          link: `/${wing.key}/`
         }))
       },
-      { text: '朗读演示', link: '/primary/english/demo' }
+      { text: '标签', link: '/tags.html' }
     ],
 
-    // 侧边栏由 curriculum.ts 的课程树生成，新增学科无需手改
+    // 侧边栏由 curriculum.ts 的展馆树生成，新增主题无需手改
     sidebar: buildSidebar(),
 
     editLink: {
@@ -35,7 +35,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: '从启蒙到大学，经得起时间考验的线上学园',
+      message: '跨越年龄的边界，探索知识的无限可能。',
       copyright: 'Copyright © 2026 史安宁的小学堂'
     },
 

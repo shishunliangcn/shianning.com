@@ -40,8 +40,10 @@ jobs:
       - name: Verify build output
         run: |
           test -f docs/.vitepress/dist/index.html
-          test -d docs/.vitepress/dist/preschool
-          test -f docs/.vitepress/dist/primary/english/demo.html
+          test -d docs/.vitepress/dist/nature
+          test -f docs/.vitepress/dist/nature/astronomy/stars.html
+          test -f docs/.vitepress/dist/life/safety-first-aid/burns.html
+          test -f docs/.vitepress/dist/tags.html
           echo "构建产物检查通过"
 
       # 组装最终站点：旧主页在根路径，笔记站挂到 /notes/

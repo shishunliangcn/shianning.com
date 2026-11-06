@@ -1,36 +1,47 @@
 # 史安宁的小学堂
 
-从启蒙到大学，经得起时间考验的线上学园。基于 [VitePress](https://vitepress.dev/) 搭建，
-部署在 **https://shianning.com/notes/**，根路径 https://shianning.com/ 是学校大门。
+> 跨越年龄的边界，探索知识的无限可能。
 
-- 学段：启蒙乐园 / 小学课堂 / 中学冲刺 / 大学殿堂
-- 学科：共 29 门，按学段分为 5 / 8 / 10 / 6 科（全人教育蓝图）
-- 主题：默认主题 + 自定义主题层（`docs/.vitepress/theme`）
+一座没有学段、没有年级的知识殿堂。基于 [VitePress](https://vitepress.dev/) 搭建，
+根路径 https://shianning.com/ 是五扇大门，知识库部署在 **https://shianning.com/notes/**。
+
+## 五大展馆
+
+| 展馆 | 主题 |
+| --- | --- |
+| 🌌 格物馆（探索宇宙与自然） | 天文 · 物理 · 化学 · 地球与生态 |
+| 📜 知音馆（穿梭历史与人文） | 历史 · 哲学 · 社会与心理 · 人物 |
+| 🧠 灵犀馆（语言与逻辑魔法） | 趣味英语 · 文学赏析 · 数学思维 · 编程与AI |
+| 🎨 造物馆（艺术、动手与创想） | 音乐 · 视觉艺术 · 手工创客 · 设计 |
+| 🛠️ 长生馆（生活、生存与实用技能） | 安全急救 · 生活常识 · 财商启蒙 · 美食烹饪 |
+
+共 5 座展馆、20 个主题。
 
 ## 架构
 
 ```
 shianning.com/
-├─ index.html                    # 学校大门（根路径，纯静态）
+├─ index.html                    # 五扇大门（根路径，纯静态）
 ├─ CNAME                         # 自定义域名 shianning.com
 ├─ docs/                         # VitePress 站点，挂载在 /notes/
 │  ├─ index.md                   # 知识库全图（hero + <KnowledgeMap />）
-│  ├─ preschool/                 # 启蒙乐园（5 科）
-│  │  ├─ index.md                #   学段概况
-│  │  └─ {health-life,language,nature,art,society}/index.md
-│  ├─ primary/                   # 小学课堂（8 科）
-│  │  └─ {chinese,math,english,science,humanities,pe-health,art,it}/
-│  ├─ middle/                    # 中学冲刺（10 科）
-│  │  └─ {chinese,math,english,physics,chemistry,biology,history,geography,politics,pe-health}/
-│  ├─ university/                # 大学殿堂（6 科）
-│  │  └─ {general-education,advanced-math,computer-basics,econ-management,psychology,career-planning}/
-│  ├─ public/audio/              # 站点静态资源（音频等）
+│  ├─ tags.md                    # 标签索引（由 tags.data.ts 汇总）
+│  ├─ nature/                    # 🌌 格物馆
+│  │  ├─ index.md                #   展馆导言
+│  │  └─ astronomy/              #   🔭 天文
+│  │     ├─ index.md             #     主题简介
+│  │     └─ stars.md             #     《星星为什么会发光》
+│  ├─ humanities/ logic/ arts/ life/   # 其余四馆，结构相同
+│  ├─ public/audio/              # 站点静态资源（音频）
 │  └─ .vitepress/
-│     ├─ config.mts              # 站点配置（base、导航、主页文案）
-│     ├─ curriculum.ts           # ★ 课程树：全站唯一数据源
+│     ├─ config.mts              # 站点配置（base、导航）
+│     ├─ curriculum.ts           # ★ 展馆树：全站唯一数据源
+│     ├─ tags.data.ts            # 标签聚合（内容加载器）
 │     └─ theme/
-│        ├─ index.ts             # 主题入口，全局注册组件
-│        ├─ components/          # ReadWord / AudioPlayer / KnowledgeMap
+│        ├─ index.ts             # 主题入口，注册全局组件
+│        ├─ Layout.vue           # 在 doc-before 插入标签栏
+│        ├─ components/          # ReadWord / AudioPlayer / KnowledgeMap / ArticleTags
+│        ├─ composables/         # useSpeechSynthesis（移动端朗读）
 │        └─ styles/index.css     # 设计变量与组件样式
 ├─ .github/workflows/deploy.yml   # 推送 main 自动构建发布
 └─ package.json
@@ -38,28 +49,38 @@ shianning.com/
 
 ### 单一数据源：`curriculum.ts`
 
-`docs/.vitepress/curriculum.ts` 用 TypeScript 描述整棵课程树（学段 → 学科 → 文章）。
-下面这些地方全部由它派生，**不需要分别维护**：
+`docs/.vitepress/curriculum.ts` 用 TypeScript 描述整棵树（展馆 → 主题 → 文章）。
+下列内容全部由它派生，**不需要分别维护**：
 
-- 顶部导航的「学段」下拉菜单
-- 每个学段的四级嵌套侧边栏
-- 主页「知识库全图」的卡片与学科链接
+- 顶部导航的「展馆」下拉菜单
+- 每个展馆的多级嵌套侧边栏
+- 知识库全图的卡片、主题胶囊与「5 座展馆 / 20 个主题」的统计数字
 
-新增一个学科，只需要在 `curriculum.ts` 里加一项，再建好对应目录和 `index.md`。
+### 标签系统
+
+文章 frontmatter 里写 `tags`，三处自动生效：
+
+```md
+---
+title: 星星为什么会发光
+tags: [天文, 恒星, 光谱, 物理]
+---
+```
+
+1. 文章页标题上方渲染标签胶囊（`ArticleTags` 组件，挂在 `Layout.vue` 的 `doc-before` 插槽）
+2. 标签胶囊点击跳到 `/notes/tags.html` 对应的锚点
+3. `tags.md` 通过 `tags.data.ts`（VitePress 内容加载器）自动汇总全站标签，无需手写列表
 
 ## 全局组件
 
-在 `docs/.vitepress/theme/index.ts` 里注册，Markdown 中直接使用，无需 import。
+在 `docs/.vitepress/theme/index.ts` 里注册，Markdown 中直接使用。
 
 ### `<ReadWord>` —— 单词朗读
 
 ```md
 Apple <ReadWord word="apple" /> 是「苹果」。
-
 <ReadWord word="banana">banana</ReadWord>
-
 <ReadWord word="Good morning" :rate="0.6" />
-<ReadWord word="你好" lang="zh-CN" />
 ```
 
 | 属性 | 类型 | 默认值 | 说明 |
@@ -68,25 +89,21 @@ Apple <ReadWord word="apple" /> 是「苹果」。
 | `lang` | string | `en-US` | 语音语言 |
 | `rate` | number | `0.9` | 语速 |
 | `pitch` | number | `1` | 音高 |
-| `label` | string | `朗读 <word>` | 无障碍标签 |
 
-基于浏览器 Web Speech API。朗读逻辑封装在
-`docs/.vitepress/theme/composables/useSpeechSynthesis.ts`：
+朗读逻辑在 `theme/composables/useSpeechSynthesis.ts`：
 
-- `speak()` 在点击事件中**同步**调用，中间没有 `await` / `setTimeout`，满足 iOS 的用户手势要求；
-- 语音列表通过 `voiceschanged` 事件 + 500ms × 8 次轮询在后台预热，但**不阻塞**朗读；
-- 朗读前会 `resume()` 解除暂停、仅在队列有任务时 `cancel()`，显式设置 `utterance.lang`；
+- `speak()` 在点击事件中**同步**调用，满足 iOS 的用户手势要求；
+- 语音列表通过 `voiceschanged` + 500ms × 8 次轮询预热，但**不阻塞**朗读；
+- 朗读前 `resume()` 解除暂停，仅在队列有任务时 `cancel()`，并显式设置 `utterance.lang`；
 - 1.2 秒内没有开始播放则判定失败，按钮变红提示，再点一次即可重试。
 
 ### `<AudioPlayer>` —— 音频播放器
 
 ```md
-<AudioPlayer src="/audio/tone-440.wav" caption="示例音频" />
+<AudioPlayer src="/audio/tone-440.wav" caption="440 Hz 标准音 A" />
 ```
 
 以 `/` 开头的路径会自动补上 `/notes/` 前缀，音频文件放 `docs/public/audio/`。
-
-完整演示见 [朗读组件演示](/notes/primary/english/demo)。
 
 ## 常用命令
 
@@ -99,30 +116,29 @@ npm run docs:preview   # 预览构建产物
 
 ## 写一篇新文章
 
-1. 在对应学科目录下新建 `.md`，例如 `docs/primary/english/greetings.md`。
-2. 在 `curriculum.ts` 里把文章挂到该学科的 `pages`：
+1. 在对应主题目录下新建 `.md`，例如 `docs/nature/physics/why-sky-blue.md`。
+2. frontmatter 写上 `title` 与 `tags`。
+3. 在 `curriculum.ts` 里把这篇文章挂到该主题的 `articles`：
 
    ```ts
    {
-     key: 'english',
-     ...subjectMeta.english,
-     summary: '自然拼读加高频词，从听懂到敢开口。',
-     pages: [
-       { text: '朗读组件演示', slug: 'demo' },
-       { text: '日常问候', slug: 'greetings' }   // ← 新增
-     ]
+     key: 'physics',
+     name: '物理',
+     icon: '⚛️',
+     summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。',
+     articles: [{ title: '天为什么是蓝的', slug: 'why-sky-blue' }]   // ← 新增
    }
    ```
 
-3. 侧边栏会自动出现这一条，保存即热更新。
+4. 侧边栏与标签索引都会自动更新，保存即热更新。
 
 ## 自动部署
 
 推送 `main` 触发 `.github/workflows/deploy.yml`：
 
-1. `npm ci` → `npm run docs:build`（Vue 组件由 Vite 编译）
-2. 检查构建产物（首页、学段页、演示页是否存在）
-3. 组装 `_site/`：根路径放 `index.html` + `CNAME`，笔记站放进 `_site/notes/`
+1. `npm ci` → `npm run docs:build`
+2. 检查构建产物（首页、展馆页、示例文章是否存在）
+3. 组装 `_site/`：根路径放 `index.html` + `CNAME`，知识库放进 `_site/notes/`
 4. GitHub Pages Actions 发布
 
 仓库 **Settings → Pages → Source** 必须是 **GitHub Actions**。

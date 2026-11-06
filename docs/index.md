@@ -3,19 +3,20 @@ layout: home
 
 hero:
   name: 史安宁的小学堂
-  text: 从启蒙到大学，经得起时间考验的线上学园
-  tagline: 四个学段 · 二十九门学科 · 一条走得完的路
+  text: 跨越年龄的边界，探索知识的无限可能。
+  tagline: 五座展馆 · 二十个主题 · 一座没有边界的知识殿堂
   actions:
     - theme: brand
-      text: 从启蒙乐园开始
-      link: /preschool/
+      text: 从格物馆开始
+      link: /nature/
     - theme: alt
-      text: 小学课堂
-      link: /primary/
+      text: 浏览全部标签
+      link: /tags.html
 ---
 
 ## 知识库全图
 
-四个学段并排展开：点学段进入总览，点学科直达概况页。学科数量会自动统计，新增学科不需要改这里。
+五座展馆并排展开：点展馆进入导言，点主题直达简介。
+数量由课程树实时统计，新增展馆或主题时不需要改这里。
 
 <KnowledgeMap />
