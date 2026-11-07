@@ -55,6 +55,10 @@ jobs:
       - name: Assemble site
         run: node scripts/assemble-site.mjs
 
+      # 站内死链门禁：链接断了就让发布失败，别等读者点到 404
+      - name: Check internal links
+        run: node scripts/check-links.mjs _site
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

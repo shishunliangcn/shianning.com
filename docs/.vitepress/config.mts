@@ -1,3 +1,4 @@
+import { writeFileSync } from 'node:fs'
 import { defineConfig } from 'vitepress'
 import cjkFriendlyPlugin from 'markdown-it-cjk-friendly'
 import { buildSidebar, wings } from './curriculum'
@@ -103,6 +104,20 @@ export default defineConfig({
 
   // 生成 sitemap；VitePress 只取 origin、不会带 base，
   // 由 scripts/assemble-site.mjs 统一补 /notes 前缀并并入主站首页
+  // 门页是独立的静态 HTML，构建时把课程数据导出给它用，
+  // 避免门页手抄一份展馆/主题列表（加主题时忘了改门页）。
+  buildEnd() {
+    const doors = wings.map((wing) => ({
+      key: wing.key,
+      name: wing.name,
+      icon: wing.icon,
+      motto: wing.motto,
+      accent: wing.accent,
+      areas: wing.areas.map((area) => area.name)
+    }))
+    writeFileSync(new URL('./gate-data.json', import.meta.url), JSON.stringify(doors, null, 2))
+  },
+
   sitemap: {
     hostname: SITE.origin
   },

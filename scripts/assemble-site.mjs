@@ -49,6 +49,43 @@ for (const file of ROOT_FILES) {
 }
 await writeFile(join(OUT, '.nojekyll'), '')
 
+// 门页的五个「门」由 curriculum 生成，避免手抄一份会过期的主题列表。
+// 数据来自 VitePress 构建时导出的 gate-data.json（见 config.mts 的 buildEnd）。
+const gateData = 'docs/.vitepress/gate-data.json'
+if (existsSync(gateData)) {
+  const doors = JSON.parse(await readFile(gateData, 'utf8'))
+  const cards = doors.map((door) => {
+    const lines = []
+    for (let i = 0; i < door.areas.length; i += 3) {
+      lines.push(door.areas.slice(i, i + 3).join(' · '))
+    }
+    return [
+      `      <a class="door" href="${BASE}/${door.key}/" style="--accent:${door.accent}">`,
+      `        <span class="door__arch" aria-hidden="true"><span class="door__icon">${door.icon}</span></span>`,
+      `        <span class="door__name">${door.name}</span>`,
+      `        <span class="door__motto">${door.motto}</span>`,
+      `        <span class="door__areas">${lines.join('<br />')}</span>`,
+      '      </a>'
+    ].join('\n')
+  })
+
+  const gateFile = join(OUT, 'index.html')
+  const html = await readFile(gateFile, 'utf8')
+  const rendered = html.replace(
+    /<section class="doors"[\s\S]*?<\/section>/,
+    `    <section class="doors" aria-label="选择展馆">\n${cards.join('\n\n')}\n    </section>`
+  )
+
+  if (rendered !== html) {
+    await writeFile(gateFile, rendered)
+    console.log(`[assemble] 门页已按课程数据生成 ${doors.length} 个展馆`)
+  } else {
+    console.warn('[assemble] 门页未找到 doors 区块，保持原样')
+  }
+} else {
+  console.warn('[assemble] 缺少 gate-data.json，门页保持手写内容')
+}
+
 await cp(DIST, join(OUT, SUBDIR), { recursive: true })
 
 // VitePress 生成的 sitemap 不带 base，复制到子路径下会变成一份错误清单；

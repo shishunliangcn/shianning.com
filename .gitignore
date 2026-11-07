@@ -3,3 +3,4 @@ _site
 docs/.vitepress/dist
 docs/.vitepress/cache
 docs/.vitepress/lastmod.json
+docs/.vitepress/gate-data.json
