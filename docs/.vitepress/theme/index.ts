@@ -11,6 +11,7 @@ import FeaturedArticle from './components/FeaturedArticle.vue'
 import ParentingArticles from './components/ParentingArticles.vue'
 import ParentingSections from './components/ParentingSections.vue'
 import ArticleList from './components/ArticleList.vue'
+import TagIndex from './components/TagIndex.vue'
 
 import './styles/index.css'
 
@@ -33,5 +34,6 @@ export default {
     app.component('ParentingArticles', ParentingArticles)
     app.component('ParentingSections', ParentingSections)
     app.component('ArticleList', ArticleList)
+    app.component('TagIndex', TagIndex)
   }
 } satisfies Theme

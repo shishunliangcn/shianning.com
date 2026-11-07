@@ -173,7 +173,13 @@ export default defineConfig({
           link: `/${wing.key}/`
         }))
       },
-      { text: '标签', link: '/tags.html' }
+      {
+        text: '标签',
+        items: [
+          { text: '🏷️ 五大展馆', link: '/tags.html' },
+          { text: '🏷️ 父母的书架', link: '/parenting/tags.html' }
+        ]
+      }
     ],
 
     // 侧边栏由 curriculum.ts 的展馆树生成，新增主题无需手改

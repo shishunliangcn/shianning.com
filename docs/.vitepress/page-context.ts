@@ -28,7 +28,7 @@ import type { AreaDef, WingDef } from './curriculum'
 export type SectionKind = 'exhibition' | 'parenting' | 'system'
 
 /** 页面在板块内的角色 */
-type PageRole = 'landing' | 'index' | 'article' | 'system'
+type PageRole = 'landing' | 'index' | 'article' | 'tags' | 'system'
 
 /** 一个板块允许出现的 UI 能力。默认全关，按需开启。 */
 export interface UiCapabilities {
@@ -44,6 +44,8 @@ export interface UiCapabilities {
   parentingSections: boolean
   /** 主题页 / 栏目页的「从这里开始」文章列表 */
   articleList: boolean
+  /** 本板块的标签索引（每个板块一个独立页面） */
+  tagIndex: boolean
   /** 文章级上一篇 / 下一篇 */
   pager: boolean
   /** 文章标签 */
@@ -62,6 +64,7 @@ const CAPABILITIES: Record<SectionKind, UiCapabilities> = {
     themeTable: true,
     featured: true,
     articleList: true,
+    tagIndex: true,
     parentingArticles: false,
     parentingSections: false,
     pager: true,
@@ -72,6 +75,7 @@ const CAPABILITIES: Record<SectionKind, UiCapabilities> = {
     themeTable: false,
     featured: false,
     articleList: true,
+    tagIndex: true,
     parentingArticles: true,
     parentingSections: true,
     pager: true,
@@ -82,6 +86,7 @@ const CAPABILITIES: Record<SectionKind, UiCapabilities> = {
     themeTable: false,
     featured: false,
     articleList: false,
+    tagIndex: false,
     parentingArticles: false,
     parentingSections: false,
     pager: false,
@@ -131,6 +136,7 @@ export const EMPTY_CONTEXT: PageContext = {
     themeTable: false,
     featured: false,
     articleList: false,
+    tagIndex: false,
     parentingArticles: false,
     parentingSections: false,
     pager: false,
@@ -184,7 +190,7 @@ function parentingArticles(): ArticleRef[] {
 /* ------------------------------------------------------------------ */
 
 /** 不属于任何业务板块的独立页面 */
-const SYSTEM_PAGES = new Set(['index', 'tags', 'CONTENT_MAP'])
+const SYSTEM_PAGES = new Set(['index', 'CONTENT_MAP'])
 
 /** 书架的固定描述（增删文章不需要改动） */
 const PARENTING_DESCRIPTION = '父母的书架｜按年龄分层的育儿实操笔记：不鸡娃，也不放任。'
@@ -210,6 +216,7 @@ function narrow(ctx: PageContext): PageContext {
     themeTable: caps.themeTable && ctx.role === 'landing' && isExhibition,
     featured: caps.featured && ctx.role === 'landing' && isExhibition,
     articleList: caps.articleList && ctx.role === 'index',
+    tagIndex: caps.tagIndex && ctx.role === 'tags',
     parentingArticles: caps.parentingArticles && ctx.role === 'landing' && isParenting,
     parentingSections: caps.parentingSections && ctx.role === 'landing' && isParenting,
     pager: caps.pager && ctx.role === 'article',
@@ -310,6 +317,18 @@ function resolveParenting(rest: string[], path: string): PageContext | null {
 export function resolvePageContext(relativePath: string): PageContext | null {
   const rel = relativePath.replace(/\\/g, '/').replace(/\.md$/, '').replace(/^\/+/, '')
   const path = `/${rel}`
+
+  // 两个标签索引页：各自归属一个板块，互不相通
+  if (rel === 'tags') {
+    const ctx = baseContext('exhibition', 'tags', path)
+    ctx.seoDescription = '五大展馆的标签索引：按主题与年龄找孩子的文章。'
+    return narrow(ctx)
+  }
+  if (rel === 'parenting/tags') {
+    const ctx = baseContext('parenting', 'tags', path)
+    ctx.seoDescription = '父母的书架的标签索引：按主题与孩子年龄找育儿笔记。'
+    return narrow(ctx)
+  }
 
   if (SYSTEM_PAGES.has(rel)) {
     return narrow(baseContext('system', 'system', path))

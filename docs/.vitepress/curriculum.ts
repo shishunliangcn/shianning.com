@@ -411,7 +411,8 @@ export function buildSidebar(): Record<string, DefaultTheme.SidebarItem[]> {
               link: parentingSectionLink(section.key, article.slug)
             }))
           ]
-        }))
+        })),
+        { text: '🏷️ 标签索引', link: '/parenting/tags' }
       ]
     },
     {
