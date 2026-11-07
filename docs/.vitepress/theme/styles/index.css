@@ -593,7 +593,16 @@
   }
 }
 
-/* ---------- 6-2. 书架栏目入口 ---------- */
+/* ---------- 6-2. 书架索引表 ---------- */
+/* 年龄列是分组标签，不承担跳转；文章入口是标题 */
+.parenting-index__age {
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--vp-c-text-3);
+  vertical-align: top;
+}
+
+/* ---------- 6-3. 书架栏目入口 ---------- */
 .parenting-sections {
   display: grid;
   gap: 12px;
@@ -686,5 +695,9 @@
   .parenting-section:hover {
     border-color: var(--school-teal);
     background: var(--vp-c-bg);
+  }
+
+  .parenting-index tbody tr:hover {
+    background: var(--vp-c-bg-soft);
   }
 }
