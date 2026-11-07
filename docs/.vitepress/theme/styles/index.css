@@ -397,6 +397,102 @@
   margin-top: 8px;
 }
 
+/* 顶部工具栏：筛选框 + 计数 */
+.tag-index__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-bottom: 8px;
+}
+
+.tag-index__search {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 7px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+}
+
+.tag-index__search:focus {
+  outline: none;
+  border-color: var(--school-teal);
+  background: var(--vp-c-bg);
+}
+
+.tag-index__summary {
+  font-size: 12.5px;
+  color: var(--vp-c-text-3);
+}
+
+/* 目录区 */
+.tag-dir {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 10px;
+}
+
+.tag-dir__title {
+  margin: 26px 0 10px;
+  padding: 0;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--vp-c-text-3);
+}
+
+.tag-dir__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+}
+
+.tag-dir__wing {
+  flex: 0 0 auto;
+  min-width: 76px;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+
+.tag-dir__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  padding: 3px 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  font-size: 13px;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.tag-chip__n {
+  font-size: 11px;
+  color: var(--vp-c-text-3);
+}
+
+.tag-chip.is-empty {
+  border-color: transparent;
+  background: transparent;
+  font-size: 12.5px;
+  color: var(--vp-c-text-3);
+  opacity: 0.75;
+}
+
 .tag-index__empty {
   padding: 28px 0;
   color: var(--vp-c-text-2);
@@ -573,6 +669,12 @@
   .tag-index__list a:hover {
     color: var(--school-teal);
     border-bottom-color: var(--school-teal);
+  }
+
+  .tag-chip:hover {
+    border-color: var(--school-teal);
+    background: var(--school-teal-soft);
+    color: var(--school-teal);
   }
 
   .article-pager__item:hover {

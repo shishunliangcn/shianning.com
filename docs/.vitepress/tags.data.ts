@@ -1,6 +1,7 @@
 import { createContentLoader } from 'vitepress'
 
 import { resolvePageContext } from './page-context'
+import { VOCABULARY } from './tags'
 import type { TagSection } from './tags'
 
 /**
@@ -40,6 +41,16 @@ export default createContentLoader('**/*.md', {
     for (const page of pages) {
       const tags = page.frontmatter?.tags
       if (!Array.isArray(tags) || tags.length === 0) continue
+
+      // 词表校验：标签是受控的，写错或自造会在构建阶段被拦下
+      const unknown = (tags as unknown[]).map(String).filter((tag) => !VOCABULARY.has(tag))
+      if (unknown.length > 0) {
+        throw new Error(
+          `[标签词表] ${page.url} 使用了未登记的标签：${unknown.join('、')}\n` +
+            `  允许的标签：26 个主题名 + 4 个年龄 + 2岁启蒙/亲子互动/父母必读\n` +
+            `  词表定义见 docs/.vitepress/tags.ts`
+        )
+      }
 
       const ctx = resolvePageContext(toRelativePath(page.url))
       // 只收「展馆」与「书架」两个业务板块；系统页与未登记页一律不收
