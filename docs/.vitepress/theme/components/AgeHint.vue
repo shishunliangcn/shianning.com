@@ -2,6 +2,7 @@
 import { withBase } from 'vitepress'
 
 import { ageGroups } from '../../curriculum'
+import { tagHref } from '../../tags'
 import { usePageContext } from '../composables/usePageContext'
 
 /**
@@ -25,7 +26,7 @@ const ctx = usePageContext()
         v-for="group in ageGroups"
         :key="group.tag"
         class="age-hint__link"
-        :href="withBase('/tags.html') + '#tag-' + group.tag"
+        :href="withBase(tagHref('exhibition', group.tag))"
       >
         {{ group.tag }}
       </a>
