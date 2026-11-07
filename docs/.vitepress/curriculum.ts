@@ -321,6 +321,19 @@ export const parenting: {
   ],
   sections: [
     {
+      key: 'direction',
+      name: '养育的方向',
+      icon: '🧭',
+      summary: '不解决具体问题，只谈长期方向：想养出什么样的人、什么比成绩重要、父母该站在哪儿。',
+      articles: [
+        { title: '你想养出一个什么样的人？', slug: 'what-kind-of-person' },
+        { title: '比成绩更重要的五件事', slug: 'five-things-before-grades' },
+        { title: '孩子是照着你的样子活的', slug: 'live-as-you-do' },
+        { title: '不要替他挡掉所有困难', slug: 'let-them-struggle' },
+        { title: '一年只定一个目标', slug: 'one-goal-a-year' }
+      ]
+    },
+    {
       key: 'phonics',
       name: '亲子英语发音小抄',
       icon: '🗣️',

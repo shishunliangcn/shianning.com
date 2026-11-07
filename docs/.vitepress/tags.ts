@@ -20,7 +20,7 @@ export type TagSection = 'exhibition' | 'parenting'
 export const AGE_TAGS: readonly string[] = ageGroups.map((group) => group.tag)
 
 /** 少量白名单：低幼共读、家长向 */
-export const EXTRA_TAGS: readonly string[] = ['2岁启蒙', '亲子互动', '父母必读']
+export const EXTRA_TAGS: readonly string[] = ['2岁启蒙', '亲子互动', '父母必读', '养育方向']
 
 /** 主题标签 = 26 个主题名 */
 export const THEME_TAGS: readonly string[] = wings.flatMap((wing) => wing.areas.map((area) => area.name))
