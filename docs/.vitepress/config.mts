@@ -191,7 +191,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: SITE.description,
+      message: SITE.footerMessage,
       copyright: 'Copyright © ' + new Date().getFullYear() + ' ' + SITE.title
     },
 

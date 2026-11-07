@@ -16,6 +16,8 @@ export const SITE = {
   /** 主屏图标下的短名称 */
   shortTitle: '小学堂',
   description: '跨越年龄的边界，探索知识的无限可能。',
+  /** 知识库每页页脚的一句话（与品牌标语区分开，避免同一句话反复出现） */
+  footerMessage: '陪孩子一起，把世界问个明白。',
   lang: 'zh-CN',
   /** GitHub 仓库（owner/repo），用于「在 GitHub 上编辑此页」 */
   repo: 'shishunliangcn/shianning.com',

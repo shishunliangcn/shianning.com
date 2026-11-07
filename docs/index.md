@@ -4,8 +4,8 @@ description: 史安宁的小学堂知识库：从星空的物理到厨房的火�
 
 hero:
   name: 史安宁的小学堂
-  text: 跨越年龄的边界，探索知识的无限可能。
-  tagline: 一座没有边界的知识殿堂
+  text: 知识没有年级，只有深浅。
+  tagline: 从星空的物理，到厨房的火候
   actions:
     - theme: brand
       text: 从格物馆开始
