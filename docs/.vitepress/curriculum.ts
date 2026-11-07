@@ -307,10 +307,17 @@ export const parenting: {
   summary: '按年龄分层的育儿实操笔记：不鸡娃，也不放任。',
   articles: [
     { age: '0–3 岁', title: '2岁宝宝总说“不”？这是自我意识的觉醒', slug: 'self-awareness-2yo' },
+    { age: '0–3 岁', title: '「再吃一口」：吃饭为什么变成拉锯战', slug: 'mealtime-battles' },
+    { age: '0–3 岁', title: '两岁还夜醒，正常吗？', slug: 'toddler-sleep' },
+    { age: '0–3 岁', title: '打人、咬人、扔东西：他不是坏', slug: 'hitting-biting' },
+    { age: '0–3 岁', title: '只会说几个词，要不要紧？', slug: 'language-burst' },
+    { age: '0–3 岁', title: '屏幕：不是能不能看，是看完之后', slug: 'screen-time' },
     { age: '3–6 岁', title: '如何应对幼儿园的分离焦虑', slug: 'separation-anxiety' },
+    { age: '3–6 岁', title: '孩子撒谎了？先别急着教育', slug: 'lies-and-imagination' },
     { age: '6–12 岁', title: '辅导作业不崩溃：培养内驱力的3个秘诀', slug: 'intrinsic-motivation' },
     { age: '青春期', title: '孩子突然关上了房门，父母该怎么办？', slug: 'closed-door' },
-    { age: '父母自修', title: '育儿先育己：如何控制吼叫的冲动', slug: 'stop-yelling' }
+    { age: '父母自修', title: '育儿先育己：如何控制吼叫的冲动', slug: 'stop-yelling' },
+    { age: '父母自修', title: '吼完之后，怎么收场', slug: 'repair-after-yelling' }
   ],
   sections: [
     {
