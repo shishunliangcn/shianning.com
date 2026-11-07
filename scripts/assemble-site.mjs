@@ -68,8 +68,42 @@ if (existsSync(sitemap)) {
     (_match, pagePath) => `<loc>${ORIGIN}${BASE}${pagePath ?? '/'}</loc>`
   )
   const home = `  <url><loc>${ORIGIN}/</loc><priority>1.0</priority></url>`
-  await writeFile(join(OUT, 'sitemap.xml'), withBase.replace('</urlset>', `${home}\n</urlset>`))
-  console.log(`[assemble] sitemap.xml 已补 ${BASE} 前缀并并入主站首页`)
+  const merged = withBase.replace('</urlset>', `${home}\n</urlset>`)
+
+  // 图片 sitemap 的 lastmod：来自 git 提交时间（scripts/build-lastmod.mjs 产出）。
+  // 没有这份映射时（例如没开 fetch-depth 的浅克隆）就跳过，不影响发布。
+  const lastmodFile = join(DIST, '..', 'lastmod.json')
+  let lastmod = {}
+  if (existsSync(lastmodFile)) {
+    try {
+      lastmod = JSON.parse(await readFile(lastmodFile, 'utf8'))
+    } catch {
+      lastmod = {}
+    }
+  }
+
+  /** 站点 URL → 仓库里的源文件路径 */
+  function sourceFor(url) {
+    const path = decodeURIComponent(url.replace(ORIGIN, ''))
+    if (path === '' || path === '/') return 'index.html'
+    const withoutBase = path.startsWith(BASE) ? path.slice(BASE.length) : path
+    if (withoutBase === '' || withoutBase === '/') return 'docs/index.md'
+    // 目录型 URL（/nature/）对应 docs/nature/index.md；文章型对应同名 .md
+    const rel = withoutBase.replace(/^\//, '')
+    const file = rel.endsWith('/') ? `${rel}index` : rel.replace(/\.html$/, '')
+    return `docs/${file}.md`
+  }
+
+  let stamped = 0
+  const withLastmod = merged.replace(/<loc>([^<]+)<\/loc>/g, (match, url) => {
+    const date = lastmod[sourceFor(url)]
+    if (!date) return match
+    stamped++
+    return `${match}<lastmod>${date}</lastmod>`
+  })
+
+  await writeFile(join(OUT, 'sitemap.xml'), withLastmod)
+  console.log(`[assemble] sitemap.xml 已补 ${BASE} 前缀并并入主站首页，${stamped} 条带 lastmod`)
 } else {
   console.warn('[assemble] 未找到 sitemap.xml，跳过')
 }

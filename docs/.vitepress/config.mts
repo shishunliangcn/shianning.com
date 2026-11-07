@@ -147,8 +147,12 @@ export default defineConfig({
       ['meta', { property: 'og:type', content: 'website' }],
       ['meta', { property: 'og:title', content: title }],
       ['meta', { property: 'og:description', content: description }],
-      ['meta', { property: 'og:image', content: siteUrl('/icon-512.png') }],
-      ['meta', { name: 'twitter:card', content: 'summary' }]
+      ['meta', { property: 'og:image', content: siteUrl(SITE.icon.path) }],
+      ['meta', { property: 'og:image:width', content: String(SITE.icon.size) }],
+      ['meta', { property: 'og:image:height', content: String(SITE.icon.size) }],
+      ['meta', { property: 'og:image:alt', content: `${SITE.title} 图标` }],
+      ['meta', { name: 'twitter:card', content: 'summary' }],
+      ['meta', { name: 'twitter:image', content: siteUrl(SITE.icon.path) }]
     ]
   },
 

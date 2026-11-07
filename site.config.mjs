@@ -21,7 +21,9 @@ export const SITE = {
   lang: 'zh-CN',
   /** GitHub 仓库（owner/repo），用于「在 GitHub 上编辑此页」 */
   repo: 'shishunliangcn/shianning.com',
-  branch: 'main'
+  branch: 'main',
+  /** 社交分享与 PWA 共用的大图标 */
+  icon: { path: '/icon-512.png', size: 512 }
 }
 
 /** 拼出站点的绝对地址，例如 siteUrl('/icon-512.png') */
