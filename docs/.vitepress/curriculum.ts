@@ -65,19 +65,21 @@ export const wings: WingDef[] = [
         name: '天文',
         icon: '🔭',
         summary: '抬头看：恒星、行星、星系，以及人类如何一步步量出宇宙。',
-        articles: [{ title: '星星为什么会发光', slug: 'stars', note: '从核聚变到光谱' }]
+        articles: [{ title: '太阳走了，月亮来了', slug: 'sun-and-moon', note: '给 2 岁宝宝的天文第一课' }, { title: '星星为什么会发光', slug: 'stars', note: '从核聚变到光谱' }]
       },
       {
         key: 'observation',
         name: '自然观察',
         icon: '🌿',
-        summary: '动物与植物的个体观察：蹲下来看蚂蚁、摸树皮、听鸟叫，先学会看见。'
+        summary: '动物与植物的个体观察：蹲下来看蚂蚁、摸树皮、听鸟叫，先学会看见。',
+        articles: [{ title: '蚂蚁在忙什么？', slug: 'ant-walk', note: '蹲下来，看 10 分钟' }]
       },
       {
         key: 'experiments',
         name: '趣味实验',
         icon: '⚗️',
-        summary: '用厨房里的材料做实验，把「为什么」变成「我试试」。'
+        summary: '用厨房里的材料做实验，把「为什么」变成「我试试」。',
+        articles: [{ title: '冰块去哪儿了？', slug: 'ice-melts', note: '两块冰赛跑' }]
       },
       {
         key: 'physics',
@@ -126,7 +128,7 @@ export const wings: WingDef[] = [
         name: '社会与心理',
         icon: '🧩',
         summary: '从 2 岁宝宝的情绪，到人在群体里的变化：理解行为背后的心理机制。',
-        articles: [{ title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions', note: '2 岁情绪急救' }]
+        articles: [{ title: '「谢谢」是什么意思？', slug: 'thank-you', note: '看见别人的付出' }, { title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions', note: '2 岁情绪急救' }]
       },
       {
         key: 'puberty',
@@ -171,7 +173,8 @@ export const wings: WingDef[] = [
         key: 'math-thinking',
         name: '数学思维',
         icon: '🔢',
-        summary: '不是算得快，而是想得清：证明、概率与建模。'
+        summary: '不是算得快，而是想得清：证明、概率与建模。',
+        articles: [{ title: '大和小，多和少', slug: 'big-and-small', note: '数学最早的样子是比较' }]
       },
       {
         key: 'programming-ai',
@@ -210,7 +213,8 @@ export const wings: WingDef[] = [
         key: 'visual-art',
         name: '视觉艺术',
         icon: '🖼️',
-        summary: '绘画、摄影与看展：训练一双会看的眼睛。'
+        summary: '绘画、摄影与看展：训练一双会看的眼睛。',
+        articles: [{ title: '乱涂也是画画', slug: 'first-scribble', note: '别问「画的是什么」' }]
       },
       {
         key: 'maker',
@@ -228,7 +232,8 @@ export const wings: WingDef[] = [
         key: 'body-games',
         name: '身体游戏',
         icon: '🤸',
-        summary: '跑跳、翻滚、平衡：大运动与感统训练，玩着就把身体练协调。'
+        summary: '跑跳、翻滚、平衡：大运动与感统训练，玩着就把身体练协调。',
+        articles: [{ title: '跳一跳，蹲一蹲', slug: 'jump-and-squat', note: '跳，是在练平衡' }]
       }
     ]
   },
@@ -252,7 +257,8 @@ export const wings: WingDef[] = [
         key: 'self-protection',
         name: '自我保护',
         icon: '🛡️',
-        summary: '防走失、防欺凌、防触电：把「遇到危险怎么办」变成条件反射。'
+        summary: '防走失、防欺凌、防触电：把「遇到危险怎么办」变成条件反射。',
+        articles: [{ title: '三样东西不能碰', slug: 'three-things', note: '只教一个「停」字' }]
       },
       {
         key: 'life-skills',
@@ -286,13 +292,13 @@ export const wings: WingDef[] = [
 export const parenting: {
   key: string
   name: string
-  summary: string
+  summary: string,
   articles: Array<{ age: string; title: string; slug: string }>
   sections: Array<{
     key: string
     name: string
     icon: string
-    summary: string
+    summary: string,
     articles: Array<{ title: string; slug: string; note?: string }>
   }>
 } = {

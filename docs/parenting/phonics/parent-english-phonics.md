@@ -1,6 +1,6 @@
 ---
 title: 亲子英语词表 · 从识物开始
-description: 从身边的物品开始，按身体、家人、动物、颜色、数字、食物、动作、情绪分类的亲子英语词表，每个词都有美式音标与点读。
+description: 从身边的物品开始，按身体、家人、动物、颜色、数字、食物、水果、动作、情绪分类的亲子英语词表，每个词都有美式音标与点读。
 tags: [亲子互动, 2-6岁]
 ---
 
@@ -116,7 +116,22 @@ tags: [亲子互动, 2-6岁]
 | <ReadWord word="juice">juice</ReadWord> | /dʒuːs/ | 果汁 |
 | <ReadWord word="candy">candy</ReadWord> | /ˈkæn.di/ | 糖果 |
 
-## 八、动作与指令
+## 八、水果
+
+| 英文（点读） | 音标 | 中文 |
+| --- | --- | --- |
+| <ReadWord word="apple">apple</ReadWord> | /ˈæp.əl/ | 苹果 |
+| <ReadWord word="banana">banana</ReadWord> | /bəˈnæn.ə/ | 香蕉 |
+| <ReadWord word="orange">orange</ReadWord> | /ˈɔːr.ɪndʒ/ | 橙子 |
+| <ReadWord word="grape">grape</ReadWord> | /ɡreɪp/ | 葡萄 |
+| <ReadWord word="pear">pear</ReadWord> | /per/ | 梨 |
+| <ReadWord word="peach">peach</ReadWord> | /piːtʃ/ | 桃子 |
+| <ReadWord word="watermelon">watermelon</ReadWord> | /ˈwɔː.t̬ɚ.mel.ən/ | 西瓜 |
+| <ReadWord word="strawberry">strawberry</ReadWord> | /ˈstrɔː.ber.i/ | 草莓 |
+| <ReadWord word="cherry">cherry</ReadWord> | /ˈtʃer.i/ | 樱桃 |
+| <ReadWord word="mango">mango</ReadWord> | /ˈmæŋ.ɡoʊ/ | 芒果 |
+
+## 九、动作与指令
 
 | 英文（点读） | 音标 | 中文 |
 | --- | --- | --- |
@@ -133,7 +148,7 @@ tags: [亲子互动, 2-6岁]
 | <ReadWord word="look">look</ReadWord> | /lʊk/ | 看 |
 | <ReadWord word="listen">listen</ReadWord> | /ˈlɪs.ən/ | 听 |
 
-## 九、情绪与感受
+## 十、情绪与感受
 
 | 英文（点读） | 音标 | 中文 |
 | --- | --- | --- |
