@@ -93,7 +93,7 @@ export const wings: WingDef[] = [
         name: '化学',
         icon: '🧪',
         summary: '原子如何牵手又分开，物质为什么会有这样的脾气。',
-        articles: [{ title: '盐和糖，为什么长得像却不一样', slug: 'salt-and-sugar', note: '离子 vs 分子' }, { title: '切开的苹果为什么会变黑', slug: 'apple-turns-brown', note: '酶促褐变' }]
+        articles: [{ title: '盐和糖，为什么长得像却不一样', slug: 'salt-and-sugar', note: '离子 vs 分子' }, { title: '切开的苹果为什么会变黑', slug: 'apple-turns-brown', note: '酶促褐变' }, { title: '铁为什么会生锈', slug: 'why-iron-rusts', note: '一场缓慢的燃烧' }, { title: '酸和碱，就在你家的厨房里', slug: 'acid-and-base', note: '中和与 pH' }, { title: '肥皂为什么能洗掉油', slug: 'how-soap-works', note: '一头亲水，一头亲油' }]
       },
       {
         key: 'earth-ecology',
@@ -125,14 +125,14 @@ export const wings: WingDef[] = [
         name: '哲学',
         icon: '🕯️',
         summary: '关于存在、知识与善恶的追问，以及如何把话讲清楚。',
-        articles: [{ title: '苏格拉底为什么甘愿赴死', slug: 'socrates' }]
+        articles: [{ title: '苏格拉底为什么甘愿赴死', slug: 'socrates' }, { title: '洞穴里的人', slug: 'the-cave', note: '你以为的真实，可能只是影子' }, { title: '我怎么知道我不是在做梦', slug: 'descartes-doubt', note: '我思故我在' }, { title: '一辆失控的电车，和你的选择', slug: 'trolley-problem', note: '两套原则在打架' }, { title: '你选的是你想要的吗', slug: 'free-will', note: '自由意志的争论' }]
       },
       {
         key: 'society-psychology',
         name: '社会与心理',
         icon: '🧩',
         summary: '从 2 岁宝宝的情绪，到人在群体里的变化：理解行为背后的心理机制。',
-        articles: [{ title: '「谢谢」是什么意思？', slug: 'thank-you', note: '看见别人的付出' }, { title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions', note: '2 岁情绪急救' }]
+        articles: [{ title: '「谢谢」是什么意思？', slug: 'thank-you', note: '看见别人的付出' }, { title: '宝宝生气了，可以怎么做？', slug: 'baby-emotions', note: '2 岁情绪急救' }, { title: '第一印象为什么不可靠', slug: 'first-impression', note: '晕轮效应' }, { title: '为什么大家都这么说，你就信了', slug: 'conformity', note: '阿希实验' }, { title: '有人倒下，为什么没人帮忙', slug: 'bystander', note: '旁观者效应' }, { title: '你的记忆，每次回忆都在重写', slug: 'memory-reconstruct', note: '记忆是重建的' }]
       },
       {
         key: 'puberty',
@@ -175,7 +175,7 @@ export const wings: WingDef[] = [
         name: '文学赏析',
         icon: '📖',
         summary: '诗、小说与散文：读懂作者藏在字缝里的意思。',
-        articles: [{ title: '诗读不懂也没关系', slug: 'how-to-read-poetry', note: '诗不是谜语' }, { title: '比喻为什么有用', slug: 'metaphor', note: '给抽象的东西一个形状' }]
+        articles: [{ title: '诗读不懂也没关系', slug: 'how-to-read-poetry', note: '诗不是谜语' }, { title: '比喻为什么有用', slug: 'metaphor', note: '给抽象的东西一个形状' }, { title: '故事为什么要有冲突', slug: 'conflict', note: '没有「但是」，就没有故事' }, { title: '谁在讲故事', slug: 'point-of-view', note: '视角决定你信谁' }, { title: '伏笔：为什么回头才看懂', slug: 'foreshadowing', note: '不骗你，只是不提醒' }]
       },
       {
         key: 'math-thinking',
@@ -189,7 +189,7 @@ export const wings: WingDef[] = [
         name: '编程与AI',
         icon: '🤖',
         summary: '让机器按你的想法工作，并理解它为什么会出错。',
-        articles: [{ title: '电脑听不懂人话', slug: 'computers-dont-understand', note: '它只会四件事' }, { title: '什么是变量', slug: 'what-is-a-variable', note: '一个贴了名字的盒子' }]
+        articles: [{ title: '电脑听不懂人话', slug: 'computers-dont-understand', note: '它只会四件事' }, { title: '什么是变量', slug: 'what-is-a-variable', note: '一个贴了名字的盒子' }, { title: '循环：让电脑做重复的事', slug: 'what-is-a-loop', note: '差一错误' }, { title: '为什么程序会有 bug', slug: 'why-programs-have-bugs', note: '它只会照做' }, { title: '训练 AI 是怎么回事', slug: 'how-ai-is-trained', note: '没有理解，只有调参' }]
       },
       {
         key: 'media-literacy',
@@ -225,7 +225,7 @@ export const wings: WingDef[] = [
         name: '视觉艺术',
         icon: '🖼️',
         summary: '绘画、摄影与看展：训练一双会看的眼睛。',
-        articles: [{ title: '乱涂也是画画', slug: 'first-scribble', note: '别问「画的是什么」' }, { title: '透视：为什么远处的树变小', slug: 'perspective', note: '近大远小' }]
+        articles: [{ title: '乱涂也是画画', slug: 'first-scribble', note: '别问「画的是什么」' }, { title: '透视：为什么远处的树变小', slug: 'perspective', note: '近大远小' }, { title: '为什么有的画让人觉得「安静」', slug: 'quiet-paintings', note: '颜色、留白与线条' }, { title: '为什么主体不放在正中间', slug: 'composition', note: '三分法' }]
       },
       {
         key: 'maker',
