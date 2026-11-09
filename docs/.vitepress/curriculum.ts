@@ -86,7 +86,7 @@ export const wings: WingDef[] = [
         name: '物理',
         icon: '⚛️',
         summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。',
-        articles: [{ title: '天为什么是蓝的', slug: 'sky-is-blue', note: '蓝光被撒开了' }, { title: '为什么冰是滑的', slug: 'why-ice-is-slippery', note: '压力化出一层水膜' }, { title: '声音是怎么跑到你耳朵里的', slug: 'sound-travels', note: '声音是一种波' }, { title: '电梯启动时，为什么觉得变轻了', slug: 'elevator-weightless', note: '失重不是没有重力' }]
+        articles: [{ title: '天为什么是蓝的', slug: 'sky-is-blue', note: '蓝光被撒开了' }, { title: '为什么冰是滑的', slug: 'why-ice-is-slippery', note: '压力化出一层水膜' }, { title: '声音是怎么跑到你耳朵里的', slug: 'sound-travels', note: '声音是一种波' }, { title: '电梯启动时，为什么觉得变轻了', slug: 'elevator-weightless', note: '失重不是没有重力' }, { title: '为什么船能浮起来', slug: 'why-ships-float', note: '排开的水比船还重' }]
       },
       {
         key: 'chemistry',
@@ -146,7 +146,7 @@ export const wings: WingDef[] = [
         name: '人物',
         icon: '👤',
         summary: '科学家、思想家、艺术家，以及那些没有留下名字的人。',
-        articles: [{ title: '张骞：一个人走了十三年', slug: 'zhang-qian', note: '一百多人出发，两个人回来' }, { title: '居里夫人：两次诺奖，和一本不能碰的笔记本', slug: 'marie-curie', note: '她是在做科学' }, { title: '李时珍：走出来的《本草纲目》', slug: 'li-shizhen', note: '尽信书，不如无书' }, { title: '图灵：一个人和一台机器', slug: 'turing', note: '图灵机与他的结局' }]
+        articles: [{ title: '张骞：一个人走了十三年', slug: 'zhang-qian', note: '一百多人出发，两个人回来' }, { title: '居里夫人：两次诺奖，和一本不能碰的笔记本', slug: 'marie-curie', note: '她是在做科学' }, { title: '李时珍：走出来的《本草纲目》', slug: 'li-shizhen', note: '尽信书，不如无书' }, { title: '图灵：一个人和一台机器', slug: 'turing', note: '图灵机与他的结局' }, { title: '达尔文：一趟航行，二十年沉默', slug: 'darwin', note: '勇气不只是敢说，也是敢等' }]
       }
     ]
   },
@@ -184,7 +184,7 @@ export const wings: WingDef[] = [
         name: '数学思维',
         icon: '🔢',
         summary: '不是算得快，而是想得清：证明、概率与建模。',
-        articles: [{ title: '大和小，多和少', slug: 'big-and-small', note: '数学最早的样子是比较' }, { title: '为什么 0 很重要', slug: 'why-zero-matters', note: '一个改变一切的符号' }, { title: '抛十次硬币都是正面，正常吗', slug: 'probability-coin', note: '硬币没有记忆' }, { title: '负数乘负数，为什么得正', slug: 'negative-times-negative', note: '为了规则不打架' }]
+        articles: [{ title: '大和小，多和少', slug: 'big-and-small', note: '数学最早的样子是比较' }, { title: '为什么 0 很重要', slug: 'why-zero-matters', note: '一个改变一切的符号' }, { title: '抛十次硬币都是正面，正常吗', slug: 'probability-coin', note: '硬币没有记忆' }, { title: '负数乘负数，为什么得正', slug: 'negative-times-negative', note: '为了规则不打架' }, { title: '平均数为什么会骗人', slug: 'average-lies', note: '中位数更抗极端值' }]
       },
       {
         key: 'programming-ai',
@@ -229,7 +229,7 @@ export const wings: WingDef[] = [
         name: '视觉艺术',
         icon: '🖼️',
         summary: '绘画、摄影与看展：训练一双会看的眼睛。',
-        articles: [{ title: '乱涂也是画画', slug: 'first-scribble', note: '别问「画的是什么」' }, { title: '透视：为什么远处的树变小', slug: 'perspective', note: '近大远小' }, { title: '为什么有的画让人觉得「安静」', slug: 'quiet-paintings', note: '颜色、留白与线条' }, { title: '为什么主体不放在正中间', slug: 'composition', note: '三分法' }]
+        articles: [{ title: '乱涂也是画画', slug: 'first-scribble', note: '别问「画的是什么」' }, { title: '透视：为什么远处的树变小', slug: 'perspective', note: '近大远小' }, { title: '为什么有的画让人觉得「安静」', slug: 'quiet-paintings', note: '颜色、留白与线条' }, { title: '为什么主体不放在正中间', slug: 'composition', note: '三分法' }, { title: '冷色和暖色', slug: 'warm-and-cool', note: '温度是假的，感受是真的' }]
       },
       {
         key: 'maker',
