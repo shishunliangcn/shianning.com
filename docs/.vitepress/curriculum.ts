@@ -265,7 +265,7 @@ export const wings: WingDef[] = [
         name: '生活常识',
         icon: '🧰',
         summary: '收纳、家电、合同、办事流程，以及洗手刷牙这类日常习惯。',
-        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands', note: '用七个表情记住七步' }]
+        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands', note: '用七个表情记住七步' }, { title: '你的精力，一天只有这么多', slug: 'energy-budget' }]
       },
       {
         key: 'financial-literacy',
@@ -331,6 +331,8 @@ export const parenting: {
         { title: '孩子是照着你的样子活的', slug: 'live-as-you-do' },
         { title: '不要替他挡掉所有困难', slug: 'let-them-struggle' },
         { title: '一年只定一个目标', slug: 'one-goal-a-year' }
+      ,
+        { title: '尊重孩子，是把他当成一个人', slug: 'respect-your-child' }
       ]
     },
     {
