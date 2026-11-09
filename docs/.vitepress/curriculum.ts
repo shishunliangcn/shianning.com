@@ -79,7 +79,7 @@ export const wings: WingDef[] = [
         name: '趣味实验',
         icon: '⚗️',
         summary: '用厨房里的材料做实验，把「为什么」变成「我试试」。',
-        articles: [{ title: '冰块去哪儿了？', slug: 'ice-melts', note: '两块冰赛跑' }, { title: '一张纸能承多重', slug: 'paper-bridge', note: '折一下，强度差几十倍' }, { title: '会跳舞的葡萄干', slug: 'dancing-raisins', note: '气泡在搬东西' }, { title: '分层饮料：一个杯子里的三层', slug: 'density-tower', note: '密度不同，谁也不服谁' }, { title: '气球火箭', slug: 'balloon-rocket', note: '反作用力' }, { title: '头发能把纸吸起来', slug: 'static-electricity', note: '摩擦起电' }]
+        articles: [{ title: '冰块去哪儿了？', slug: 'ice-melts', note: '两块冰赛跑' }, { title: '一张纸能承多重', slug: 'paper-bridge', note: '折一下，强度差几十倍' }, { title: '会跳舞的葡萄干', slug: 'dancing-raisins', note: '气泡在搬东西' }, { title: '分层饮料：一个杯子里的三层', slug: 'density-tower', note: '密度不同，谁也不服谁' }, { title: '气球火箭', slug: 'balloon-rocket', note: '反作用力' }, { title: '头发能把纸吸起来', slug: 'static-electricity', note: '摩擦起电' }, { title: '蜡烛把水吸进了杯子', slug: 'candle-vacuum', note: '气压在干活' }, { title: '彩虹牛奶', slug: 'rainbow-milk', note: '表面张力被破坏' }, { title: '柠檬也能发电', slug: 'lemon-battery', note: '电池最原始的样子' }, { title: '会开花的纸', slug: 'blooming-paper', note: '毛细现象' }]
       },
       {
         key: 'physics',
@@ -118,7 +118,7 @@ export const wings: WingDef[] = [
         name: '历史',
         icon: '🏺',
         summary: '文明如何兴起与转折，以及史料是怎么被读出来的。',
-        articles: [{ title: '历史不是年份表', slug: 'not-a-timeline', note: '历史回答的是「人会怎么选」' }, { title: '一条河，怎么养出一个文明', slug: 'river-and-civilization', note: '洪水逼出了最早的协作' }, { title: '文字是怎么被发明出来的', slug: 'invention-of-writing', note: '先有账，后有诗' }, { title: '一场瘟疫，怎么改变了欧洲', slug: 'black-death', note: '灾难推动制度' }]
+        articles: [{ title: '历史不是年份表', slug: 'not-a-timeline', note: '历史回答的是「人会怎么选」' }, { title: '一条河，怎么养出一个文明', slug: 'river-and-civilization', note: '洪水逼出了最早的协作' }, { title: '文字是怎么被发明出来的', slug: 'invention-of-writing', note: '先有账，后有诗' }, { title: '一场瘟疫，怎么改变了欧洲', slug: 'black-death', note: '灾难推动制度' }, { title: '五千年前的学校，在教什么', slug: 'tablet-schools', note: '学写字，就是学权力' }, { title: '郑和为什么没有继续航行', slug: 'zheng-he', note: '展示国威 vs 做生意' }, { title: '一本书，怎么变得便宜', slug: 'printing-press', note: '信息便宜了，权威就松动' }, { title: '工业革命为什么先从英国开始', slug: 'industrial-revolution', note: '技术+制度+市场' }]
       },
       {
         key: 'philosophy',
@@ -146,7 +146,7 @@ export const wings: WingDef[] = [
         name: '人物',
         icon: '👤',
         summary: '科学家、思想家、艺术家，以及那些没有留下名字的人。',
-        articles: [{ title: '张骞：一个人走了十三年', slug: 'zhang-qian', note: '一百多人出发，两个人回来' }],
+        articles: [{ title: '张骞：一个人走了十三年', slug: 'zhang-qian', note: '一百多人出发，两个人回来' }, { title: '居里夫人：两次诺奖，和一本不能碰的笔记本', slug: 'marie-curie', note: '她是在做科学' }, { title: '李时珍：走出来的《本草纲目》', slug: 'li-shizhen', note: '尽信书，不如无书' }, { title: '图灵：一个人和一台机器', slug: 'turing', note: '图灵机与他的结局' }]
       }
     ]
   },
@@ -271,14 +271,14 @@ export const wings: WingDef[] = [
         name: '自我保护',
         icon: '🛡️',
         summary: '防走失、防欺凌、防触电：把「遇到危险怎么办」变成条件反射。',
-        articles: [{ title: '三样东西不能碰', slug: 'three-things', note: '只教一个「停」字' }, { title: '走丢了怎么办', slug: 'getting-lost', note: '站住、找谁、说什么' }, { title: '陌生人说「你妈妈让我来接你」', slug: 'stranger-pickup', note: '一条铁律挡住大多数情况' }]
+        articles: [{ title: '三样东西不能碰', slug: 'three-things', note: '只教一个「停」字' }, { title: '走丢了怎么办', slug: 'getting-lost', note: '站住、找谁、说什么' }, { title: '陌生人说「你妈妈让我来接你」', slug: 'stranger-pickup', note: '一条铁律挡住大多数情况' }, { title: '家里的危险地图', slug: 'home-hazard-map', note: '与其说不要，不如改环境' }, { title: '独自在家，有人敲门', slug: 'home-alone', note: '任何人来都不开门' }, { title: '背心裤衩盖住的地方', slug: 'body-boundaries', note: '边界是双向的' }, { title: '网上认识的人，也是陌生人', slug: 'online-strangers', note: '不见面、不给信息、不转账' }]
       },
       {
         key: 'life-skills',
         name: '生活常识',
         icon: '🧰',
         summary: '收纳、家电、合同、办事流程，以及洗手刷牙这类日常习惯。',
-        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands', note: '用七个表情记住七步' }, { title: '你的精力，一天只有这么多', slug: 'energy-budget' }]
+        articles: [{ title: '洗手七步法（宝宝版）', slug: 'baby-wash-hands', note: '用七个表情记住七步' }, { title: '你的精力，一天只有这么多', slug: 'energy-budget' }, { title: '药不能乱吃', slug: 'medicine-safety', note: '四条规矩' }, { title: '保质期到底在说什么', slug: 'expiration-dates', note: '两个词，差别很大' }, { title: '着火了，烟比火更危险', slug: 'fire-escape', note: '低姿、关门、不坐电梯' }, { title: '冬天取暖，小心这个看不见的杀手', slug: 'heating-safety', note: '一氧化碳' }]
       },
       {
         key: 'financial-literacy',
