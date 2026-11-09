@@ -100,7 +100,7 @@ export const wings: WingDef[] = [
         name: '地球与生态',
         icon: '🌍',
         summary: '板块、气候与生态系统：脚下这颗星球作为一个整体如何运行。',
-        articles: [{ title: '一块石头的一生', slug: 'life-of-a-rock', note: '岩浆、沉积、变质' }, { title: '海水一天涨两次，是谁在拉它', slug: 'tides', note: '月亮拉扯海水' }, { title: '为什么会有四季', slug: 'why-seasons', note: '地轴是斜的' }]
+        articles: [{ title: '一块石头的一生', slug: 'life-of-a-rock', note: '岩浆、沉积、变质' }, { title: '海水一天涨两次，是谁在拉它', slug: 'tides', note: '月亮拉扯海水' }, { title: '为什么会有四季', slug: 'why-seasons', note: '地轴是斜的' }, { title: '水去哪儿了', slug: 'water-cycle', note: '同一批水一直在转圈' }, { title: '沙漠是怎么形成的', slug: 'why-deserts-form', note: '水到不了，也留不住' }]
       }
     ]
   },
@@ -167,7 +167,9 @@ export const wings: WingDef[] = [
         articles: [
           { title: '为什么英语里的 I 永远大写', slug: 'why-i-capital' },
           { title: '动物宝宝怎么叫？', slug: 'baby-animals' },
-          { title: '为什么英语单词拼写这么怪', slug: 'why-english-spelling-is-weird', note: '长出来的，不是设计出来的' }
+          { title: '为什么英语单词拼写这么怪', slug: 'why-english-spelling-is-weird', note: '长出来的，不是设计出来的' },
+          { title: '英语里没有「您」', slug: 'no-formal-you', note: '英语的简单是历史砍出来的' },
+          { title: '「下雨下猫下狗」是什么鬼', slug: 'idioms', note: '习语是冻结的场景' }
         ]
       },
       {
@@ -217,7 +219,9 @@ export const wings: WingDef[] = [
         articles: [
           { title: '声音是怎么变成音乐的', slug: 'what-is-sound', note: '从空气振动到一首曲子' },
           { title: '小手拍拍：2岁宝宝手指操', slug: 'baby-finger-play' },
-          { title: '为什么有的和弦好听', slug: 'why-chords-sound-good', note: '频率成简单比例' }
+          { title: '为什么有的和弦好听', slug: 'why-chords-sound-good', note: '频率成简单比例' },
+          { title: '为什么一首歌会卡在脑子里', slug: 'earworm', note: '耳虫：没唱完的旋律' },
+          { title: '大调和小调', slug: 'major-and-minor', note: '差一个半音，情绪翻面' }
         ]
       },
       {
@@ -232,7 +236,7 @@ export const wings: WingDef[] = [
         name: '手工创客',
         icon: '🔨',
         summary: '木工、电子与 3D 打印，把想法做成能拿在手里的东西。',
-        articles: [{ title: '一把剪刀能做什么', slug: 'one-scissors', note: '十分钟能做完三样' }, { title: '纸飞机为什么能飞', slug: 'paper-airplane', note: '升力与重心' }, { title: '用纸板做一个齿轮', slug: 'cardboard-gear', note: '把转动传下去' }]
+        articles: [{ title: '一把剪刀能做什么', slug: 'one-scissors', note: '十分钟能做完三样' }, { title: '纸飞机为什么能飞', slug: 'paper-airplane', note: '升力与重心' }, { title: '用纸板做一个齿轮', slug: 'cardboard-gear', note: '把转动传下去' }, { title: '橡皮筋动力车', slug: 'rubber-band-car', note: '存进去，再放出来' }, { title: '纸杯电话', slug: 'cup-phone', note: '声音沿着线抖过去' }]
       },
       {
         key: 'design',
@@ -264,7 +268,7 @@ export const wings: WingDef[] = [
         name: '安全急救',
         icon: '🚑',
         summary: '烫伤、出血、窒息与心肺复苏：关键时刻的正确动作。',
-        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns', note: '大多数人第一反应就是错的' }, { title: '噎住了：那三分钟能救命', slug: 'choking', note: '怎么判断、怎么救' }, { title: '触电、溺水、中暑：三个救命动作', slug: 'three-emergencies', note: '先保自己再救人' }]
+        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns', note: '大多数人第一反应就是错的' }, { title: '噎住了：那三分钟能救命', slug: 'choking', note: '怎么判断、怎么救' }, { title: '触电、溺水、中暑：三个救命动作', slug: 'three-emergencies', note: '先保自己再救人' }, { title: '流鼻血，别仰头', slug: 'nosebleed', note: '低头、捏鼻、前倾' }, { title: '扭伤了，先冷敷还是热敷', slug: 'sprain', note: '前 48 小时冷敷' }]
       },
       {
         key: 'self-protection',
@@ -285,14 +289,14 @@ export const wings: WingDef[] = [
         name: '财商启蒙',
         icon: '💰',
         summary: '记账、储蓄、复利与防骗，建立和钱的健康关系。',
-        articles: [{ title: '钱是什么', slug: 'what-is-money', note: '一张大家都愿意相信的欠条' }, { title: '零花钱的三种花法', slug: 'pocket-money', note: '分三份，允许花错' }, { title: '存钱为什么会有利息', slug: 'interest', note: '钱的使用费' }]
+        articles: [{ title: '钱是什么', slug: 'what-is-money', note: '一张大家都愿意相信的欠条' }, { title: '零花钱的三种花法', slug: 'pocket-money', note: '分三份，允许花错' }, { title: '存钱为什么会有利息', slug: 'interest', note: '钱的使用费' }, { title: '需要的和想要的', slug: 'needs-vs-wants', note: '想要撑不过三天' }, { title: '为什么同样的东西，价格会变', slug: 'why-prices-change', note: '供需较劲' }]
       },
       {
         key: 'cooking',
         name: '美食烹饪',
         icon: '🍳',
         summary: '刀工、火候与调味：先学会喂饱自己。',
-        articles: [{ title: '煎东西时那股香味，是怎么来的', slug: 'why-frying-smells-good', note: '美拉德反应' }, { title: '切菜的手', slug: 'how-to-hold-a-knife', note: '先学放手，再学落刀' }, { title: '面团为什么会发起来', slug: 'why-dough-rises', note: '酵母在吃糖吐气' }]
+        articles: [{ title: '煎东西时那股香味，是怎么来的', slug: 'why-frying-smells-good', note: '美拉德反应' }, { title: '切菜的手', slug: 'how-to-hold-a-knife', note: '先学放手，再学落刀' }, { title: '面团为什么会发起来', slug: 'why-dough-rises', note: '酵母在吃糖吐气' }, { title: '为什么汤要最后放盐', slug: 'why-salt-last', note: '盐可以加，不能减' }, { title: '为什么煮东西会溢出来', slug: 'why-pots-boil-over', note: '气泡撑着不肯破' }]
       }
     ]
   }
