@@ -85,19 +85,22 @@ export const wings: WingDef[] = [
         key: 'physics',
         name: '物理',
         icon: '⚛️',
-        summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。'
+        summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。',
+        articles: [{ title: '天为什么是蓝的', slug: 'sky-is-blue', note: '蓝光被撒开了' }],
       },
       {
         key: 'chemistry',
         name: '化学',
         icon: '🧪',
-        summary: '原子如何牵手又分开，物质为什么会有这样的脾气。'
+        summary: '原子如何牵手又分开，物质为什么会有这样的脾气。',
+        articles: [{ title: '盐和糖，为什么长得像却不一样', slug: 'salt-and-sugar', note: '离子 vs 分子' }],
       },
       {
         key: 'earth-ecology',
         name: '地球与生态',
         icon: '🌍',
-        summary: '板块、气候与生态系统：脚下这颗星球作为一个整体如何运行。'
+        summary: '板块、气候与生态系统：脚下这颗星球作为一个整体如何运行。',
+        articles: [{ title: '一块石头的一生', slug: 'life-of-a-rock', note: '岩浆、沉积、变质' }],
       }
     ]
   },
@@ -114,7 +117,8 @@ export const wings: WingDef[] = [
         key: 'history',
         name: '历史',
         icon: '🏺',
-        summary: '文明如何兴起与转折，以及史料是怎么被读出来的。'
+        summary: '文明如何兴起与转折，以及史料是怎么被读出来的。',
+        articles: [{ title: '历史不是年份表', slug: 'not-a-timeline', note: '历史回答的是「人会怎么选」' }, { title: '一条河，怎么养出一个文明', slug: 'river-and-civilization', note: '洪水逼出了最早的协作' }],
       },
       {
         key: 'philosophy',
@@ -134,13 +138,15 @@ export const wings: WingDef[] = [
         key: 'puberty',
         name: '青春期与性教育',
         icon: '🌼',
-        summary: '身体的变化、情绪的起伏，以及什么叫「我的身体我做主」。'
+        summary: '身体的变化、情绪的起伏，以及什么叫「我的身体我做主」。',
+        articles: [{ title: '身体开始变化时，你需要知道的事', slug: 'body-changes', note: '不是变坏了，是换系统' }],
       },
       {
         key: 'people',
         name: '人物',
         icon: '👤',
-        summary: '科学家、思想家、艺术家，以及那些没有留下名字的人。'
+        summary: '科学家、思想家、艺术家，以及那些没有留下名字的人。',
+        articles: [{ title: '张骞：一个人走了十三年', slug: 'zhang-qian', note: '一百多人出发，两个人回来' }],
       }
     ]
   },
@@ -167,7 +173,8 @@ export const wings: WingDef[] = [
         key: 'literature',
         name: '文学赏析',
         icon: '📖',
-        summary: '诗、小说与散文：读懂作者藏在字缝里的意思。'
+        summary: '诗、小说与散文：读懂作者藏在字缝里的意思。',
+        articles: [{ title: '诗读不懂也没关系', slug: 'how-to-read-poetry', note: '诗不是谜语' }],
       },
       {
         key: 'math-thinking',
@@ -180,13 +187,15 @@ export const wings: WingDef[] = [
         key: 'programming-ai',
         name: '编程与AI',
         icon: '🤖',
-        summary: '让机器按你的想法工作，并理解它为什么会出错。'
+        summary: '让机器按你的想法工作，并理解它为什么会出错。',
+        articles: [{ title: '电脑听不懂人话', slug: 'computers-dont-understand', note: '它只会四件事' }],
       },
       {
         key: 'media-literacy',
         name: '媒介素养',
         icon: '📱',
-        summary: '这条消息是真的吗？刷手机停不下来怎么办？学会和信息相处。'
+        summary: '这条消息是真的吗？刷手机停不下来怎么办？学会和信息相处。',
+        articles: [{ title: '为什么你停不下来', slug: 'why-you-cant-stop', note: '不是你没自制力' }],
       }
     ]
   },
@@ -220,13 +229,15 @@ export const wings: WingDef[] = [
         key: 'maker',
         name: '手工创客',
         icon: '🔨',
-        summary: '木工、电子与 3D 打印，把想法做成能拿在手里的东西。'
+        summary: '木工、电子与 3D 打印，把想法做成能拿在手里的东西。',
+        articles: [{ title: '一把剪刀能做什么', slug: 'one-scissors', note: '十分钟能做完三样' }],
       },
       {
         key: 'design',
         name: '设计',
         icon: '✏️',
-        summary: '版式、配色与产品思维：让信息好看又好用。'
+        summary: '版式、配色与产品思维：让信息好看又好用。',
+        articles: [{ title: '为什么有些按钮你一眼就知道能点', slug: 'affordance', note: '形状就是说明书' }],
       },
       {
         key: 'body-games',
@@ -251,7 +262,7 @@ export const wings: WingDef[] = [
         name: '安全急救',
         icon: '🚑',
         summary: '烫伤、出血、窒息与心肺复苏：关键时刻的正确动作。',
-        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns', note: '大多数人第一反应就是错的' }]
+        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns', note: '大多数人第一反应就是错的' }, { title: '噎住了：那三分钟能救命', slug: 'choking', note: '怎么判断、怎么救' }, { title: '触电、溺水、中暑：三个救命动作', slug: 'three-emergencies', note: '先保自己再救人' }]
       },
       {
         key: 'self-protection',
@@ -271,13 +282,15 @@ export const wings: WingDef[] = [
         key: 'financial-literacy',
         name: '财商启蒙',
         icon: '💰',
-        summary: '记账、储蓄、复利与防骗，建立和钱的健康关系。'
+        summary: '记账、储蓄、复利与防骗，建立和钱的健康关系。',
+        articles: [{ title: '钱是什么', slug: 'what-is-money', note: '一张大家都愿意相信的欠条' }, { title: '零花钱的三种花法', slug: 'pocket-money', note: '分三份，允许花错' }],
       },
       {
         key: 'cooking',
         name: '美食烹饪',
         icon: '🍳',
-        summary: '刀工、火候与调味：先学会喂饱自己。'
+        summary: '刀工、火候与调味：先学会喂饱自己。',
+        articles: [{ title: '煎东西时那股香味，是怎么来的', slug: 'why-frying-smells-good', note: '美拉德反应' }, { title: '切菜的手', slug: 'how-to-hold-a-knife', note: '先学放手，再学落刀' }],
       }
     ]
   }
