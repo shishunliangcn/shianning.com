@@ -139,7 +139,7 @@ export const wings: WingDef[] = [
         name: '青春期与性教育',
         icon: '🌼',
         summary: '身体的变化、情绪的起伏，以及什么叫「我的身体我做主」。',
-        articles: [{ title: '身体开始变化时，你需要知道的事', slug: 'body-changes', note: '不是变坏了，是换系统' }],
+        articles: [{ title: '身体开始变化时，你需要知道的事', slug: 'body-changes', note: '不是变坏了，是换系统' }, { title: '喜欢一个人，是怎么回事', slug: 'first-crush', note: '不是丢人的事' }, { title: '和父母吵架了', slug: 'arguing-with-parents', note: '吵不吵不是问题，怎么吵才是' }]
       },
       {
         key: 'people',
