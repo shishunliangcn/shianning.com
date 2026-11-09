@@ -65,42 +65,42 @@ export const wings: WingDef[] = [
         name: '天文',
         icon: '🔭',
         summary: '抬头看：恒星、行星、星系，以及人类如何一步步量出宇宙。',
-        articles: [{ title: '太阳走了，月亮来了', slug: 'sun-and-moon', note: '给 2 岁宝宝的天文第一课' }, { title: '星星为什么会发光', slug: 'stars', note: '从核聚变到光谱' }]
+        articles: [{ title: '太阳走了，月亮来了', slug: 'sun-and-moon', note: '给 2 岁宝宝的天文第一课' }, { title: '星星为什么会发光', slug: 'stars', note: '从核聚变到光谱' }, { title: '星座是怎么来的', slug: 'constellations', note: '人往上画的图' }]
       },
       {
         key: 'observation',
         name: '自然观察',
         icon: '🌿',
         summary: '动物与植物的个体观察：蹲下来看蚂蚁、摸树皮、听鸟叫，先学会看见。',
-        articles: [{ title: '蚂蚁在忙什么？', slug: 'ant-walk', note: '蹲下来，看 10 分钟' }]
+        articles: [{ title: '蚂蚁在忙什么？', slug: 'ant-walk', note: '蹲下来，看 10 分钟' }, { title: '一片叶子的一生', slug: 'leaf-life', note: '秋天的颜色是「卸妆」' }, { title: '云为什么会飘在天上', slug: 'why-clouds-float', note: '它落得极慢' }]
       },
       {
         key: 'experiments',
         name: '趣味实验',
         icon: '⚗️',
         summary: '用厨房里的材料做实验，把「为什么」变成「我试试」。',
-        articles: [{ title: '冰块去哪儿了？', slug: 'ice-melts', note: '两块冰赛跑' }]
+        articles: [{ title: '冰块去哪儿了？', slug: 'ice-melts', note: '两块冰赛跑' }, { title: '一张纸能承多重', slug: 'paper-bridge', note: '折一下，强度差几十倍' }, { title: '会跳舞的葡萄干', slug: 'dancing-raisins', note: '气泡在搬东西' }, { title: '分层饮料：一个杯子里的三层', slug: 'density-tower', note: '密度不同，谁也不服谁' }, { title: '气球火箭', slug: 'balloon-rocket', note: '反作用力' }, { title: '头发能把纸吸起来', slug: 'static-electricity', note: '摩擦起电' }]
       },
       {
         key: 'physics',
         name: '物理',
         icon: '⚛️',
         summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。',
-        articles: [{ title: '天为什么是蓝的', slug: 'sky-is-blue', note: '蓝光被撒开了' }],
+        articles: [{ title: '天为什么是蓝的', slug: 'sky-is-blue', note: '蓝光被撒开了' }, { title: '为什么冰是滑的', slug: 'why-ice-is-slippery', note: '压力化出一层水膜' }, { title: '声音是怎么跑到你耳朵里的', slug: 'sound-travels', note: '声音是一种波' }]
       },
       {
         key: 'chemistry',
         name: '化学',
         icon: '🧪',
         summary: '原子如何牵手又分开，物质为什么会有这样的脾气。',
-        articles: [{ title: '盐和糖，为什么长得像却不一样', slug: 'salt-and-sugar', note: '离子 vs 分子' }],
+        articles: [{ title: '盐和糖，为什么长得像却不一样', slug: 'salt-and-sugar', note: '离子 vs 分子' }, { title: '切开的苹果为什么会变黑', slug: 'apple-turns-brown', note: '酶促褐变' }]
       },
       {
         key: 'earth-ecology',
         name: '地球与生态',
         icon: '🌍',
         summary: '板块、气候与生态系统：脚下这颗星球作为一个整体如何运行。',
-        articles: [{ title: '一块石头的一生', slug: 'life-of-a-rock', note: '岩浆、沉积、变质' }],
+        articles: [{ title: '一块石头的一生', slug: 'life-of-a-rock', note: '岩浆、沉积、变质' }, { title: '海水一天涨两次，是谁在拉它', slug: 'tides', note: '月亮拉扯海水' }, { title: '为什么会有四季', slug: 'why-seasons', note: '地轴是斜的' }]
       }
     ]
   },
@@ -118,7 +118,7 @@ export const wings: WingDef[] = [
         name: '历史',
         icon: '🏺',
         summary: '文明如何兴起与转折，以及史料是怎么被读出来的。',
-        articles: [{ title: '历史不是年份表', slug: 'not-a-timeline', note: '历史回答的是「人会怎么选」' }, { title: '一条河，怎么养出一个文明', slug: 'river-and-civilization', note: '洪水逼出了最早的协作' }],
+        articles: [{ title: '历史不是年份表', slug: 'not-a-timeline', note: '历史回答的是「人会怎么选」' }, { title: '一条河，怎么养出一个文明', slug: 'river-and-civilization', note: '洪水逼出了最早的协作' }, { title: '文字是怎么被发明出来的', slug: 'invention-of-writing', note: '先有账，后有诗' }, { title: '一场瘟疫，怎么改变了欧洲', slug: 'black-death', note: '灾难推动制度' }]
       },
       {
         key: 'philosophy',
@@ -166,7 +166,8 @@ export const wings: WingDef[] = [
         summary: '词源、习语与发音里的冷知识，让英语变得好玩。',
         articles: [
           { title: '为什么英语里的 I 永远大写', slug: 'why-i-capital' },
-          { title: '动物宝宝怎么叫？', slug: 'baby-animals' }
+          { title: '动物宝宝怎么叫？', slug: 'baby-animals' },
+          { title: '为什么英语单词拼写这么怪', slug: 'why-english-spelling-is-weird', note: '长出来的，不是设计出来的' }
         ]
       },
       {
@@ -174,28 +175,28 @@ export const wings: WingDef[] = [
         name: '文学赏析',
         icon: '📖',
         summary: '诗、小说与散文：读懂作者藏在字缝里的意思。',
-        articles: [{ title: '诗读不懂也没关系', slug: 'how-to-read-poetry', note: '诗不是谜语' }],
+        articles: [{ title: '诗读不懂也没关系', slug: 'how-to-read-poetry', note: '诗不是谜语' }, { title: '比喻为什么有用', slug: 'metaphor', note: '给抽象的东西一个形状' }]
       },
       {
         key: 'math-thinking',
         name: '数学思维',
         icon: '🔢',
         summary: '不是算得快，而是想得清：证明、概率与建模。',
-        articles: [{ title: '大和小，多和少', slug: 'big-and-small', note: '数学最早的样子是比较' }]
+        articles: [{ title: '大和小，多和少', slug: 'big-and-small', note: '数学最早的样子是比较' }, { title: '为什么 0 很重要', slug: 'why-zero-matters', note: '一个改变一切的符号' }, { title: '抛十次硬币都是正面，正常吗', slug: 'probability-coin', note: '硬币没有记忆' }]
       },
       {
         key: 'programming-ai',
         name: '编程与AI',
         icon: '🤖',
         summary: '让机器按你的想法工作，并理解它为什么会出错。',
-        articles: [{ title: '电脑听不懂人话', slug: 'computers-dont-understand', note: '它只会四件事' }],
+        articles: [{ title: '电脑听不懂人话', slug: 'computers-dont-understand', note: '它只会四件事' }, { title: '什么是变量', slug: 'what-is-a-variable', note: '一个贴了名字的盒子' }]
       },
       {
         key: 'media-literacy',
         name: '媒介素养',
         icon: '📱',
         summary: '这条消息是真的吗？刷手机停不下来怎么办？学会和信息相处。',
-        articles: [{ title: '为什么你停不下来', slug: 'why-you-cant-stop', note: '不是你没自制力' }],
+        articles: [{ title: '为什么你停不下来', slug: 'why-you-cant-stop', note: '不是你没自制力' }, { title: '广告是怎么说服你的', slug: 'how-ads-persuade', note: '先制造缺口' }]
       }
     ]
   },
@@ -215,7 +216,8 @@ export const wings: WingDef[] = [
         summary: '声音如何变成音乐，以及怎么听出门道。',
         articles: [
           { title: '声音是怎么变成音乐的', slug: 'what-is-sound', note: '从空气振动到一首曲子' },
-          { title: '小手拍拍：2岁宝宝手指操', slug: 'baby-finger-play' }
+          { title: '小手拍拍：2岁宝宝手指操', slug: 'baby-finger-play' },
+          { title: '为什么有的和弦好听', slug: 'why-chords-sound-good', note: '频率成简单比例' }
         ]
       },
       {
@@ -223,28 +225,28 @@ export const wings: WingDef[] = [
         name: '视觉艺术',
         icon: '🖼️',
         summary: '绘画、摄影与看展：训练一双会看的眼睛。',
-        articles: [{ title: '乱涂也是画画', slug: 'first-scribble', note: '别问「画的是什么」' }]
+        articles: [{ title: '乱涂也是画画', slug: 'first-scribble', note: '别问「画的是什么」' }, { title: '透视：为什么远处的树变小', slug: 'perspective', note: '近大远小' }]
       },
       {
         key: 'maker',
         name: '手工创客',
         icon: '🔨',
         summary: '木工、电子与 3D 打印，把想法做成能拿在手里的东西。',
-        articles: [{ title: '一把剪刀能做什么', slug: 'one-scissors', note: '十分钟能做完三样' }],
+        articles: [{ title: '一把剪刀能做什么', slug: 'one-scissors', note: '十分钟能做完三样' }, { title: '纸飞机为什么能飞', slug: 'paper-airplane', note: '升力与重心' }, { title: '用纸板做一个齿轮', slug: 'cardboard-gear', note: '把转动传下去' }]
       },
       {
         key: 'design',
         name: '设计',
         icon: '✏️',
         summary: '版式、配色与产品思维：让信息好看又好用。',
-        articles: [{ title: '为什么有些按钮你一眼就知道能点', slug: 'affordance', note: '形状就是说明书' }],
+        articles: [{ title: '为什么有些按钮你一眼就知道能点', slug: 'affordance', note: '形状就是说明书' }, { title: '为什么红色代表危险', slug: 'why-red-means-danger', note: '一部分本能，一部分习惯' }]
       },
       {
         key: 'body-games',
         name: '身体游戏',
         icon: '🤸',
         summary: '跑跳、翻滚、平衡：大运动与感统训练，玩着就把身体练协调。',
-        articles: [{ title: '跳一跳，蹲一蹲', slug: 'jump-and-squat', note: '跳，是在练平衡' }]
+        articles: [{ title: '跳一跳，蹲一蹲', slug: 'jump-and-squat', note: '跳，是在练平衡' }, { title: '为什么转圈会晕', slug: 'why-spinning-makes-you-dizzy', note: '耳朵里的水平仪' }]
       }
     ]
   },
@@ -269,7 +271,7 @@ export const wings: WingDef[] = [
         name: '自我保护',
         icon: '🛡️',
         summary: '防走失、防欺凌、防触电：把「遇到危险怎么办」变成条件反射。',
-        articles: [{ title: '三样东西不能碰', slug: 'three-things', note: '只教一个「停」字' }]
+        articles: [{ title: '三样东西不能碰', slug: 'three-things', note: '只教一个「停」字' }, { title: '走丢了怎么办', slug: 'getting-lost', note: '站住、找谁、说什么' }, { title: '陌生人说「你妈妈让我来接你」', slug: 'stranger-pickup', note: '一条铁律挡住大多数情况' }]
       },
       {
         key: 'life-skills',
@@ -283,14 +285,14 @@ export const wings: WingDef[] = [
         name: '财商启蒙',
         icon: '💰',
         summary: '记账、储蓄、复利与防骗，建立和钱的健康关系。',
-        articles: [{ title: '钱是什么', slug: 'what-is-money', note: '一张大家都愿意相信的欠条' }, { title: '零花钱的三种花法', slug: 'pocket-money', note: '分三份，允许花错' }],
+        articles: [{ title: '钱是什么', slug: 'what-is-money', note: '一张大家都愿意相信的欠条' }, { title: '零花钱的三种花法', slug: 'pocket-money', note: '分三份，允许花错' }, { title: '存钱为什么会有利息', slug: 'interest', note: '钱的使用费' }]
       },
       {
         key: 'cooking',
         name: '美食烹饪',
         icon: '🍳',
         summary: '刀工、火候与调味：先学会喂饱自己。',
-        articles: [{ title: '煎东西时那股香味，是怎么来的', slug: 'why-frying-smells-good', note: '美拉德反应' }, { title: '切菜的手', slug: 'how-to-hold-a-knife', note: '先学放手，再学落刀' }],
+        articles: [{ title: '煎东西时那股香味，是怎么来的', slug: 'why-frying-smells-good', note: '美拉德反应' }, { title: '切菜的手', slug: 'how-to-hold-a-knife', note: '先学放手，再学落刀' }, { title: '面团为什么会发起来', slug: 'why-dough-rises', note: '酵母在吃糖吐气' }]
       }
     ]
   }
