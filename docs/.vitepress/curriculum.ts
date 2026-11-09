@@ -65,14 +65,14 @@ export const wings: WingDef[] = [
         name: '天文',
         icon: '🔭',
         summary: '抬头看：恒星、行星、星系，以及人类如何一步步量出宇宙。',
-        articles: [{ title: '太阳走了，月亮来了', slug: 'sun-and-moon', note: '给 2 岁宝宝的天文第一课' }, { title: '星星为什么会发光', slug: 'stars', note: '从核聚变到光谱' }, { title: '星座是怎么来的', slug: 'constellations', note: '人往上画的图' }]
+        articles: [{ title: '太阳走了，月亮来了', slug: 'sun-and-moon', note: '给 2 岁宝宝的天文第一课' }, { title: '星星为什么会发光', slug: 'stars', note: '从核聚变到光谱' }, { title: '星座是怎么来的', slug: 'constellations', note: '人往上画的图' }, { title: '月亮为什么会有圆缺', slug: 'moon-phases', note: '受光面在变' }, { title: '我们怎么知道星星有多远', slug: 'how-far-are-stars', note: '视差与造父变星' }]
       },
       {
         key: 'observation',
         name: '自然观察',
         icon: '🌿',
         summary: '动物与植物的个体观察：蹲下来看蚂蚁、摸树皮、听鸟叫，先学会看见。',
-        articles: [{ title: '蚂蚁在忙什么？', slug: 'ant-walk', note: '蹲下来，看 10 分钟' }, { title: '一片叶子的一生', slug: 'leaf-life', note: '秋天的颜色是「卸妆」' }, { title: '云为什么会飘在天上', slug: 'why-clouds-float', note: '它落得极慢' }]
+        articles: [{ title: '蚂蚁在忙什么？', slug: 'ant-walk', note: '蹲下来，看 10 分钟' }, { title: '一片叶子的一生', slug: 'leaf-life', note: '秋天的颜色是「卸妆」' }, { title: '云为什么会飘在天上', slug: 'why-clouds-float', note: '它落得极慢' }, { title: '鸟叫在说什么', slug: 'bird-song', note: '宣示、联络、警报' }, { title: '天要下雨，怎么看出来', slug: 'weather-signs', note: '云、风、闷' }]
       },
       {
         key: 'experiments',
@@ -86,7 +86,7 @@ export const wings: WingDef[] = [
         name: '物理',
         icon: '⚛️',
         summary: '力、能量、电磁与时空：用最少的规律解释最多的现象。',
-        articles: [{ title: '天为什么是蓝的', slug: 'sky-is-blue', note: '蓝光被撒开了' }, { title: '为什么冰是滑的', slug: 'why-ice-is-slippery', note: '压力化出一层水膜' }, { title: '声音是怎么跑到你耳朵里的', slug: 'sound-travels', note: '声音是一种波' }]
+        articles: [{ title: '天为什么是蓝的', slug: 'sky-is-blue', note: '蓝光被撒开了' }, { title: '为什么冰是滑的', slug: 'why-ice-is-slippery', note: '压力化出一层水膜' }, { title: '声音是怎么跑到你耳朵里的', slug: 'sound-travels', note: '声音是一种波' }, { title: '电梯启动时，为什么觉得变轻了', slug: 'elevator-weightless', note: '失重不是没有重力' }]
       },
       {
         key: 'chemistry',
@@ -182,7 +182,7 @@ export const wings: WingDef[] = [
         name: '数学思维',
         icon: '🔢',
         summary: '不是算得快，而是想得清：证明、概率与建模。',
-        articles: [{ title: '大和小，多和少', slug: 'big-and-small', note: '数学最早的样子是比较' }, { title: '为什么 0 很重要', slug: 'why-zero-matters', note: '一个改变一切的符号' }, { title: '抛十次硬币都是正面，正常吗', slug: 'probability-coin', note: '硬币没有记忆' }]
+        articles: [{ title: '大和小，多和少', slug: 'big-and-small', note: '数学最早的样子是比较' }, { title: '为什么 0 很重要', slug: 'why-zero-matters', note: '一个改变一切的符号' }, { title: '抛十次硬币都是正面，正常吗', slug: 'probability-coin', note: '硬币没有记忆' }, { title: '负数乘负数，为什么得正', slug: 'negative-times-negative', note: '为了规则不打架' }]
       },
       {
         key: 'programming-ai',
@@ -196,7 +196,7 @@ export const wings: WingDef[] = [
         name: '媒介素养',
         icon: '📱',
         summary: '这条消息是真的吗？刷手机停不下来怎么办？学会和信息相处。',
-        articles: [{ title: '为什么你停不下来', slug: 'why-you-cant-stop', note: '不是你没自制力' }, { title: '广告是怎么说服你的', slug: 'how-ads-persuade', note: '先制造缺口' }]
+        articles: [{ title: '为什么你停不下来', slug: 'why-you-cant-stop', note: '不是你没自制力' }, { title: '广告是怎么说服你的', slug: 'how-ads-persuade', note: '先制造缺口' }, { title: '算法怎么决定你看到什么', slug: 'how-algorithms-feed-you', note: '它只看你会不会停留' }, { title: '标题为什么总在骗你', slug: 'headlines', note: '情绪比事实更吸引点击' }, { title: '这条消息是真的吗', slug: 'fake-news', note: '四个动作筛掉假消息' }]
       }
     ]
   },
@@ -239,14 +239,14 @@ export const wings: WingDef[] = [
         name: '设计',
         icon: '✏️',
         summary: '版式、配色与产品思维：让信息好看又好用。',
-        articles: [{ title: '为什么有些按钮你一眼就知道能点', slug: 'affordance', note: '形状就是说明书' }, { title: '为什么红色代表危险', slug: 'why-red-means-danger', note: '一部分本能，一部分习惯' }]
+        articles: [{ title: '为什么有些按钮你一眼就知道能点', slug: 'affordance', note: '形状就是说明书' }, { title: '为什么红色代表危险', slug: 'why-red-means-danger', note: '一部分本能，一部分习惯' }, { title: '字体在说话', slug: 'typography', note: '字本身有性格' }, { title: '留白不是浪费', slug: 'whitespace', note: '空白决定你看哪儿' }, { title: '为看不见的人设计', slug: 'accessibility', note: '无障碍对所有人都更好用' }]
       },
       {
         key: 'body-games',
         name: '身体游戏',
         icon: '🤸',
         summary: '跑跳、翻滚、平衡：大运动与感统训练，玩着就把身体练协调。',
-        articles: [{ title: '跳一跳，蹲一蹲', slug: 'jump-and-squat', note: '跳，是在练平衡' }, { title: '为什么转圈会晕', slug: 'why-spinning-makes-you-dizzy', note: '耳朵里的水平仪' }]
+        articles: [{ title: '跳一跳，蹲一蹲', slug: 'jump-and-squat', note: '跳，是在练平衡' }, { title: '为什么转圈会晕', slug: 'why-spinning-makes-you-dizzy', note: '耳朵里的水平仪' }, { title: '跳绳：最便宜的全身运动', slug: 'jump-rope', note: '手腕摇，不用手臂' }, { title: '平衡是怎么练出来的', slug: 'balance', note: '稳不是静止，是快速修正' }, { title: '抛接：手和眼睛的对话', slug: 'throw-and-catch', note: '看球，不要看手' }]
       }
     ]
   },
