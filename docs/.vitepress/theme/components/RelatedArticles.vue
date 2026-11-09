@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 
 import { data as tagged } from '../../tags.data'
+import { AGE_TAGS } from '../../tags'
 import { usePageContext } from '../composables/usePageContext'
 
 /**
@@ -16,14 +17,19 @@ const { frontmatter } = useData()
 
 const myTags = computed<string[]>(() => {
   const raw = frontmatter.value.tags
-  return Array.isArray(raw) ? raw.map(String) : []
+  const tags = Array.isArray(raw) ? raw.map(String) : []
+  // 年龄标签太泛（人人都打），不参与相似度计算
+  return tags.filter((tag) => !AGE_TAGS.includes(tag))
 })
 
-/** 路径（不含 .html）→ 标签 */
+/** 路径（不含 .html）→ 标签（同样剔除年龄标签） */
 const tagMap = computed(() => {
   const map = new Map<string, string[]>()
   for (const article of tagged) {
-    map.set(article.url.replace(/\.html$/, ''), article.tags)
+    map.set(
+      article.url.replace(/\.html$/, ''),
+      article.tags.filter((tag) => !AGE_TAGS.includes(tag))
+    )
   }
   return map
 })
