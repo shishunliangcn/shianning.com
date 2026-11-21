@@ -268,7 +268,7 @@ export const wings: WingDef[] = [
         name: '安全急救',
         icon: '🚑',
         summary: '烫伤、出血、窒息与心肺复苏：关键时刻的正确动作。',
-        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns', note: '大多数人第一反应就是错的' }, { title: '噎住了：那三分钟能救命', slug: 'choking', note: '怎么判断、怎么救' }, { title: '触电、溺水、中暑：三个救命动作', slug: 'three-emergencies', note: '先保自己再救人' }, { title: '流鼻血，别仰头', slug: 'nosebleed', note: '低头、捏鼻、前倾' }, { title: '扭伤了，先冷敷还是热敷', slug: 'sprain', note: '前 48 小时冷敷' }]
+        articles: [{ title: '烫伤后的第一件事是什么', slug: 'burns', note: '大多数人第一反应就是错的' }, { title: '噎住了：那三分钟能救命', slug: 'choking', note: '怎么判断、怎么救' }, { title: '触电、溺水、中暑：三个救命动作', slug: 'three-emergencies', note: '先保自己再救人' }, { title: '流鼻血，别仰头', slug: 'nosebleed', note: '低头、捏鼻、前倾' }, { title: '扭伤了，先冷敷还是热敷', slug: 'sprain', note: '前 48 小时冷敷' }, { title: '急救（一）：有人倒地、噎住', slug: 'emergency-cpr', note: '第 13 节 5 条' }, { title: '急救（二）：卒中、胸痛与最痛的头痛', slug: 'emergency-stroke-heart', note: '第 13 节 7 条' }, { title: '急救（三）：老人迟钝、肿腿、抽搐、低血糖', slug: 'emergency-other', note: '第 13 节 6 条' }, { title: '急救（四）：出血、咬伤、烫伤与断指', slug: 'emergency-wounds', note: '第 13 节 7 条' }, { title: '急救（五）：触电、一氧化碳与误服', slug: 'emergency-poison', note: '第 13 节 4 条' }, { title: '急救（六）：中暑、火灾、溺水与醉酒', slug: 'emergency-fire-heat', note: '第 13 节 7 条' }, { title: '急救（七）：野外', slug: 'emergency-wild', note: '第 13 节 8 条' }, { title: '急救（八）：冲突、暴露与性侵', slug: 'emergency-violence', note: '第 13 节 5 条' }]
       },
       {
         key: 'self-protection',
@@ -370,7 +370,6 @@ export const parenting: {
         { title: '养孩子，先把你该领的钱领回来', slug: 'free-money', note: '育儿补贴与个税扣除' },
         { title: '婴儿怎么睡才安全', slug: 'safe-sleep', note: '一条能救命的睡姿' },
         { title: '两种感冒药，别一起吃', slug: 'acetaminophen', note: '重复用药伤肝' },
-        { title: '紧急情况速查表', slug: 'emergency-cheatsheet', note: '几分钟内该做什么' },
         { title: '养孩子这笔账：补贴、产假、时间与年龄', slug: 'ch18-money', note: '全文收录 · 第 18 节（7 条）' },
         { title: '刚出生（上）：睡眠、疫苗与喂养', slug: 'ch20-a', note: '全文收录 · 第 20 节 1–9' },
         { title: '刚出生（下）：黄疸、过敏与用品', slug: 'ch20-b', note: '全文收录 · 第 20 节 10–17' },

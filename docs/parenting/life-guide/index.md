@@ -44,7 +44,7 @@ title: 高性价比人生指南
 
 | 章 | 讲什么 | 本栏 |
 | --- | --- | --- |
-| [13](https://github.com/eternity4719/HowToLiveBetter/blob/main/book/13-%E7%B4%A7%E6%80%A5%E6%83%85%E5%86%B5.md) | 紧急情况：先做什么 | 站内已另有急救文章 |
+| [13](https://github.com/eternity4719/HowToLiveBetter/blob/main/book/13-%E7%B4%A7%E6%80%A5%E6%83%85%E5%86%B5.md) | 紧急情况：先做什么 | **已并入** [长生馆 · 安全急救](/life/safety-first-aid/) |
 | [17](https://github.com/eternity4719/HowToLiveBetter/blob/main/book/17-%E5%AE%B6%E9%87%8C%E6%9C%89%E8%80%81%E4%BA%BA.md) | 家里有老人 | 不属育儿，未收 |
 | [18](https://github.com/eternity4719/HowToLiveBetter/blob/main/book/18-%E5%85%BB%E5%AD%A9%E5%AD%90%E5%88%92%E4%B8%8D%E5%88%92%E7%AE%97.md) | 养孩子划不划算 | **全文收录** |
 | [20](https://github.com/eternity4719/HowToLiveBetter/blob/main/book/20-%E5%88%9A%E5%87%BA%E7%94%9F%E7%9A%84%E5%AD%A9%E5%AD%90%E6%80%8E%E4%B9%88%E5%B8%A6.md) | 刚出生的孩子怎么带 | **全文收录** |
@@ -74,7 +74,9 @@ title: 高性价比人生指南
 
 **为什么不全收 34 节？**
 
-因为 17（老人）、24（看病）、13（急救）不属于育儿；其中急救部分站内已有更细的文章（噎住、烫伤、触电溺水、火灾、一氧化碳），不再重复。
+因为 17（老人）、24（看病）不属于育儿，且第 24 节没有儿童专属条目。
+
+**第 13 节（急救）已经全部并入 [长生馆 · 安全急救](/life/safety-first-aid/)**——49 条一条不落，和站内原有的噎住、烫伤、触电溺水等详解文章放在一起，不再分成两处。
 
 <ArticleList />
 
