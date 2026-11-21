@@ -365,12 +365,23 @@ export const parenting: {
       key: 'life-guide',
       name: '高性价比人生指南',
       icon: '📖',
-      summary: '一份开源的书：把「花掉什么、换回什么、证据多硬」写在每一条建议里。这里收了与家庭最相关的几块。',
+      summary: '一份开源的书：把「花掉什么、换回什么、证据多硬」写在每一条建议里。含导读精选与育儿相关章节全文收录。',
       articles: [
         { title: '养孩子，先把你该领的钱领回来', slug: 'free-money', note: '育儿补贴与个税扣除' },
         { title: '婴儿怎么睡才安全', slug: 'safe-sleep', note: '一条能救命的睡姿' },
         { title: '两种感冒药，别一起吃', slug: 'acetaminophen', note: '重复用药伤肝' },
-        { title: '紧急情况速查表', slug: 'emergency-cheatsheet', note: '几分钟内该做什么' }
+        { title: '紧急情况速查表', slug: 'emergency-cheatsheet', note: '几分钟内该做什么' },
+        { title: '养孩子这笔账：补贴、产假、时间与年龄', slug: 'ch18-money', note: '全文收录 · 第 18 节（7 条）' },
+        { title: '刚出生（上）：睡眠、疫苗与喂养', slug: 'ch20-a', note: '全文收录 · 第 20 节 1–9' },
+        { title: '刚出生（下）：黄疸、过敏与用品', slug: 'ch20-b', note: '全文收录 · 第 20 节 10–17' },
+        { title: '怀孕（上）：从备孕到产检', slug: 'ch27-a', note: '全文收录 · 第 27 节 1–10' },
+        { title: '怀孕与产后（下）：证件、复查与恢复', slug: 'ch27-b', note: '全文收录 · 第 27 节 11–20' },
+        { title: '上学以后（上）：身体与安全', slug: 'ch30-a', note: '全文收录 · 第 30 节 1–7' },
+        { title: '上学以后（中）：近视、心理与游戏', slug: 'ch30-b', note: '全文收录 · 第 30 节 8–14' },
+        { title: '上学以后（下）：打骂、边界与运动损伤', slug: 'ch30-c', note: '全文收录 · 第 30 节 15–21' },
+        { title: '十八岁以后（上）：当兵与体制内', slug: 'ch31-a', note: '全文收录 · 第 31 节 1–9' },
+        { title: '十八岁以后（下）：学历、就业与出国', slug: 'ch31-b', note: '全文收录 · 第 31 节 10–17' },
+        { title: '孩子和孕妇不能吃的药', slug: 'ch34-kids', note: '全文收录 · 第 34 节 4 条' }
       ]
     }
   ]
