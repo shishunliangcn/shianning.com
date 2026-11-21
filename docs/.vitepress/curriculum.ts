@@ -360,6 +360,18 @@ export const parenting: {
       icon: '🗣️',
       summary: '家长和孩子一起开口的发音小抄：点一下就能听标准读音，照着跟读。',
       articles: [{ title: '亲子英语词表 · 从识物开始', slug: 'parent-english-phonics' }]
+    },
+    {
+      key: 'life-guide',
+      name: '高性价比人生指南',
+      icon: '📖',
+      summary: '一份开源的书：把「花掉什么、换回什么、证据多硬」写在每一条建议里。这里收了与家庭最相关的几块。',
+      articles: [
+        { title: '养孩子，先把你该领的钱领回来', slug: 'free-money', note: '育儿补贴与个税扣除' },
+        { title: '婴儿怎么睡才安全', slug: 'safe-sleep', note: '一条能救命的睡姿' },
+        { title: '两种感冒药，别一起吃', slug: 'acetaminophen', note: '重复用药伤肝' },
+        { title: '紧急情况速查表', slug: 'emergency-cheatsheet', note: '几分钟内该做什么' }
+      ]
     }
   ]
 }
